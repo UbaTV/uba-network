@@ -8,3 +8,10 @@ database: true
 website: ubatv.github.io
 prefix: KINGDOMS
 description: This plugin was developed by UbaTV.
+commands:
+  setlocation:
+    description: This command was developed by UbaTV.
+    aliases:
+      - setloc
+  spawn:
+    description: This command was developed by UbaTV.

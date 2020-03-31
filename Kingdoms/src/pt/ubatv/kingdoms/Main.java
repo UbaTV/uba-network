@@ -3,9 +3,14 @@ package pt.ubatv.kingdoms;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import pt.ubatv.kingdoms.commands.SetLocationCommand;
+import pt.ubatv.kingdoms.commands.SpawnCommand;
+import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.DeveloperMode;
 import pt.ubatv.kingdoms.events.JoinQuitEvent;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
+import pt.ubatv.kingdoms.mysql.UserDataTable;
+import pt.ubatv.kingdoms.rankSystem.RankManager;
 import pt.ubatv.kingdoms.utils.ItemAPI;
 import pt.ubatv.kingdoms.utils.TextUtils;
 
@@ -16,18 +21,24 @@ public class Main extends JavaPlugin {
     public TextUtils textUtils;
     public MySQLConnection mySQLConnection;
     public ItemAPI itemAPI;
+    public UserDataTable userDataTable;
+    public LocationYML locationYML;
+    public RankManager rankManager;
 
     @Override
     public void onEnable() {
         setInstance(this);
         instanceClasses();
 
-        mySQLConnection.runMySQLAsync();
         loadConfig();
+        locationYML.createConfig();
+        mySQLConnection.runMySQLAsync();
 
         registerEvents();
         registerCommands();
 
+        locationYML.setupSpawn();
+        Bukkit.getOnlinePlayers().forEach(target -> userDataTable.loadUserData(target));
     }
 
     @Override
@@ -35,7 +46,8 @@ public class Main extends JavaPlugin {
     }
 
     private void registerCommands(){
-
+        getCommand("setlocation").setExecutor(new SetLocationCommand());
+        getCommand("spawn").setExecutor(new SpawnCommand());
     }
 
     private void registerEvents(){
@@ -49,6 +61,9 @@ public class Main extends JavaPlugin {
         textUtils = new TextUtils();
         mySQLConnection = new MySQLConnection();
         itemAPI = new ItemAPI();
+        userDataTable = new UserDataTable();
+        locationYML = new LocationYML();
+        rankManager = new RankManager();
     }
 
     private void loadConfig(){
