@@ -1,0 +1,10 @@
+name: Kingdoms
+version: 1.0-SNAPSHOT
+main: pt.ubatv.kingdoms.Main
+api-version: 1.15
+authors:
+  - andreubita
+database: true
+website: ubatv.github.io
+prefix: KINGDOMS
+description: This plugin was developed by UbaTV.

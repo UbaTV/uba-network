@@ -1,0 +1,6 @@
+# MySQL Settings
+host: localhost
+port: 3306
+database: ubanetwork
+username: andreubita
+password: uba
