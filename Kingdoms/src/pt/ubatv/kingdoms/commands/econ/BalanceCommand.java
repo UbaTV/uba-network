@@ -29,7 +29,7 @@ public class BalanceCommand implements CommandExecutor {
                 }
 
                 int coins = main.userDataTable.online.get(target.getUniqueId()).getCoins();
-                player.sendMessage("§5" + target.getName() + "§7's coins §8⯈ §5" + coins + " " + main.textUtils.coinsSymbol);
+                player.sendMessage("§5" + target.getName() + "§7's coins §8⯈ §5" + coins + main.textUtils.coinsSymbol);
                 return false;
             }
 

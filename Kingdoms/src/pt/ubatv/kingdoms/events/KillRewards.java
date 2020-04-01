@@ -33,6 +33,6 @@ public class KillRewards implements Listener {
         UserData userData = main.userDataTable.online.get(uuid);
         int balance = userData.getCoins();
         main.userDataTable.online.get(uuid).setCoins(balance + coins);
-        player.sendMessage("§6+ " + coins + " " + main.textUtils.coinsSymbol);
+        player.sendMessage("§6+ " + coins + main.textUtils.coinsSymbol);
     }
 }

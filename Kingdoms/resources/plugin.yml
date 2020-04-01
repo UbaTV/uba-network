@@ -23,6 +23,10 @@ commands:
       - money
       - bal
       - coins
+  econ:
+    description: This command was developed by UbaTV.
+    aliases:
+      - economy
   pay:
     description: This command was developed by UbaTV.
     aliases:

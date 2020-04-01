@@ -7,6 +7,7 @@ import pt.ubatv.kingdoms.commands.SetLocationCommand;
 import pt.ubatv.kingdoms.commands.SpawnCommand;
 import pt.ubatv.kingdoms.commands.TestCommand;
 import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
+import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
@@ -60,6 +61,7 @@ public class Main extends JavaPlugin {
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("balance").setExecutor(new BalanceCommand());
         getCommand("pay").setExecutor(new PayCommand());
+        getCommand("econ").setExecutor(new EconCommand());
         getCommand("kingdoms").setExecutor(new KingdomsManager());
     }
 
