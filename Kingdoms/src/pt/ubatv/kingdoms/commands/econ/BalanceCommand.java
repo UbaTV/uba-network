@@ -11,15 +11,13 @@ public class BalanceCommand implements CommandExecutor {
 
     private Main main = Main.getInstance();
 
-    char coinsSymbol = '⛃';
-
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(args.length == 0){
                 int coins = main.userDataTable.online.get(player.getUniqueId()).getCoins();
-                player.sendMessage("§7Coins §8⯈ §5" + coins + " " + coinsSymbol);
+                player.sendMessage("§7Coins §8⯈ §5" + coins + " " + main.textUtils.coinsSymbol);
                 return false;
             }
 
@@ -31,7 +29,7 @@ public class BalanceCommand implements CommandExecutor {
                 }
 
                 int coins = main.userDataTable.online.get(target.getUniqueId()).getCoins();
-                player.sendMessage("§5" + target.getName() + "§7's coins §8⯈ §5" + coins + " " + coinsSymbol);
+                player.sendMessage("§5" + target.getName() + "§7's coins §8⯈ §5" + coins + " " + main.textUtils.coinsSymbol);
                 return false;
             }
 

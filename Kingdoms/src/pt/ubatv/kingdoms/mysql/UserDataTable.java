@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class UserDataTable {
 
-    public Main main = Main.getInstance();
+    private Main main = Main.getInstance();
 
     public HashMap<UUID, UserData> online = new HashMap<>();
 

@@ -5,11 +5,15 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pt.ubatv.kingdoms.commands.SetLocationCommand;
 import pt.ubatv.kingdoms.commands.SpawnCommand;
+import pt.ubatv.kingdoms.commands.TestCommand;
 import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
+import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
+import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.DeveloperMode;
 import pt.ubatv.kingdoms.events.JoinQuitEvent;
+import pt.ubatv.kingdoms.events.KillRewards;
 import pt.ubatv.kingdoms.mysql.BankTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
@@ -27,6 +31,7 @@ public class Main extends JavaPlugin {
     public UserDataTable userDataTable;
     public BankTable bankTable;
     public LocationYML locationYML;
+    public KingdomsYML kingdomsYML;
     public RankManager rankManager;
 
     @Override
@@ -50,10 +55,12 @@ public class Main extends JavaPlugin {
     }
 
     private void registerCommands(){
+        getCommand("test").setExecutor(new TestCommand());
         getCommand("setlocation").setExecutor(new SetLocationCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("balance").setExecutor(new BalanceCommand());
         getCommand("pay").setExecutor(new PayCommand());
+        getCommand("kingdoms").setExecutor(new KingdomsManager());
     }
 
     private void registerEvents(){
@@ -61,6 +68,7 @@ public class Main extends JavaPlugin {
 
         pluginManager.registerEvents(new DeveloperMode(), this);
         pluginManager.registerEvents(new JoinQuitEvent(), this);
+        pluginManager.registerEvents(new KillRewards(), this);
     }
 
     private void instanceClasses(){
@@ -70,6 +78,7 @@ public class Main extends JavaPlugin {
         userDataTable = new UserDataTable();
         bankTable = new BankTable();
         locationYML = new LocationYML();
+        kingdomsYML = new KingdomsYML();
         rankManager = new RankManager();
     }
 

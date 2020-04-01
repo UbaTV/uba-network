@@ -9,6 +9,8 @@ website: ubatv.github.io
 prefix: KINGDOMS
 description: This plugin was developed by UbaTV.
 commands:
+  test:
+    description: This command was developed by UbaTV.
   setlocation:
     description: This command was developed by UbaTV.
     aliases:
@@ -27,3 +29,5 @@ commands:
       - tip
       - sendcoins
       - sendmoney
+  kingdoms:
+    description: This commands was developed by UbaTV.

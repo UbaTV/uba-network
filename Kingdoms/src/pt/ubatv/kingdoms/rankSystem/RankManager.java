@@ -18,6 +18,9 @@ public class RankManager {
                 return rankTier > 1;
             case CLEAR_CHAT:
                 return rankTier > 7;
+            case SET_LOCATION:
+            case TESTER:
+            case RANK_MANAGEMENT:
             case ECON_MANAGEMENT:
                 return rankTier > 8;
             default:
