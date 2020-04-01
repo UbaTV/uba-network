@@ -11,6 +11,8 @@ description: This plugin was developed by UbaTV.
 commands:
   test:
     description: This command was developed by UbaTV.
+  clearchat:
+    description: This command was developed by UbaTV.
   setlocation:
     description: This command was developed by UbaTV.
     aliases:

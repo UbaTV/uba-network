@@ -10,6 +10,7 @@ import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
+import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.DeveloperMode;
@@ -63,6 +64,7 @@ public class Main extends JavaPlugin {
         getCommand("pay").setExecutor(new PayCommand());
         getCommand("econ").setExecutor(new EconCommand());
         getCommand("kingdoms").setExecutor(new KingdomsManager());
+        getCommand("clearchat").setExecutor(new ClearChatCommand());
     }
 
     private void registerEvents(){
