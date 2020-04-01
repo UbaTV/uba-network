@@ -15,3 +15,15 @@ commands:
       - setloc
   spawn:
     description: This command was developed by UbaTV.
+  balance:
+    description: This command was developed by UbaTV.
+    aliases:
+      - money
+      - bal
+      - coins
+  pay:
+    description: This command was developed by UbaTV.
+    aliases:
+      - tip
+      - sendcoins
+      - sendmoney

@@ -20,7 +20,15 @@ public class UserDataTable {
     public void loadUserData(Player player){
         UUID uuid = player.getUniqueId();
         online.put(uuid,
-                new UserData(getRank(uuid)));
+                new UserData(getRank(uuid), main.bankTable.getCoins(uuid)));
+    }
+
+    public void saveUserData(Player player){
+        UUID uuid = player.getUniqueId();
+        UserData userData = online.get(uuid);
+
+        updateRank(uuid, userData.getRank());
+        main.bankTable.updateCoins(uuid, userData.getCoins());
     }
 
     public boolean userExists(UUID uuid){

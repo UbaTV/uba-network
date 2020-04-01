@@ -31,6 +31,8 @@ public class SetLocationCommand implements CommandExecutor{
                 main.locationYML.getConfig().set(locationName + ".yaw", yaw);
                 main.locationYML.getConfig().set(locationName + ".pitch", pitch);
                 main.locationYML.saveConfig();
+
+                player.sendMessage(main.textUtils.right + "§5" + locationName + " §7location saved successfully.");
             }else{
                 player.sendMessage(main.textUtils.noPerms);
             }

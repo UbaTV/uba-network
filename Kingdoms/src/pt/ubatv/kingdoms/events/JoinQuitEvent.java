@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.events;
 
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +21,9 @@ public class JoinQuitEvent implements Listener {
 
         main.userDataTable.createUser(uuid);
         main.userDataTable.loadUserData(player);
+
+        // 1.8 PVP - Anticooldown
+        player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
     }
 
     @EventHandler
@@ -27,6 +31,7 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
+        main.userDataTable.saveUserData(player);
         main.userDataTable.online.remove(uuid);
     }
 }
