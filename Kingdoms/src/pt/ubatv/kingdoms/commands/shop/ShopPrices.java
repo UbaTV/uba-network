@@ -134,6 +134,28 @@ public class ShopPrices {
     
     //MISC finish//
     
+    //MOB DROPS//
+    
+    public int gunpoweder = 100;
+    public int rabitsFoot = 100;
+    public int sting = 0.2;
+    public int spiderEye = 40;
+    public int rottenFlesh = 1;
+    public int bone = 75;
+    public int arrow = 15;
+    public int slimeball = 40;
+    public int magmaCream = 50;
+    public int enderPearl = 500;
+    public int blazeRod = 45;
+    public int ghastTear = 150;
+    
+    //MOB DROPS FINISHES HERE//
+    
+    
+    
+    
+       
+    
     
     
     
