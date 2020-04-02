@@ -21,7 +21,7 @@ public class EnderchestCommand implements CommandExecutor {
                 if(args.length == 1){
                     if(main.rankManager.hasPermission(player, Permissions.ENDERCHEST_OTHERS)){
                         Player target = Bukkit.getServer().getPlayer(args[0]);
-                        if(target != null){
+                        if(target == null){
                             player.sendMessage(main.textUtils.error + "Invalid player.");
                             return false;
                         }

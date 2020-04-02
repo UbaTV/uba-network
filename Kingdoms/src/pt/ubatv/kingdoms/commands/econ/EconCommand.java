@@ -80,6 +80,7 @@ public class EconCommand implements CommandExecutor {
                     }catch (NumberFormatException e){
                         player.sendMessage(main.textUtils.error + "Invalid number.");
                     }
+                    return false;
                 }
 
                 player.sendMessage("§7/econ balance §5<player>");

@@ -26,7 +26,7 @@ public class ChatManager implements Listener {
 
         if(!userData.isMute()){
             for(Player target : Bukkit.getOnlinePlayers()){
-                target.sendMessage("§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §5"
+                target.sendMessage("§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
                         + player.getName() + "§8§l: §r§7" + msg);
             }
         }

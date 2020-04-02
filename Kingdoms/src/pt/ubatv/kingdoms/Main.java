@@ -11,11 +11,14 @@ import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
+import pt.ubatv.kingdoms.commands.shop.BlockGUI;
 import pt.ubatv.kingdoms.commands.shop.ShopCommand;
+import pt.ubatv.kingdoms.commands.shop.ShopGUI;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
+import pt.ubatv.kingdoms.events.ChatManager;
 import pt.ubatv.kingdoms.events.DeveloperMode;
 import pt.ubatv.kingdoms.events.JoinQuitEvent;
 import pt.ubatv.kingdoms.events.KillRewards;
@@ -85,6 +88,9 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new DeveloperMode(), this);
         pluginManager.registerEvents(new JoinQuitEvent(), this);
         pluginManager.registerEvents(new KillRewards(), this);
+        pluginManager.registerEvents(new ChatManager(), this);
+        pluginManager.registerEvents(new ShopGUI(), this);
+        pluginManager.registerEvents(new BlockGUI(), this);
     }
 
     private void instanceClasses(){
