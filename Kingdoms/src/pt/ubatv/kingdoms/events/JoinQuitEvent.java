@@ -20,6 +20,7 @@ public class JoinQuitEvent implements Listener {
         UUID uuid = player.getUniqueId();
 
         main.userDataTable.createUser(uuid);
+        main.bankTable.createUser(uuid);
         main.userDataTable.loadUserData(player);
 
         // 1.8 PVP - Anticooldown

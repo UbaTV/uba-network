@@ -11,6 +11,16 @@ description: This plugin was developed by UbaTV.
 commands:
   test:
     description: This command was developed by UbaTV.
+  enderchest:
+    description: This command was developed by UbaTV.
+    aliases:
+      - ec
+  mute:
+    description: This command was developed by UbaTV.
+    aliases:
+      - silence
+  shop:
+    description: This command was developed by UbaTV.
   clearchat:
     description: This command was developed by UbaTV.
   setlocation:

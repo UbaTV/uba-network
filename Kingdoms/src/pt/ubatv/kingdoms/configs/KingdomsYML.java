@@ -5,7 +5,6 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pt.ubatv.kingdoms.Main;
-import pt.ubatv.kingdoms.commands.kingdoms.Kingdoms;
 
 import java.io.File;
 import java.io.IOException;

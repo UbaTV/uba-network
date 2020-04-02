@@ -7,5 +7,8 @@ public enum Permissions {
     CLEAR_INVENTORY,
     CLEAR_CHAT,
     PRIVATE_CHEST,
-    ECON_MANAGEMENT
+    ENDERCHEST,
+    ENDERCHEST_OTHERS,
+    ECON_MANAGEMENT,
+    MUTE
 }

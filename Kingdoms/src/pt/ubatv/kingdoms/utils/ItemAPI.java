@@ -6,6 +6,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ItemAPI {
@@ -21,14 +23,13 @@ public class ItemAPI {
     }
 
 
-    public ItemStack item(Material material, String name, List<String> lore) {
+    public ItemStack item(Material material, String name, String...lore) {
         ItemStack item = new ItemStack(material, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
         meta.setDisplayName(name);
-        if (lore.size() != 0) {
-            meta.setLore(lore);
-        }
+        ArrayList<String> metaLore = new ArrayList<String>(Arrays.asList(lore));
+        meta.setLore(metaLore);
         item.setItemMeta(meta);
         return item;
     }
@@ -43,27 +44,25 @@ public class ItemAPI {
         return item;
     }
 
-    public ItemStack item(Material material, int quantity, String name, List<String> lore) {
+    public ItemStack item(Material material, int quantity, String name, String...lore) {
         ItemStack item = new ItemStack(material, quantity);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
         meta.setDisplayName(name);
-        if (lore.size() != 0) {
-            meta.setLore(lore);
-        }
+        ArrayList<String> metaLore = new ArrayList<String>(Arrays.asList(lore));
+        meta.setLore(metaLore);
         item.setItemMeta(meta);
         return item;
     }
 
-    public ItemStack skull(Player player, String name, List<String> lore){
+    public ItemStack skull(Player player, String name, String...lore){
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
         assert meta != null;
         meta.setOwningPlayer(player);
         meta.setDisplayName(name);
-        if(lore.size() != 0){
-            meta.setLore(lore);
-        }
+        ArrayList<String> metaLore = new ArrayList<String>(Arrays.asList(lore));
+        meta.setLore(metaLore);
         skull.setItemMeta(meta);
         return skull;
     }

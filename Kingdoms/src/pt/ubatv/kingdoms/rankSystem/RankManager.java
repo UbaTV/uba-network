@@ -13,11 +13,19 @@ public class RankManager {
         Rank rank = getRank(player);
         int rankTier = getRankTier(rank);
         switch (permission){
+            // STONE PERMS
             case CLEAR_INVENTORY:
             case PRIVATE_CHEST:
                 return rankTier > 1;
+            // IRON PERMS
+            case ENDERCHEST:
+                return rankTier > 2;
+            // ADMIN PERMS
+            case MUTE:
             case CLEAR_CHAT:
+            case ENDERCHEST_OTHERS:
                 return rankTier > 7;
+            // CEO PERMS
             case SET_LOCATION:
             case TESTER:
             case RANK_MANAGEMENT:
@@ -39,6 +47,29 @@ public class RankManager {
         if(rank.equals(Rank.ADMIN)) return 8;
         if(rank.equals(Rank.CEO)) return 9;
         return 1;
+    }
+
+    public String getRankName(Rank rank, boolean color){
+        switch (rank){
+            case CEO:
+                return color ? "§5§lCEO" : "CEO";
+            case ADMIN:
+                return color ? "§4Admin" : "Admin";
+            case MVP:
+                return color ? "§bMVP" : "MVP";
+            case VIP:
+                return color ? "§aVIP" : "VIP";
+            case DIAMOND:
+                return color ? "§bDiamond" : "Diamond";
+            case GOLD:
+                return color ? "§eGold" : "Gold";
+            case IRON:
+                return color ? "§fIron" : "Iron";
+            case STONE:
+                return color ? "§7Stone" : "Stone";
+            default:
+                return color ? "§6Wood" : "Wood";
+        }
     }
 
     public boolean isStaff(Player player){

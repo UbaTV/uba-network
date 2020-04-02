@@ -3,6 +3,7 @@ package pt.ubatv.kingdoms;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import pt.ubatv.kingdoms.commands.EnderchestCommand;
 import pt.ubatv.kingdoms.commands.SetLocationCommand;
 import pt.ubatv.kingdoms.commands.SpawnCommand;
 import pt.ubatv.kingdoms.commands.TestCommand;
@@ -10,7 +11,9 @@ import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
+import pt.ubatv.kingdoms.commands.shop.ShopCommand;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
+import pt.ubatv.kingdoms.commands.staff.MuteCommand;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.DeveloperMode;
@@ -24,6 +27,12 @@ import pt.ubatv.kingdoms.utils.ItemAPI;
 import pt.ubatv.kingdoms.utils.TextUtils;
 
 public class Main extends JavaPlugin {
+
+    /*
+    TODO
+    - SHOP
+    - TIMBER
+     */
 
     public static Main instance;
 
@@ -65,6 +74,9 @@ public class Main extends JavaPlugin {
         getCommand("econ").setExecutor(new EconCommand());
         getCommand("kingdoms").setExecutor(new KingdomsManager());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
+        getCommand("shop").setExecutor(new ShopCommand());
+        getCommand("mute").setExecutor(new MuteCommand());
+        getCommand("enderchest").setExecutor(new EnderchestCommand());
     }
 
     private void registerEvents(){

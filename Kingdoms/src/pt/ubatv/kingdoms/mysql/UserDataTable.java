@@ -20,7 +20,9 @@ public class UserDataTable {
     public void loadUserData(Player player){
         UUID uuid = player.getUniqueId();
         online.put(uuid,
-                new UserData(getRank(uuid), main.bankTable.getCoins(uuid)));
+                new UserData(getRank(uuid),
+                        main.bankTable.getCoins(uuid),
+                        getMute(uuid)));
     }
 
     public void saveUserData(Player player){
@@ -29,6 +31,7 @@ public class UserDataTable {
 
         updateRank(uuid, userData.getRank());
         main.bankTable.updateCoins(uuid, userData.getCoins());
+        updateMute(uuid, userData.isMute());
     }
 
     public boolean userExists(UUID uuid){
@@ -50,9 +53,10 @@ public class UserDataTable {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,rank) VALUES (?,?)");
+                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,rank,mute) VALUES (?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, "WOOD");
+                insert.setBoolean(3, false);
                 insert.executeUpdate();
             }
         }catch (SQLException e){
@@ -81,6 +85,30 @@ public class UserDataTable {
         } catch (SQLException e) {
             e.printStackTrace();
             return Rank.WOOD;
+        }
+    }
+
+    public void updateMute(UUID uuid, boolean muted){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET mute=? WHERE uuid=?");
+            statement.setBoolean(1, muted);
+            statement.setString(2, uuid.toString());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getMute(UUID uuid){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            statement.setString(1, uuid.toString());
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getBoolean("mute");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
