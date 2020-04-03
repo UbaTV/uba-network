@@ -29,6 +29,8 @@ public class ChatManager implements Listener {
                 target.sendMessage("§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
                         + player.getName() + "§8§l: §r§7" + msg);
             }
+        }else{
+            player.sendMessage(main.textUtils.error + "You are muted.");
         }
     }
 }

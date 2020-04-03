@@ -41,7 +41,7 @@ public class ShopPrices {
     public int netherrack = 5;
     public int netherBrick = 18;
     public int soulSand = 32;
-    public int obsidian 500;
+    public int obsidian = 500;
     public int magmaBlock = 250;
     public int glowstone = 50;
     public int blockQuartz = 65;
@@ -138,7 +138,7 @@ public class ShopPrices {
     
     public int gunpoweder = 100;
     public int rabitsFoot = 100;
-    public int sting = 0.2;
+    public int string = 1;
     public int spiderEye = 40;
     public int rottenFlesh = 1;
     public int bone = 75;

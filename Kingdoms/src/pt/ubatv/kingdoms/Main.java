@@ -1,12 +1,11 @@
 package pt.ubatv.kingdoms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import pt.ubatv.kingdoms.commands.EnderchestCommand;
-import pt.ubatv.kingdoms.commands.SetLocationCommand;
-import pt.ubatv.kingdoms.commands.SpawnCommand;
-import pt.ubatv.kingdoms.commands.TestCommand;
+import org.bukkit.scheduler.BukkitRunnable;
+import pt.ubatv.kingdoms.commands.*;
 import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
@@ -25,9 +24,11 @@ import pt.ubatv.kingdoms.events.KillRewards;
 import pt.ubatv.kingdoms.mysql.BankTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
+import pt.ubatv.kingdoms.rankSystem.RankCommand;
 import pt.ubatv.kingdoms.rankSystem.RankManager;
 import pt.ubatv.kingdoms.utils.ItemAPI;
 import pt.ubatv.kingdoms.utils.TextUtils;
+import pt.ubatv.kingdoms.utils.UserData;
 
 public class Main extends JavaPlugin {
 
@@ -61,11 +62,16 @@ public class Main extends JavaPlugin {
         registerCommands();
 
         locationYML.setupSpawn();
+
+        updateScoreboards();
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getOnlinePlayers().forEach(target -> target.kickPlayer("Server is restarting. Please reconnect."));
+        Bukkit.getOnlinePlayers().forEach(target -> {
+            userDataTable.saveUserData(target);
+            target.kickPlayer("Server is restarting. Please reconnect.");
+        });
     }
 
     private void registerCommands(){
@@ -80,6 +86,7 @@ public class Main extends JavaPlugin {
         getCommand("shop").setExecutor(new ShopCommand());
         getCommand("mute").setExecutor(new MuteCommand());
         getCommand("enderchest").setExecutor(new EnderchestCommand());
+        getCommand("rank").setExecutor(new RankCommand());
     }
 
     private void registerEvents(){
@@ -107,6 +114,24 @@ public class Main extends JavaPlugin {
     private void loadConfig(){
         getConfig().options().copyDefaults();
         saveConfig();
+    }
+
+    private void updateScoreboards(){
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+                for(Player player : Bukkit.getOnlinePlayers()){
+                    if(ScoreboardUtils.hasScoreboard(player)){
+                        UserData userData = userDataTable.online.get(player.getUniqueId());
+                        ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
+                        scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + textUtils.coinsSymbol);
+                        scoreboardUtils.setSlot(5, "§a| §7Rank: " + rankManager.getRankName(userData.getRank(), true));
+                        scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
+                        scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
+                    }
+                }
+            }
+        }.runTaskTimer(this, 20L, 20L);
     }
 
     public static Main getInstance() {

@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pt.ubatv.kingdoms.Main;
+import pt.ubatv.kingdoms.commands.ScoreboardUtils;
+import pt.ubatv.kingdoms.utils.UserData;
 
 import java.util.UUID;
 
@@ -23,6 +25,8 @@ public class JoinQuitEvent implements Listener {
         main.bankTable.createUser(uuid);
         main.userDataTable.loadUserData(player);
 
+        createScoreboard(player);
+
         // 1.8 PVP - Anticooldown
         player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
     }
@@ -34,5 +38,33 @@ public class JoinQuitEvent implements Listener {
 
         main.userDataTable.saveUserData(player);
         main.userDataTable.online.remove(uuid);
+
+        if(ScoreboardUtils.hasScoreboard(player)){
+            ScoreboardUtils.removeScoreboard(player);
+        }
+    }
+
+    public void createScoreboard(Player player){
+        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        ScoreboardUtils scoreboardUtils = ScoreboardUtils.createScoreboard(player);
+        scoreboardUtils.setTitle(main.textUtils.serverName + " §6§lBETA");
+        scoreboardUtils.setSlot(7, "  ");
+        scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + main.textUtils.coinsSymbol);
+        scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getRankName(userData.getRank(), true));
+        scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
+        scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
+        scoreboardUtils.setSlot(2, " ");
+        scoreboardUtils.setSlot(1, main.textUtils.website);
+    }
+
+    public void updateScoreboard(Player player){
+        if(ScoreboardUtils.hasScoreboard(player)){
+            UserData userData = main.userDataTable.online.get(player.getUniqueId());
+            ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
+            scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + main.textUtils.coinsSymbol);
+            scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getRankName(userData.getRank(), true));
+            scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
+            scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
+        }
     }
 }

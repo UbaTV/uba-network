@@ -22,7 +22,9 @@ public class UserDataTable {
         online.put(uuid,
                 new UserData(getRank(uuid),
                         main.bankTable.getCoins(uuid),
-                        getMute(uuid)));
+                        getMute(uuid),
+                        getKills(uuid),
+                        getDeaths(uuid)));
     }
 
     public void saveUserData(Player player){
@@ -32,6 +34,8 @@ public class UserDataTable {
         updateRank(uuid, userData.getRank());
         main.bankTable.updateCoins(uuid, userData.getCoins());
         updateMute(uuid, userData.isMute());
+        updateKills(uuid, userData.getKills());
+        updateDeaths(uuid, userData.getDeaths());
     }
 
     public boolean userExists(UUID uuid){
@@ -53,10 +57,12 @@ public class UserDataTable {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,rank,mute) VALUES (?,?,?)");
+                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,rank,mute,kills,deaths) VALUES (?,?,?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, "WOOD");
                 insert.setBoolean(3, false);
+                insert.setInt(4, 0);
+                insert.setInt(5, 0);
                 insert.executeUpdate();
             }
         }catch (SQLException e){
@@ -109,6 +115,54 @@ public class UserDataTable {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void updateKills(UUID uuid, int kills){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET kills=? WHERE uuid=?");
+            statement.setInt(1, kills);
+            statement.setString(2, uuid.toString());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getKills(UUID uuid){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            statement.setString(1, uuid.toString());
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("kills");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public void updateDeaths(UUID uuid, int deaths){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET deaths=? WHERE uuid=?");
+            statement.setInt(1, deaths);
+            statement.setString(2, uuid.toString());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getDeaths(UUID uuid){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            statement.setString(1, uuid.toString());
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("deaths");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

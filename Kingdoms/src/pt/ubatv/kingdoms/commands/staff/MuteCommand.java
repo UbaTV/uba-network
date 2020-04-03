@@ -33,6 +33,9 @@ public class MuteCommand implements CommandExecutor {
                         player.sendMessage(userDataTarget.isMute() ?
                                 main.textUtils.right + "§5" + target.getName() + " §7has been muted" :
                                 main.textUtils.right + "§5" + target.getName() + " §7has been unmuted");
+                        target.sendMessage(userDataTarget.isMute() ?
+                                main.textUtils.warning+ "You have been muted" :
+                                main.textUtils.right + "You have been unmuted");
                     }
                 }else{
                     player.sendMessage(main.textUtils.error + "Wrong syntax.");
