@@ -56,6 +56,17 @@ public class EconCommand implements CommandExecutor {
                         int coins = Integer.parseInt(args[2]);
                         int balance = userData.getCoins();
 
+                        if(args[0].equalsIgnoreCase("set")){
+                            userData.setCoins(coins);
+
+                            if(target.getName().equalsIgnoreCase(player.getName())){
+                                player.sendMessage(main.textUtils.right + "Your balance was set to §5" + coins + main.textUtils.coinsSymbol);
+                            }else{
+                                player.sendMessage(main.textUtils.right + "You set §5" + target.getName() + "§7's balance to §5" + coins + main.textUtils.coinsSymbol);
+                                target.sendMessage(main.textUtils.right + "§5" + coins + main.textUtils.coinsSymbol + " §7is your new balance.");
+                            }
+                        }
+
                         if(args[0].equalsIgnoreCase("add")){
                             userData.setCoins(balance + coins);
 
@@ -83,10 +94,11 @@ public class EconCommand implements CommandExecutor {
                     return false;
                 }
 
-                player.sendMessage("§7/econ balance §5<player>");
-                player.sendMessage("§7/econ reset §5<player>");
-                player.sendMessage("§7/econ add §5<player> <amount>");
-                player.sendMessage("§7/econ remove §5<player> <amount>");
+                player.sendMessage("§7/economy balance §5<player>");
+                player.sendMessage("§7/economy reset §5<player>");
+                player.sendMessage("§7/economy set §5<player> <amount>");
+                player.sendMessage("§7/economy add §5<player> <amount>");
+                player.sendMessage("§7/economy remove §5<player> <amount>");
             }else{
                 player.sendMessage(main.textUtils.noPerms);
             }

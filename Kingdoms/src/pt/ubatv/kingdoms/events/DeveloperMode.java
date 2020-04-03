@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class DeveloperMode implements Listener {
 
@@ -24,5 +25,11 @@ public class DeveloperMode implements Listener {
     @EventHandler
     public void alwaysFly(PlayerMoveEvent event){
         event.getPlayer().setAllowFlight(true);
+    }
+
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent e) {
+        if (e.toWeatherState())
+            e.setCancelled(true);
     }
 }

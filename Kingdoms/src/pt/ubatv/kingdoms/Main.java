@@ -17,16 +17,14 @@ import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
-import pt.ubatv.kingdoms.events.ChatManager;
-import pt.ubatv.kingdoms.events.DeveloperMode;
-import pt.ubatv.kingdoms.events.JoinQuitEvent;
-import pt.ubatv.kingdoms.events.KillRewards;
+import pt.ubatv.kingdoms.events.*;
 import pt.ubatv.kingdoms.mysql.BankTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
 import pt.ubatv.kingdoms.rankSystem.RankCommand;
 import pt.ubatv.kingdoms.rankSystem.RankManager;
 import pt.ubatv.kingdoms.utils.ItemAPI;
+import pt.ubatv.kingdoms.utils.ScoreboardUtils;
 import pt.ubatv.kingdoms.utils.TextUtils;
 import pt.ubatv.kingdoms.utils.UserData;
 
@@ -92,12 +90,13 @@ public class Main extends JavaPlugin {
     private void registerEvents(){
         PluginManager pluginManager = Bukkit.getServer().getPluginManager();
 
-        pluginManager.registerEvents(new DeveloperMode(), this);
+        //pluginManager.registerEvents(new DeveloperMode(), this);
         pluginManager.registerEvents(new JoinQuitEvent(), this);
         pluginManager.registerEvents(new KillRewards(), this);
         pluginManager.registerEvents(new ChatManager(), this);
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
+        pluginManager.registerEvents(new DeathEvent(), this);
     }
 
     private void instanceClasses(){

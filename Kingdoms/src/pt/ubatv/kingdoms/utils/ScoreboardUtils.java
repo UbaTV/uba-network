@@ -1,4 +1,4 @@
-package pt.ubatv.kingdoms.commands;
+package pt.ubatv.kingdoms.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

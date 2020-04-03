@@ -31,6 +31,7 @@ public class RankCommand implements CommandExecutor {
                         if(!target.getName().equalsIgnoreCase(player.getName())){
                             player.sendMessage(main.textUtils.right + "§5" + target.getName() + "§7's rank has been updated to " + main.rankManager.getRankName(rank, true) + "§7.");
                         }
+                        target.setPlayerListName("§7[" + main.rankManager.getRankName(rank, true) + "§7] §7" + target.getName());
                     }catch (IllegalArgumentException e){
                         player.sendMessage(main.textUtils.error + "Invalid rank.");
                     }

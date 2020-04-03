@@ -1,6 +1,6 @@
-package pt.ubatv.kingdoms.commands.shop;
+package pt.ubatv.kingdoms.utils;
 
-public class ShopPrices {
+public class PriceUtils {
 
     public int cobble = 3;
     public int stone = 5;
@@ -51,8 +51,6 @@ public class ShopPrices {
     public int prismarineBlock = 100;
     public int darkPrismarine = 100;
     public int seaLantern = 100;
-    
-    //sao so 5 euros filho da puta : miguelarnaudr@gmail.com beijinhos
     
     public int rawBeef = 35;
     public int rawPockchop = 35;
@@ -150,21 +148,5 @@ public class ShopPrices {
     public int ghastTear = 150;
     
     //MOB DROPS FINISHES HERE//
-    
-    
-    
-    
-       
-    
-    
-    
-    
-    
-    
-    
-    
-   
-        
-        
     
 }
