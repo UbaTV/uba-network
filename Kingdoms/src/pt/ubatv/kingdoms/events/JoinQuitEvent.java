@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pt.ubatv.kingdoms.Main;
+import pt.ubatv.kingdoms.rankSystem.Rank;
 import pt.ubatv.kingdoms.utils.ScoreboardUtils;
 import pt.ubatv.kingdoms.utils.UserData;
 
@@ -31,12 +32,12 @@ public class JoinQuitEvent implements Listener {
 
         player.setPlayerListName("§7[" + main.rankManager.getRankName(main.userDataTable.online.get(player.getUniqueId()).getRank(), true) + "§7] §7" + player.getName());
 
-        if(!player.hasPlayedBefore()){
-
-        }
-
         // 1.8 PVP - Anticooldown
         player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
+
+        if(!player.hasPlayedBefore()){
+            player.teleport(main.locationYML.spawn);
+        }
     }
 
     @EventHandler
@@ -64,7 +65,7 @@ public class JoinQuitEvent implements Listener {
         scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
         scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
         scoreboardUtils.setSlot(2, " ");
-        scoreboardUtils.setSlot(1, "§7" + main.textUtils.website);
+        scoreboardUtils.setSlot(1, "§7" + main.textUtils.serverIP);
     }
 
     public void updateScoreboard(Player player){

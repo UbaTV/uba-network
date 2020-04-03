@@ -17,6 +17,10 @@ commands:
       - ec
   rank:
     description: This command was developed by UbaTV.
+  hologram:
+    description: This command was developed by UbaTV.
+    aliases:
+      - holo
   mute:
     description: This command was developed by UbaTV.
     aliases:
@@ -48,4 +52,6 @@ commands:
       - sendcoins
       - sendmoney
   kingdoms:
-    description: This commands was developed by UbaTV.
+    description: This command was developed by UbaTV.
+  shopnpc:
+    description: This command was developed by UbaTV.

@@ -3,7 +3,7 @@ package pt.ubatv.kingdoms.utils;
 public class TextUtils {
 
     public String serverName = "§5Kingdoms";
-    public String website = "ubatv.github.io";
+    public String website = "ubatv.xyz";
     public String serverIP = "play.ubatv.net";
 
     public String right = "§a⯌ §7";

@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.rankSystem;
 
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 import pt.ubatv.kingdoms.Main;
 
 import java.util.UUID;
@@ -30,6 +31,8 @@ public class RankManager {
             case TESTER:
             case RANK_MANAGEMENT:
             case ECON_MANAGEMENT:
+            case HOLOGRAMS:
+            case SHOP_NPC:
                 return rankTier > 8;
             default:
                 return true;

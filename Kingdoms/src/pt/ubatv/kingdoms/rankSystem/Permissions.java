@@ -10,5 +10,7 @@ public enum Permissions {
     ENDERCHEST,
     ENDERCHEST_OTHERS,
     ECON_MANAGEMENT,
-    MUTE
+    MUTE,
+    HOLOGRAMS,
+    SHOP_NPC
 }

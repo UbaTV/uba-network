@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Scoreboard;
 import pt.ubatv.kingdoms.commands.*;
 import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
@@ -13,7 +14,9 @@ import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.commands.shop.BlockGUI;
 import pt.ubatv.kingdoms.commands.shop.ShopCommand;
 import pt.ubatv.kingdoms.commands.shop.ShopGUI;
+import pt.ubatv.kingdoms.commands.shop.ShopNPCCommand;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
+import pt.ubatv.kingdoms.commands.staff.HologramCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
@@ -85,6 +88,8 @@ public class Main extends JavaPlugin {
         getCommand("mute").setExecutor(new MuteCommand());
         getCommand("enderchest").setExecutor(new EnderchestCommand());
         getCommand("rank").setExecutor(new RankCommand());
+        getCommand("hologram").setExecutor(new HologramCommand());
+        getCommand("shopnpc").setExecutor(new ShopNPCCommand());
     }
 
     private void registerEvents(){
@@ -97,6 +102,8 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
         pluginManager.registerEvents(new DeathEvent(), this);
+        pluginManager.registerEvents(new TestCommand(), this);
+        pluginManager.registerEvents(new ShopNPCCommand(), this);
     }
 
     private void instanceClasses(){
@@ -121,6 +128,13 @@ public class Main extends JavaPlugin {
             public void run(){
                 for(Player player : Bukkit.getOnlinePlayers()){
                     if(ScoreboardUtils.hasScoreboard(player)){
+                        int online = Bukkit.getServer().getOnlinePlayers().size();
+                        int max = Bukkit.getServer().getMaxPlayers();
+                        player.setPlayerListHeaderFooter(
+                                textUtils.serverName + " §6§o§lBETA MODE\n" +
+                                        "§aOnline: §5" + online + "§7/§5" + max,
+                                "§7Website: §5" + textUtils.website);
+
                         UserData userData = userDataTable.online.get(player.getUniqueId());
                         ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
                         scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + textUtils.coinsSymbol);
