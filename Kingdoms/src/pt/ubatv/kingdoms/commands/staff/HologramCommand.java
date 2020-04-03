@@ -62,7 +62,8 @@ public class HologramCommand implements CommandExecutor, Listener {
                 }
 
                 player.sendMessage(main.textUtils.error + "Wrong syntax.");
-                player.sendMessage(main.textUtils.warning + "/hologram <text>");
+                player.sendMessage(main.textUtils.warning + "/hologram create §5<text>");
+                player.sendMessage(main.textUtils.warning + "/hologram delete");
             }else{
                 player.sendMessage(main.textUtils.noPerms);
             }

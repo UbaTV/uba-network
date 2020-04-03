@@ -20,6 +20,7 @@ public class ShopGUI implements InventoryHolder, Listener {
     private final Inventory inv;
 
     private BlockGUI blockGUI = new BlockGUI();
+    private MiscGUI miscGUI = new MiscGUI();
 
     public ShopGUI() {
         this.inv = Bukkit.createInventory(this, 9*3, "§5Kingdoms §7Shop");
@@ -30,15 +31,17 @@ public class ShopGUI implements InventoryHolder, Listener {
         ItemStack food = main.itemAPI.item(Material.COOKED_BEEF, "§6Food", "§7§oClick to open menu");
         ItemStack farming = main.itemAPI.item(Material.WHEAT_SEEDS, "§aFarming", "§7§oClick to open menu");
         ItemStack ores = main.itemAPI.item(Material.IRON_INGOT, "§fOres", "§7§oClick to open menu");
-        ItemStack mobDrops = main.itemAPI.item(Material.SPIDER_EYE, "§4Mob Drops", "§7§oClick to open menu");
+        ItemStack mobDrops = main.itemAPI.item(Material.SPIDER_EYE, "§bMob Drops", "§7§oClick to open menu");
         ItemStack misc = main.itemAPI.item(Material.HOPPER, "§7Misc", "§7§oClick to open menu");
+        ItemStack raid = main.itemAPI.item(Material.TNT, "§4Raid", "§7§oClick to open menu");
 
-        inv.setItem(4, blocks);
-        inv.setItem(12, food);
-        inv.setItem(14, farming);
-        inv.setItem(20, ores);
-        inv.setItem(22, mobDrops);
-        inv.setItem(24, misc);
+        inv.setItem(10, blocks);
+        inv.setItem(11, food);
+        inv.setItem(12, farming);
+        inv.setItem(13, raid);
+        inv.setItem(14, ores);
+        inv.setItem(15, mobDrops);
+        inv.setItem(16, misc);
     }
 
     @EventHandler
@@ -55,7 +58,8 @@ public class ShopGUI implements InventoryHolder, Listener {
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
 
-        if(slot == 4) blockGUI.openInventory(player);
+        if(slot == 10) blockGUI.openInventory(player);
+        if(slot == 16) miscGUI.openInventory(player);
     }
 
     public void openInventory(Player player){

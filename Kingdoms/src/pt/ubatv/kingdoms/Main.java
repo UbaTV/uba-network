@@ -11,10 +11,7 @@ import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
-import pt.ubatv.kingdoms.commands.shop.BlockGUI;
-import pt.ubatv.kingdoms.commands.shop.ShopCommand;
-import pt.ubatv.kingdoms.commands.shop.ShopGUI;
-import pt.ubatv.kingdoms.commands.shop.ShopNPCCommand;
+import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.HologramCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
@@ -26,10 +23,7 @@ import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
 import pt.ubatv.kingdoms.rankSystem.RankCommand;
 import pt.ubatv.kingdoms.rankSystem.RankManager;
-import pt.ubatv.kingdoms.utils.ItemAPI;
-import pt.ubatv.kingdoms.utils.ScoreboardUtils;
-import pt.ubatv.kingdoms.utils.TextUtils;
-import pt.ubatv.kingdoms.utils.UserData;
+import pt.ubatv.kingdoms.utils.*;
 
 public class Main extends JavaPlugin {
 
@@ -42,13 +36,15 @@ public class Main extends JavaPlugin {
     public static Main instance;
 
     public TextUtils textUtils;
-    public MySQLConnection mySQLConnection;
+    public PriceUtils priceUtils;
     public ItemAPI itemAPI;
+    public MySQLConnection mySQLConnection;
     public UserDataTable userDataTable;
     public BankTable bankTable;
     public LocationYML locationYML;
     public KingdomsYML kingdomsYML;
     public RankManager rankManager;
+    public ShopUtils shopUtils;
 
     @Override
     public void onEnable() {
@@ -101,6 +97,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ChatManager(), this);
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
+        pluginManager.registerEvents(new MiscGUI(), this);
         pluginManager.registerEvents(new DeathEvent(), this);
         pluginManager.registerEvents(new TestCommand(), this);
         pluginManager.registerEvents(new ShopNPCCommand(), this);
@@ -108,6 +105,7 @@ public class Main extends JavaPlugin {
 
     private void instanceClasses(){
         textUtils = new TextUtils();
+        priceUtils = new PriceUtils();
         mySQLConnection = new MySQLConnection();
         itemAPI = new ItemAPI();
         userDataTable = new UserDataTable();
@@ -115,6 +113,7 @@ public class Main extends JavaPlugin {
         locationYML = new LocationYML();
         kingdomsYML = new KingdomsYML();
         rankManager = new RankManager();
+        shopUtils = new ShopUtils();
     }
 
     private void loadConfig(){

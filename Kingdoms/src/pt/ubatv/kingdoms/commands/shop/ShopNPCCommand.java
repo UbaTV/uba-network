@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.event.EventException;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,6 +17,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.rankSystem.Permissions;
+
+import java.util.Objects;
 
 public class ShopNPCCommand implements CommandExecutor, Listener {
 
@@ -46,18 +49,26 @@ public class ShopNPCCommand implements CommandExecutor, Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent event){
         Entity entity = event.getEntity();
-        if(entity.getCustomName().equalsIgnoreCase(npcName)){
-            event.setCancelled(true);
+        if(entity.getType().equals(EntityType.VILLAGER)){
+            if(entity.getCustomName().equalsIgnoreCase(npcName)){
+                event.setCancelled(true);
+            }
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onClick(PlayerInteractEntityEvent event){
-        Entity entity = event.getRightClicked();
-        if(entity.getCustomName().equalsIgnoreCase(npcName)){
-            Player player = event.getPlayer();
-            event.setCancelled(true);
-            player.performCommand("shop");
+        try{
+            Entity entity = event.getRightClicked();
+            if(entity.getType().equals(EntityType.VILLAGER)){
+                if(Objects.requireNonNull(entity.getCustomName()).equalsIgnoreCase(npcName)){
+                    Player player = event.getPlayer();
+                    event.setCancelled(true);
+                    player.performCommand("shop");
+                }
+            }
+        }catch (NullPointerException ignored){
+
         }
     }
 }

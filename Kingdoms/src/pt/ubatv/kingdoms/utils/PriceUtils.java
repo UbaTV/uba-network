@@ -1,6 +1,10 @@
 package pt.ubatv.kingdoms.utils;
 
+import org.bukkit.Material;
+
 public class PriceUtils {
+
+
 
     public int cobble = 3;
     public int stone = 5;
@@ -90,7 +94,29 @@ public class PriceUtils {
     public int chorusFlower = 750;
     public int netherWart = 600;
     
-    //SELLING ONLY ORES//
+    public int getPrice(Material mat){
+        /* MISC */
+        if(mat.equals(Material.EXPERIENCE_BOTTLE)) return 25;
+        else if(mat.equals(Material.WATER_BUCKET)) return 50;
+        else if(mat.equals(Material.LAVA_BUCKET)) return 500;
+        else if(mat.equals(Material.IRON_HORSE_ARMOR)) return 2000;
+        else if(mat.equals(Material.GOLDEN_HORSE_ARMOR)) return 5000;
+        else if(mat.equals(Material.DIAMOND_HORSE_ARMOR)) return 8500;
+        else if(mat.equals(Material.NAME_TAG)) return 1000;
+            /* MOB DROPS */
+        else if(mat.equals(Material.GUNPOWDER)) return 100;
+        else if(mat.equals(Material.STRING)) return 1;
+        else if(mat.equals(Material.SPIDER_EYE)) return 40;
+        else if(mat.equals(Material.ROTTEN_FLESH)) return 1;
+        else if(mat.equals(Material.BONE)) return 75;
+        else if(mat.equals(Material.ARROW)) return 15;
+        else if(mat.equals(Material.SLIME_BALL)) return 40;
+        else if(mat.equals(Material.MAGMA_CREAM)) return 50;
+        else if(mat.equals(Material.ENDER_PEARL)) return 500;
+        else if(mat.equals(Material.BLAZE_ROD)) return 45;
+        else if(mat.equals(Material.GHAST_TEAR)) return 150;
+        return 999999999;
+    }
     
     public int emerald = 20;
     public int emeraldBlock = emerald*9;
@@ -119,34 +145,4 @@ public class PriceUtils {
     public int charcoal = 1;
     
     //SELL ONLY ORES FINISH//
-    
-    //MISC//
-    
-    public int allDiscs = 350;
-    public int waterBucket = 50;
-    public int lavaBucket = 500;
-    public int ironHorseArmor = 2000;
-    public int goldHorseArmor = 5000;
-    public int diamondHorseArmor = 8500;
-    public int nametag = 1000;
-    
-    //MISC finish//
-    
-    //MOB DROPS//
-    
-    public int gunpoweder = 100;
-    public int rabitsFoot = 100;
-    public int string = 1;
-    public int spiderEye = 40;
-    public int rottenFlesh = 1;
-    public int bone = 75;
-    public int arrow = 15;
-    public int slimeball = 40;
-    public int magmaCream = 50;
-    public int enderPearl = 500;
-    public int blazeRod = 45;
-    public int ghastTear = 150;
-    
-    //MOB DROPS FINISHES HERE//
-    
 }

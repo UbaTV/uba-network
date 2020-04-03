@@ -2,7 +2,9 @@ package pt.ubatv.kingdoms.commands;
 
 import net.minecraft.server.v1_15_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
