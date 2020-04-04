@@ -119,4 +119,14 @@ public class KingdomsTable {
             return null;
         }
     }
+
+    public void deleteKingdom(String kingdomName){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("DELETE FROM kingdoms WHERE name=?");
+            statement.setString(1, kingdomName.toLowerCase());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

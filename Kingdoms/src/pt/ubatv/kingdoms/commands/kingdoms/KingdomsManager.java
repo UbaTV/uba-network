@@ -19,6 +19,8 @@ public class KingdomsManager implements CommandExecutor {
     public KingdomsManager(){
         subCommands.add(new HelpSubcommand());
         subCommands.add(new CreateSubcommand());
+        subCommands.add(new OwnershipSubcommand());
+        subCommands.add(new QuitSubcommand());
     }
 
     @Override
