@@ -35,6 +35,11 @@ public class InviteSubcommand extends SubCommand {
                 return;
             }
 
+            if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
+                player.sendMessage(main.textUtils.error + "You must be king to invite players.");
+                return;
+            }
+
             Player target = Bukkit.getServer().getPlayer(args[1]);
             if(target == null){
                 player.sendMessage(main.textUtils.error + "Invalid player.");
