@@ -49,8 +49,11 @@ public class TagSubcommand extends SubCommand {
 
             ArrayList<String> bannedTags = bannedTags();
             if(bannedTags.contains(tag.toLowerCase())){
-
+                player.sendMessage(main.textUtils.error + "This kingdom tag has been banned from being used.");
+                return;
             }
+
+
             return;
         }
 
