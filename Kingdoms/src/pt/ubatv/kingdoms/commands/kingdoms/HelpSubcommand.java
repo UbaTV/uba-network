@@ -34,5 +34,7 @@ public class HelpSubcommand extends SubCommand {
         player.sendMessage("§7/kingdoms create §5<name>");
         player.sendMessage("§7/kingdoms ownership §5<player>");
         player.sendMessage("§7/kingdoms quit");
+        player.sendMessage("§7/kingdoms info §5[kingdom]");
+        player.sendMessage("§7/kingdoms invite §5<player>");
     }
 }

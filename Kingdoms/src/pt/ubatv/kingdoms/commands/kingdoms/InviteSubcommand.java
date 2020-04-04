@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
@@ -33,6 +34,24 @@ public class InviteSubcommand extends SubCommand {
                 player.sendMessage(main.textUtils.error + "You are not in a kingdom.");
                 return;
             }
+
+            Player target = Bukkit.getServer().getPlayer(args[1]);
+            if(target == null){
+                player.sendMessage(main.textUtils.error + "Invalid player.");
+                return;
+            }
+
+            UserData targetData = main.userDataTable.online.get(target.getUniqueId());
+            String targetKingdom = targetData.getKingdom();
+            if(!targetKingdom.equalsIgnoreCase("none")){
+                player.sendMessage(main.textUtils.error + "§5" + target.getName() + " §7is already in a kingdom.");
+                return;
+            }
+
+            KingdomUtils.invites.put(target, userKingdom.toLowerCase());
+            player.sendMessage(main.textUtils.right + "§5" + target.getName() + " §7has been invited to your kingdom.");
+            target.sendMessage(main.textUtils.right + "§5" + player.getName() + " §7invited you to his kingdom.");
+            target.sendMessage(main.textUtils.right + "To join use /kingdoms accept");
             return;
         }
 

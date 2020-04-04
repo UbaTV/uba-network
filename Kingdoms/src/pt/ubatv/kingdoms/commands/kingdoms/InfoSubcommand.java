@@ -29,6 +29,10 @@ public class InfoSubcommand extends SubCommand {
     public void perform(Player player, String[] args) {
         UserData userData = main.userDataTable.online.get(player.getUniqueId());
         if(args.length == 1){
+            if(userData.getKingdom().equalsIgnoreCase("none")){
+                player.sendMessage(main.textUtils.error + "You are not in a kingdom.");
+                return;
+            }
             String userKingdom = userData.getKingdom();
             showKingdomInfo(player, userKingdom);
             return;

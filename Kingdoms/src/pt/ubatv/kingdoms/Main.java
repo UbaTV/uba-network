@@ -129,6 +129,7 @@ public class Main extends JavaPlugin {
             @Override
             public void run(){
                 for(Player player : Bukkit.getOnlinePlayers()){
+                    //userDataTable.saveUserData(player);
                     if(ScoreboardUtils.hasScoreboard(player)){
                         int online = Bukkit.getServer().getOnlinePlayers().size();
                         int max = Bukkit.getServer().getMaxPlayers();
@@ -146,7 +147,7 @@ public class Main extends JavaPlugin {
                     }
                 }
             }
-        }.runTaskTimer(this, 20L, 20L);
+        }.runTaskTimer(this, 20L * 5, 20L);
     }
 
     public static Main getInstance() {
