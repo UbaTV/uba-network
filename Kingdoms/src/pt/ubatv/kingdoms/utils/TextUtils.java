@@ -15,6 +15,18 @@ public class TextUtils {
     public String playerOnly = "Only players can execute this command";
     public String noPerms = error + "You don't have permission to execute this command.";
 
+    public String listToString(String[] list){
+        StringBuilder str = new StringBuilder();
+        for(Object o : list){
+            str.append(o).append("#");
+        }
+        return str.toString();
+    }
+
+    public String[] stringToList(String str){
+        return str.split("#");
+    }
+
     public String getFirstSplit(String str){
         return str.length() > 16 ? str.substring(0, 16) : str;
     }

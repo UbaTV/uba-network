@@ -53,5 +53,8 @@ commands:
       - sendmoney
   kingdoms:
     description: This command was developed by UbaTV.
+    aliases:
+      - kingdom
+      - k
   shopnpc:
     description: This command was developed by UbaTV.
