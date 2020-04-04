@@ -29,8 +29,6 @@ public class TestCommand implements CommandExecutor, Listener {
                 /*UserData userData = main.userDataTable.online.get(player.getUniqueId());
                 userData.setCoins(userData.getCoins() + 100);*/
 
-
-
                 //freezeEntity(shop);
             }else{
                 player.sendMessage(main.textUtils.noPerms);

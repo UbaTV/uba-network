@@ -12,9 +12,18 @@ public class KingdomUtils {
     private Main main = Main.getInstance();
 
     public static HashMap<Player,String> invites = new HashMap<>();
+    public static HashMap<String,String[]> allyInvite = new HashMap<>();
 
     public String[] getMembers(String kingdomName){
         return main.textUtils.stringToList(main.kingdomsTable.getMembers(kingdomName));
+    }
+
+    public String[] getAllies(String kingdomName){
+        return main.textUtils.stringToList(main.kingdomsTable.getAllies(kingdomName));
+    }
+
+    public String[] getEnemies(String kingdomName){
+        return main.textUtils.stringToList(main.kingdomsTable.getEnemies(kingdomName));
     }
 
     public void broadcastKingdom(String kingdomName, String msg){
@@ -42,6 +51,7 @@ public class KingdomUtils {
         names.add("fag");
         names.add("fags");
         names.add("nigas");
+        names.add("gay");
         return names;
     }
 }

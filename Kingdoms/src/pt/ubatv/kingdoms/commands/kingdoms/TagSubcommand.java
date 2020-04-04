@@ -51,8 +51,8 @@ public class TagSubcommand extends SubCommand {
             }
 
             String tag = args[1];
-            if(!(2 <= tag.length() && tag.length() <= 5)){
-                player.sendMessage(main.textUtils.error + "Tag length must be between 2 and 5 characters");
+            if(!(2 <= tag.length() && tag.length() <= 6)){
+                player.sendMessage(main.textUtils.error + "Tag length must be between 2 and 6 characters");
                 return;
             }
 

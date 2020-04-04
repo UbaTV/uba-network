@@ -49,14 +49,30 @@ public class InfoSubcommand extends SubCommand {
 
     public void showKingdomInfo(Player player, String kingdomName){
         String[] members = main.kingdomUtils.getMembers(kingdomName);
+        String[] allies = main.kingdomUtils.getAllies(kingdomName);
+        String[] enemies = main.kingdomUtils.getEnemies(kingdomName);
 
         StringBuilder membersString = new StringBuilder();
+        StringBuilder alliesString = new StringBuilder();
+        StringBuilder enemiesString = new StringBuilder();
 
         for(String member : members){
             if(Bukkit.getPlayer(member) != null){
                 membersString.append("§a").append(member).append(" ");
             }else{
                 membersString.append("§c").append(member).append(" ");
+            }
+        }
+
+        for(String ally : allies){
+            if(!ally.equalsIgnoreCase("none")){
+                alliesString.append("§5").append(ally).append(" ");
+            }
+        }
+
+        for(String enemy : enemies){
+            if(!enemy.equalsIgnoreCase("none")){
+                membersString.append("§5").append(enemy).append(" ");
             }
         }
 
@@ -67,6 +83,8 @@ public class InfoSubcommand extends SubCommand {
         player.sendMessage("§7King: §5" + main.kingdomsTable.getOwner(kingdomName));
         player.sendMessage("§7Vault: §5" + main.kingdomsTable.getCoins(kingdomName));
         player.sendMessage("§7Members: " + membersString.toString());
+        player.sendMessage("§7Allies: " + alliesString.toString());
+        player.sendMessage("§7Enemies: " + enemiesString.toString());
         player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§8§m----------------------------------------------------");
     }

