@@ -9,13 +9,23 @@ public class UserData {
     private boolean mute;
     private int kills;
     private int deaths;
+    private String kingdom;
 
-    public UserData(Rank rank, int coins, boolean mute, int kills, int deaths){
+    public UserData(Rank rank, int coins, boolean mute, int kills, int deaths, String kingdom){
         this.setRank(rank);
         this.setCoins(coins);
         this.setMute(mute);
         this.setKills(kills);
         this.setDeaths(deaths);
+        this.setKingdom(kingdom);
+    }
+
+    public String getKingdom() {
+        return kingdom;
+    }
+
+    public void setKingdom(String kingdom) {
+        this.kingdom = kingdom;
     }
 
     public int getKills() {

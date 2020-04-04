@@ -31,5 +31,6 @@ public class HelpSubcommand extends SubCommand {
     // TODO Format pages
     public void kingdomsHelp(Player player){
         player.sendMessage(getSyntax());
+        player.sendMessage("§7/kingdom create §7<name>");
     }
 }

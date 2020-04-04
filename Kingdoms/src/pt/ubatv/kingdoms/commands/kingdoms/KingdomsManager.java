@@ -17,7 +17,8 @@ public class KingdomsManager implements CommandExecutor {
     private ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public KingdomsManager(){
-
+        subCommands.add(new HelpSubcommand());
+        subCommands.add(new CreateSubcommand());
     }
 
     @Override

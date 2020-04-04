@@ -2,6 +2,7 @@ package pt.ubatv.kingdoms.commands.shop;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -64,6 +65,7 @@ public class ShopNPCCommand implements CommandExecutor, Listener {
                 if(Objects.requireNonNull(entity.getCustomName()).equalsIgnoreCase(npcName)){
                     Player player = event.getPlayer();
                     event.setCancelled(true);
+                    player.playSound(entity.getLocation(), Sound.ENTITY_VILLAGER_YES, 1f, 1f);
                     player.performCommand("shop");
                 }
             }

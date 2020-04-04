@@ -5,20 +5,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Scoreboard;
 import pt.ubatv.kingdoms.commands.*;
 import pt.ubatv.kingdoms.commands.econ.BalanceCommand;
 import pt.ubatv.kingdoms.commands.econ.EconCommand;
 import pt.ubatv.kingdoms.commands.econ.PayCommand;
+import pt.ubatv.kingdoms.commands.kingdoms.KingdomUtils;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.HologramCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
-import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
 import pt.ubatv.kingdoms.mysql.BankTable;
+import pt.ubatv.kingdoms.mysql.KingdomsTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
 import pt.ubatv.kingdoms.rankSystem.RankCommand;
@@ -42,9 +42,10 @@ public class Main extends JavaPlugin {
     public UserDataTable userDataTable;
     public BankTable bankTable;
     public LocationYML locationYML;
-    public KingdomsYML kingdomsYML;
     public RankManager rankManager;
     public ShopUtils shopUtils;
+    public KingdomsTable kingdomsTable;
+    public KingdomUtils kingdomUtils;
 
     @Override
     public void onEnable() {
@@ -98,6 +99,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
         pluginManager.registerEvents(new MiscGUI(), this);
+        pluginManager.registerEvents(new MobDropsGUI(), this);
         pluginManager.registerEvents(new DeathEvent(), this);
         pluginManager.registerEvents(new TestCommand(), this);
         pluginManager.registerEvents(new ShopNPCCommand(), this);
@@ -111,9 +113,10 @@ public class Main extends JavaPlugin {
         userDataTable = new UserDataTable();
         bankTable = new BankTable();
         locationYML = new LocationYML();
-        kingdomsYML = new KingdomsYML();
         rankManager = new RankManager();
         shopUtils = new ShopUtils();
+        kingdomsTable = new KingdomsTable();
+        kingdomUtils = new KingdomUtils();
     }
 
     private void loadConfig(){
