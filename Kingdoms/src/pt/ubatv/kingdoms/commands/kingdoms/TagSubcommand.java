@@ -68,6 +68,12 @@ public class TagSubcommand extends SubCommand {
         tags.add("mvp");
         tags.add("admin");
         tags.add("ceo");
+        tags.add("nigga");
+        tags.add("negro");
+        tags.add("faggs");
+        tags.add("fag");
+        tags.add("fags");
+        tags.add("nigas");
         return tags;
     }
 }
