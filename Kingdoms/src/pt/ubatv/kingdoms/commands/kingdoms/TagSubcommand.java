@@ -1,10 +1,14 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 import pt.ubatv.kingdoms.utils.UserData;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TagSubcommand extends SubCommand {
@@ -37,7 +41,12 @@ public class TagSubcommand extends SubCommand {
             }
 
             if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
-                player.sendMessage(main.textUtils.error + "You must be king to invite players.");
+                player.sendMessage(main.textUtils.error + "You must be king to change the tag.");
+                return;
+            }
+
+            if(!main.kingdomsTable.getTag(userKingdom).equalsIgnoreCase("none")){
+                player.sendMessage(main.textUtils.error + "Kingdom tag can only be changed once.");
                 return;
             }
 
@@ -47,36 +56,33 @@ public class TagSubcommand extends SubCommand {
                 return;
             }
 
-            ArrayList<String> bannedTags = bannedTags();
+            ArrayList<String> bannedTags = main.kingdomUtils.bannedNames();
             if(bannedTags.contains(tag.toLowerCase())){
                 player.sendMessage(main.textUtils.error + "This kingdom tag has been banned from being used.");
                 return;
             }
 
+            try{
+                PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
+                        "SELECT * FROM kingdoms WHERE tag=?");
+                statement.setString(1, tag.toLowerCase());
+                ResultSet rs = statement.executeQuery();
 
+                if(!rs.next()){
+                    main.kingdomsTable.updateTag(userKingdom, tag.toLowerCase());
+                    main.kingdomsTable.updateDisplayTag(userKingdom, tag);
+                    main.kingdomUtils.broadcastKingdom(userKingdom, "Your kingdom's tag has been updated to §5" + tag);
+                }else{
+                    player.sendMessage(main.textUtils.error + "A kingdom with this tag already exists");
+                }
+            }catch (SQLException | NullPointerException e){
+                player.sendMessage(main.textUtils.error + "An error occurred please contact a staff member.");
+                e.printStackTrace();
+            }
             return;
         }
 
         player.sendMessage(main.textUtils.error + "Wrong syntax");
         player.sendMessage(main.textUtils.warning + getSyntax());
-    }
-
-    private ArrayList<String> bannedTags(){
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("wood");
-        tags.add("stone");
-        tags.add("iron");
-        tags.add("gold");
-        tags.add("vip");
-        tags.add("mvp");
-        tags.add("admin");
-        tags.add("ceo");
-        tags.add("nigga");
-        tags.add("negro");
-        tags.add("faggs");
-        tags.add("fag");
-        tags.add("fags");
-        tags.add("nigas");
-        return tags;
     }
 }

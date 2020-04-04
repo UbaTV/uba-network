@@ -8,6 +8,7 @@ import pt.ubatv.kingdoms.commands.SubCommand;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CreateSubcommand extends SubCommand {
 
@@ -42,6 +43,12 @@ public class CreateSubcommand extends SubCommand {
                 return;
             }
 
+            ArrayList<String> bannedTags = main.kingdomUtils.bannedNames();
+            if(bannedTags.contains(kingdomName.toLowerCase())){
+                player.sendMessage(main.textUtils.error + "This kingdom name has been banned from being used.");
+                return;
+            }
+
             try{
                 PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
                         "SELECT * FROM kingdoms WHERE name=?");
@@ -52,8 +59,8 @@ public class CreateSubcommand extends SubCommand {
                     PreparedStatement insert = main.mySQLConnection.getConnection()
                             .prepareStatement
                                     ("INSERT INTO kingdoms " +
-                                            "(name,display_name,owner,vault,members,tag,ally,enemy) " +
-                                            "VALUES (?,?,?,?,?,?,?,?)");
+                                            "(name,display_name,owner,vault,members,tag,display_tag,ally,enemy) " +
+                                            "VALUES (?,?,?,?,?,?,?,?,?)");
                     insert.setString(1, kingdomName.toLowerCase());
                     insert.setString(2, kingdomName);
                     insert.setString(3, player.getName());
@@ -62,6 +69,7 @@ public class CreateSubcommand extends SubCommand {
                     insert.setString(6, "none");
                     insert.setString(7, "none");
                     insert.setString(8, "none");
+                    insert.setString(9, "none");
                     insert.executeUpdate();
                     main.userDataTable.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
                     player.sendMessage(main.textUtils.right + "Your kingdom has been created successfully.");

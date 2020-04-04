@@ -63,6 +63,7 @@ public class InfoSubcommand extends SubCommand {
         main.textUtils.sendCenteredMessage(player, "§8§m----------------------------------------------------");
         main.textUtils.sendCenteredMessage(player, "§5" + main.kingdomsTable.getDisplayName(kingdomName) + "§7's Info");
         player.sendMessage(" ");
+        player.sendMessage("§7Tag: §5" + main.kingdomsTable.getDisplayTag(kingdomName));
         player.sendMessage("§7King: §5" + main.kingdomsTable.getOwner(kingdomName));
         player.sendMessage("§7Vault: §5" + main.kingdomsTable.getCoins(kingdomName));
         player.sendMessage("§7Members: " + membersString.toString());

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class KingdomUtils {
@@ -23,5 +24,24 @@ public class KingdomUtils {
                 target.sendMessage(main.textUtils.right + "" + msg);
             }
         }
+    }
+
+    public ArrayList<String> bannedNames(){
+        ArrayList<String> names = new ArrayList<>();
+        names.add("wood");
+        names.add("stone");
+        names.add("iron");
+        names.add("gold");
+        names.add("vip");
+        names.add("mvp");
+        names.add("admin");
+        names.add("ceo");
+        names.add("nigga");
+        names.add("negro");
+        names.add("faggs");
+        names.add("fag");
+        names.add("fags");
+        names.add("nigas");
+        return names;
     }
 }

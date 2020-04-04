@@ -26,12 +26,20 @@ public class ChatManager implements Listener {
 
         if(!userData.isMute()){
             String userKingdom = userData.getKingdom();
-            String kingdomTag = "";
-            if(!userKingdom.equalsIgnoreCase("none"))
-                kingdomTag = "§7[§5" + main.kingdomsTable.getTag(userKingdom) + "§7]";
+            String kingdomTag;
+            if(!userKingdom.equalsIgnoreCase("none")){
+                String tag = main.kingdomsTable.getTag(userKingdom);
+                if(!tag.equalsIgnoreCase("none")){
+                    kingdomTag = "§7[§5" + main.kingdomsTable.getDisplayTag(userKingdom) + "§7] ";
+                }else{
+                    kingdomTag = "";
+                }
+            }else{
+                kingdomTag = "";
+            }
             for(Player target : Bukkit.getOnlinePlayers()){
                 target.sendMessage(
-                        kingdomTag + " " +
+                        kingdomTag +
                         "§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
                         + player.getName() + "§8§l: §r§7" + msg);
             }
