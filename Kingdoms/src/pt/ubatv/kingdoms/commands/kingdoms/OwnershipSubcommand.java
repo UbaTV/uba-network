@@ -48,7 +48,7 @@ public class OwnershipSubcommand extends SubCommand {
 
             UserData targetData = main.userDataTable.online.get(target.getUniqueId());
             if(!targetData.getKingdom().equalsIgnoreCase(userKingdom)){
-                player.sendMessage("§5" + target.getName() + " §7is not in your kingdom.");
+                player.sendMessage(main.textUtils.error + "§5" + target.getName() + " §7is not in your kingdom.");
                 return;
             }
 
