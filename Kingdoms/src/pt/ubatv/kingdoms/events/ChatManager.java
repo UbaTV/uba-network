@@ -25,8 +25,14 @@ public class ChatManager implements Listener {
         event.setCancelled(true);
 
         if(!userData.isMute()){
+            String userKingdom = userData.getKingdom();
+            String kingdomTag = "";
+            if(!userKingdom.equalsIgnoreCase("none"))
+                kingdomTag = "§7[§5" + main.kingdomsTable.getTag(userKingdom) + "§7]";
             for(Player target : Bukkit.getOnlinePlayers()){
-                target.sendMessage("§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
+                target.sendMessage(
+                        kingdomTag + " " +
+                        "§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
                         + player.getName() + "§8§l: §r§7" + msg);
             }
         }else{

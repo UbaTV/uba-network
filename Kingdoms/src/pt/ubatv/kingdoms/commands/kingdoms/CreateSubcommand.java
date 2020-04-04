@@ -52,13 +52,16 @@ public class CreateSubcommand extends SubCommand {
                     PreparedStatement insert = main.mySQLConnection.getConnection()
                             .prepareStatement
                                     ("INSERT INTO kingdoms " +
-                                            "(name,display_name,owner,vault,members) " +
-                                            "VALUES (?,?,?,?,?)");
+                                            "(name,display_name,owner,vault,members,tag,ally,enemy) " +
+                                            "VALUES (?,?,?,?,?,?,?,?)");
                     insert.setString(1, kingdomName.toLowerCase());
                     insert.setString(2, kingdomName);
                     insert.setString(3, player.getName());
                     insert.setInt(4, 0);
                     insert.setString(5, player.getName() + "#");
+                    insert.setString(6, "none");
+                    insert.setString(7, "none");
+                    insert.setString(8, "none");
                     insert.executeUpdate();
                     main.userDataTable.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
                     player.sendMessage(main.textUtils.right + "Your kingdom has been created successfully.");

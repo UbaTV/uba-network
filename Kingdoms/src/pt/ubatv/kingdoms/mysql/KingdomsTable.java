@@ -129,4 +129,28 @@ public class KingdomsTable {
             e.printStackTrace();
         }
     }
+
+    public void updateTag(String kingdomName, String tag){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE kingdoms SET tag=? WHERE name=?");
+            statement.setString(1, tag);
+            statement.setString(2, kingdomName.toLowerCase());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getTag(String kingdomName){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            statement.setString(1, kingdomName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getString("tag");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
