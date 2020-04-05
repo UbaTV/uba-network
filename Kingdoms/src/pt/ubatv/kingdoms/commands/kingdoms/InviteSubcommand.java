@@ -35,6 +35,11 @@ public class InviteSubcommand extends SubCommand {
                 return;
             }
 
+            if(main.kingdomUtils.getSize(userKingdom) >= 25){
+                player.sendMessage(main.textUtils.warning + "Kingdom reached max capacity.");
+                return;
+            }
+
             if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
                 player.sendMessage(main.textUtils.error + "You must be king to invite players.");
                 return;

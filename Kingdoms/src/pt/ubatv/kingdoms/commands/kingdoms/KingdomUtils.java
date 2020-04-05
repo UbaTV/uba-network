@@ -35,6 +35,15 @@ public class KingdomUtils {
         }
     }
 
+    public int getSize(String kingdomName){
+        String[] members = getMembers(kingdomName);
+        int i = 0;
+        for(String member : members){
+            i++;
+        }
+        return i;
+    }
+
     public ArrayList<String> bannedNames(){
         ArrayList<String> names = new ArrayList<>();
         names.add("wood");
