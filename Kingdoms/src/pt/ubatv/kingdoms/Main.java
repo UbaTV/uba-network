@@ -100,6 +100,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new DeathEvent(), this);
         pluginManager.registerEvents(new TestCommand(), this);
         pluginManager.registerEvents(new ShopNPCCommand(), this);
+        pluginManager.registerEvents(new EntityDamage(), this);
     }
 
     private void instanceClasses(){
