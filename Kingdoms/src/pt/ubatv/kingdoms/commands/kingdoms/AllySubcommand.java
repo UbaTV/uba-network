@@ -33,6 +33,12 @@ public class AllySubcommand extends SubCommand {
             return;
         }
 
+        if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
+            player.sendMessage(main.textUtils.error + "You must be king to invite players.");
+            return;
+        }
+
+
         if(args.length == 3){
             if(args[1].equalsIgnoreCase("accept")){
                 if(!main.kingdomsTable.kingdomExists(args[2].toLowerCase())){

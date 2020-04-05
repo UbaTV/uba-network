@@ -29,7 +29,8 @@ public class MySQLConnection {
             Class.forName("com.mysql.jdbc.Driver");
             connection= DriverManager.getConnection("jdbc:mysql://"
                     + this.host + ":" + this.port + "/"
-                    + this.database, this.username, this.password);
+                    + this.database + "?autoReconnect=true&useUnicode=yes"
+                    , this.username, this.password);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

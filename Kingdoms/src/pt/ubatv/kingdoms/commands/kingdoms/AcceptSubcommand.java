@@ -37,7 +37,7 @@ public class AcceptSubcommand extends SubCommand {
             if(KingdomUtils.invites.containsKey(player)){
                 String kingdomsName = KingdomUtils.invites.get(player);
 
-                if(main.kingdomUtils.getSize(userKingdom) >= 25){
+                if(main.kingdomUtils.getSize(kingdomsName) >= 25){
                     player.sendMessage(main.textUtils.warning + "Kingdom reached max capacity.");
                     return;
                 }

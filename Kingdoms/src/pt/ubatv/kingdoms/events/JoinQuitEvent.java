@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +12,7 @@ import pt.ubatv.kingdoms.rankSystem.Rank;
 import pt.ubatv.kingdoms.utils.ScoreboardUtils;
 import pt.ubatv.kingdoms.utils.UserData;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class JoinQuitEvent implements Listener {
@@ -24,6 +26,7 @@ public class JoinQuitEvent implements Listener {
 
         main.userDataTable.createUser(uuid);
         main.bankTable.createUser(uuid);
+
         main.userDataTable.loadUserData(player);
 
         createScoreboard(player);
@@ -32,8 +35,16 @@ public class JoinQuitEvent implements Listener {
 
         player.setPlayerListName("§7[" + main.rankManager.getRankName(main.userDataTable.online.get(player.getUniqueId()).getRank(), true) + "§7] §7" + player.getName());
 
+        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        String userKingdom = userData.getKingdom();
+        if(!userKingdom.equalsIgnoreCase("none")){
+            if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
+                main.kingdomClaimYML.loadKingdomClaims(userKingdom);
+            }
+        }
+
         // 1.8 PVP - Anticooldown
-        player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
+        Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(100);
 
         if(!player.hasPlayedBefore()){
             player.teleport(main.locationYML.spawn);
@@ -44,6 +55,14 @@ public class JoinQuitEvent implements Listener {
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
+
+        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        String userKingdom = userData.getKingdom();
+        if(!userKingdom.equalsIgnoreCase("none")){
+            if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
+                main.kingdomClaimYML.saveKingdomClaims(userKingdom);
+            }
+        }
 
         main.userDataTable.saveUserData(player);
         main.userDataTable.online.remove(uuid);
