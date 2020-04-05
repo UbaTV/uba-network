@@ -15,6 +15,7 @@ import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.HologramCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
+import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
 import pt.ubatv.kingdoms.mysql.BankTable;
@@ -27,12 +28,6 @@ import pt.ubatv.kingdoms.utils.*;
 
 public class Main extends JavaPlugin {
 
-    /*
-    TODO
-    - SHOP
-    - TIMBER
-     */
-
     public static Main instance;
 
     public TextUtils textUtils;
@@ -42,6 +37,7 @@ public class Main extends JavaPlugin {
     public UserDataTable userDataTable;
     public BankTable bankTable;
     public LocationYML locationYML;
+    public KingdomClaimYML kingdomClaimYML;
     public RankManager rankManager;
     public ShopUtils shopUtils;
     public KingdomsTable kingdomsTable;
@@ -54,6 +50,7 @@ public class Main extends JavaPlugin {
 
         loadConfig();
         locationYML.createConfig();
+        kingdomClaimYML.createConfig();
         mySQLConnection.runMySQLAsync();
 
         registerEvents();
@@ -117,6 +114,7 @@ public class Main extends JavaPlugin {
         shopUtils = new ShopUtils();
         kingdomsTable = new KingdomsTable();
         kingdomUtils = new KingdomUtils();
+        kingdomClaimYML = new KingdomClaimYML();
     }
 
     private void loadConfig(){

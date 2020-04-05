@@ -5,8 +5,6 @@ import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 import pt.ubatv.kingdoms.utils.UserData;
 
-import java.util.Arrays;
-
 public class AcceptSubcommand extends SubCommand {
 
     private Main main = Main.getInstance();

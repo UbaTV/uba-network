@@ -32,9 +32,14 @@ public class HelpSubcommand extends SubCommand {
     public void kingdomsHelp(Player player){
         player.sendMessage(getSyntax());
         player.sendMessage("§7/kingdoms create §5<name>");
-        player.sendMessage("§7/kingdoms ownership §5<player>");
         player.sendMessage("§7/kingdoms quit");
+        player.sendMessage("§7/kingdoms ownership §5<player>");
         player.sendMessage("§7/kingdoms info §5[kingdom]");
         player.sendMessage("§7/kingdoms invite §5<player>");
+        player.sendMessage("§7/kingdoms accept");
+        player.sendMessage("§7/kingdoms tag §5<tag>");
+        player.sendMessage("§7/kingdoms ally");
+        player.sendMessage("§7/kingdoms neutral");
+        player.sendMessage("§7/kingdoms enemy");
     }
 }

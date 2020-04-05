@@ -127,6 +127,16 @@ public class AllySubcommand extends SubCommand {
         }
 
         if(args.length == 2){
+            if(args[1].equalsIgnoreCase("accept")){
+                player.sendMessage(main.textUtils.warning + "§7/kingdoms ally accept §5<kingdom>");
+                return;
+            }
+
+            if(args[1].equalsIgnoreCase("deny")){
+                player.sendMessage(main.textUtils.warning + "§7/kingdoms ally deny §5<kingdom>");
+                return;
+            }
+
             if(!main.kingdomsTable.kingdomExists(args[1].toLowerCase())){
                 player.sendMessage(main.textUtils.error + "Kingdom does not exist.");
                 return;

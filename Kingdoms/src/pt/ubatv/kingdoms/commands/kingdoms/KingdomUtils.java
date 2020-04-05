@@ -52,6 +52,9 @@ public class KingdomUtils {
         names.add("fags");
         names.add("nigas");
         names.add("gay");
+        names.add("gai");
+        names.add("accept");
+        names.add("deny");
         return names;
     }
 }

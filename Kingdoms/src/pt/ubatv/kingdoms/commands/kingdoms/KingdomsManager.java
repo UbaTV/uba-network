@@ -27,6 +27,7 @@ public class KingdomsManager implements CommandExecutor {
         subCommands.add(new VaultSubcommand());
         subCommands.add(new TagSubcommand());
         subCommands.add(new AllySubcommand());
+        subCommands.add(new NeutralSubcommand());
     }
 
     @Override
@@ -37,11 +38,11 @@ public class KingdomsManager implements CommandExecutor {
                 for(int i = 0; i < getSubCommands().size(); i++){
                     if(args[0].equalsIgnoreCase(getSubCommands().get(i).getName())){
                         getSubCommands().get(i).perform(player, args);
+                        return false;
                     }
                 }
-            }else{
-                player.performCommand("kingdoms help");
             }
+            player.performCommand("kingdoms help");
         }else{
             Bukkit.getServer().getConsoleSender().sendMessage(main.textUtils.playerOnly);
         }
