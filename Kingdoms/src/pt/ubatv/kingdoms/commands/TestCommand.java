@@ -1,5 +1,9 @@
 package pt.ubatv.kingdoms.commands;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,7 +31,15 @@ public class TestCommand implements CommandExecutor, Listener {
                 /*UserData userData = main.userDataTable.online.get(player.getUniqueId());
                 userData.setCoins(userData.getCoins() + 100);*/
 
-                if(args.length == 1){
+                TextComponent mainComponent = new TextComponent( "Here's a question: " );
+                TextComponent subComponent = new TextComponent( "Maybe u r noob?" );
+                subComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Click me!" ).create() ) );
+                subComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/the-chat-component-api/" ) );
+                mainComponent.addExtra( subComponent );
+                mainComponent.addExtra( " Does that answer your question?" );
+                player.spigot().sendMessage(mainComponent);
+
+                /*if(args.length == 1){
                     if(args[0].equalsIgnoreCase("save")){
                         if(!chunkList.containsKey(player)){
                             player.sendMessage("You dont have any chunks");
@@ -91,7 +103,7 @@ public class TestCommand implements CommandExecutor, Listener {
                 }else{
                     player.sendMessage("chunk claimed\nx: " + chunk.getX() + "\nz: " + chunk.getZ());
                     chunkList.get(player).add(chunk);
-                }
+                }*/
                 //freezeEntity(shop);
             }else{
                 player.sendMessage(main.textUtils.noPerms);
