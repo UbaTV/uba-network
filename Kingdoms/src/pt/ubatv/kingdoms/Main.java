@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,9 @@ import pt.ubatv.kingdoms.mysql.UserDataTable;
 import pt.ubatv.kingdoms.rankSystem.RankCommand;
 import pt.ubatv.kingdoms.rankSystem.RankManager;
 import pt.ubatv.kingdoms.utils.*;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Main extends JavaPlugin {
 
@@ -67,6 +71,11 @@ public class Main extends JavaPlugin {
             userDataTable.saveUserData(target);
             target.kickPlayer("Server is restarting. Please reconnect.");
         });
+
+        for(Map.Entry<String, ArrayList<Chunk>> entry : KingdomUtils.kingdomsChunks.entrySet()){
+            String kingdomName = entry.getKey();
+            kingdomClaimYML.saveKingdomClaims(kingdomName);
+        }
     }
 
     private void registerCommands(){
@@ -101,6 +110,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new TestCommand(), this);
         pluginManager.registerEvents(new ShopNPCCommand(), this);
         pluginManager.registerEvents(new EntityDamage(), this);
+        pluginManager.registerEvents(new ClaimManager(), this);
     }
 
     private void instanceClasses(){

@@ -4,6 +4,7 @@ public enum Permissions {
     TESTER,
     SET_LOCATION,
     RANK_MANAGEMENT,
+    CLEAR_INVENTORY_OTHERS,
     CLEAR_INVENTORY,
     CLEAR_CHAT,
     PRIVATE_CHEST,

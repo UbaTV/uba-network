@@ -24,6 +24,7 @@ public class RankManager {
             // ADMIN PERMS
             case MUTE:
             case CLEAR_CHAT:
+            case CLEAR_INVENTORY_OTHERS:
             case ENDERCHEST_OTHERS:
                 return rankTier > 7;
             // CEO PERMS

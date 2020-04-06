@@ -29,6 +29,7 @@ public class KingdomsManager implements CommandExecutor {
         subCommands.add(new AllySubcommand());
         subCommands.add(new NeutralSubcommand());
         subCommands.add(new ClaimSubcommand());
+        subCommands.add(new UnclaimSubcommand());
     }
 
     @Override
