@@ -40,9 +40,10 @@ public class HelpSubcommand extends SubCommand {
 
     // TODO Format pages
     public void kingdomsHelp(Player player, int page){
+        player.sendMessage(" ");
+        main.textUtils.sendCenteredMessage(player, "§7§m========[§5Kingdoms§7§m]========");
+        player.sendMessage(" ");
         if(page == 2){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[§5Kingdoms]§7§m========");
-            player.sendMessage(" ");
             player.sendMessage("§7/kingdoms accept");
             player.sendMessage("§7/kingdoms ownership §5<player>");
             player.sendMessage("§7/kingdoms ally");
@@ -55,8 +56,6 @@ public class HelpSubcommand extends SubCommand {
         }
 
         if(page == 3){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[§5Kingdoms]§7§m========");
-            player.sendMessage(" ");
             player.sendMessage("§7/kingdoms claim");
             player.sendMessage("§7/kingdoms unclaim");
             player.sendMessage("§7/kingdoms map");
@@ -66,9 +65,6 @@ public class HelpSubcommand extends SubCommand {
             return;
         }
 
-
-        main.textUtils.sendCenteredMessage(player, "§7§m========[§5Kingdoms]§7§m========");
-        player.sendMessage(" ");
         player.sendMessage("§7/kingdoms create §5<name>");
         player.sendMessage("§7/kingdoms info §5[kingdom]");
         player.sendMessage("§7/kingdoms invite §5<player>");

@@ -76,8 +76,8 @@ public class InfoSubcommand extends SubCommand {
             }
         }
 
-        main.textUtils.sendCenteredMessage(player, "§8§m----------------------------------------------------");
-        main.textUtils.sendCenteredMessage(player, "§5" + main.kingdomsTable.getDisplayName(kingdomName) + "§7's Info");
+        player.sendMessage(" ");
+        main.textUtils.sendCenteredMessage(player, "§7§m========[§5" + main.kingdomsTable.getDisplayName(kingdomName) + "§7's Info§7§m]========");
         player.sendMessage(" ");
         player.sendMessage("§7Tag: §5" + main.kingdomsTable.getDisplayTag(kingdomName));
         player.sendMessage("§7King: §5" + main.kingdomsTable.getOwner(kingdomName));
@@ -85,7 +85,5 @@ public class InfoSubcommand extends SubCommand {
         player.sendMessage("§7Members: " + membersString.toString());
         player.sendMessage("§7Allies: " + alliesString.toString());
         player.sendMessage("§7Enemies: " + enemiesString.toString());
-        player.sendMessage(" ");
-        main.textUtils.sendCenteredMessage(player, "§8§m----------------------------------------------------");
     }
 }
