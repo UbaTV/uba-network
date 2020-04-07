@@ -27,6 +27,8 @@ commands:
       - silence
   shop:
     description: This command was developed by UbaTV.
+    aliases:
+      - store
   clearchat:
     description: This command was developed by UbaTV.
   setlocation:
@@ -35,16 +37,20 @@ commands:
       - setloc
   spawn:
     description: This command was developed by UbaTV.
+    aliases:
+      - entrance
+      - lobby
   balance:
     description: This command was developed by UbaTV.
     aliases:
       - money
       - bal
       - coins
-  econ:
+      - coin
+  economy:
     description: This command was developed by UbaTV.
     aliases:
-      - economy
+      - econ
   pay:
     description: This command was developed by UbaTV.
     aliases:
@@ -58,3 +64,11 @@ commands:
       - k
   shopnpc:
     description: This command was developed by UbaTV.
+  clearinventory:
+    description: This command was developed by UbaTV.
+    aliases:
+      - ci
+      - cleari
+      - cinventory
+      - cinv
+      - clearinv

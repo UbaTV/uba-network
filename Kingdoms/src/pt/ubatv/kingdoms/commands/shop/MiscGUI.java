@@ -24,13 +24,13 @@ public class MiscGUI implements InventoryHolder, Listener {
     }
 
     public void createGUI(Player player){
-        ItemStack xpbottle = main.itemAPI.item(Material.EXPERIENCE_BOTTLE, "§5Experience Bottle", "§7Price: §5" + main.priceUtils.getPrice(Material.EXPERIENCE_BOTTLE) + main.textUtils.coinsSymbol);
-        ItemStack waterBucket = main.itemAPI.item(Material.WATER_BUCKET, "§5Water Bucket", "§7Price: §5" + main.priceUtils.getPrice(Material.WATER_BUCKET) + main.textUtils.coinsSymbol);
-        ItemStack lavaBucket = main.itemAPI.item(Material.LAVA_BUCKET, "§5Lava Bucket", "§7Price: §5" + main.priceUtils.getPrice(Material.LAVA_BUCKET) + main.textUtils.coinsSymbol);
-        ItemStack ironHorseArmor = main.itemAPI.item(Material.IRON_HORSE_ARMOR, "§5Iron Horse Armor", "§7Price: §5" + main.priceUtils.getPrice(Material.IRON_HORSE_ARMOR) + main.textUtils.coinsSymbol);
-        ItemStack goldHorseArmor = main.itemAPI.item(Material.GOLDEN_HORSE_ARMOR, "§5Gold Horse Armor", "§7Price: §5" + main.priceUtils.getPrice(Material.GOLDEN_HORSE_ARMOR) + main.textUtils.coinsSymbol);
-        ItemStack diamondHorseArmor = main.itemAPI.item(Material.DIAMOND_HORSE_ARMOR, "§5Diamond Horse Armor", "§7Price: §5" + main.priceUtils.getPrice(Material.DIAMOND_HORSE_ARMOR) + main.textUtils.coinsSymbol);
-        ItemStack nametag = main.itemAPI.item(Material.NAME_TAG, "§5Name Tag", "§7Price: §5" + main.priceUtils.getPrice(Material.NAME_TAG) + main.textUtils.coinsSymbol);
+        ItemStack xpbottle = main.itemAPI.item(Material.EXPERIENCE_BOTTLE, "§5Experience Bottle", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.EXPERIENCE_BOTTLE) + main.textUtils.coinsSymbol);
+        ItemStack waterBucket = main.itemAPI.item(Material.WATER_BUCKET, "§5Water Bucket", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.WATER_BUCKET) + main.textUtils.coinsSymbol);
+        ItemStack lavaBucket = main.itemAPI.item(Material.LAVA_BUCKET, "§5Lava Bucket", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.LAVA_BUCKET) + main.textUtils.coinsSymbol);
+        ItemStack ironHorseArmor = main.itemAPI.item(Material.IRON_HORSE_ARMOR, "§5Iron Horse Armor", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.IRON_HORSE_ARMOR) + main.textUtils.coinsSymbol);
+        ItemStack goldHorseArmor = main.itemAPI.item(Material.GOLDEN_HORSE_ARMOR, "§5Gold Horse Armor", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.GOLDEN_HORSE_ARMOR) + main.textUtils.coinsSymbol);
+        ItemStack diamondHorseArmor = main.itemAPI.item(Material.DIAMOND_HORSE_ARMOR, "§5Diamond Horse Armor", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.DIAMOND_HORSE_ARMOR) + main.textUtils.coinsSymbol);
+        ItemStack nametag = main.itemAPI.item(Material.NAME_TAG, "§5Name Tag", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.NAME_TAG) + main.textUtils.coinsSymbol);
 
         inv.setItem(10, xpbottle);
         inv.setItem(11, waterBucket);

@@ -84,7 +84,7 @@ public class Main extends JavaPlugin {
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("balance").setExecutor(new BalanceCommand());
         getCommand("pay").setExecutor(new PayCommand());
-        getCommand("econ").setExecutor(new EconCommand());
+        getCommand("economy").setExecutor(new EconCommand());
         getCommand("kingdoms").setExecutor(new KingdomsManager());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("shop").setExecutor(new ShopCommand());
@@ -93,6 +93,7 @@ public class Main extends JavaPlugin {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("hologram").setExecutor(new HologramCommand());
         getCommand("shopnpc").setExecutor(new ShopNPCCommand());
+        getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
     }
 
     private void registerEvents(){
@@ -105,7 +106,9 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
         pluginManager.registerEvents(new MiscGUI(), this);
+        pluginManager.registerEvents(new OresGUI(), this);
         pluginManager.registerEvents(new MobDropsGUI(), this);
+        pluginManager.registerEvents(new FoodGUI(), this);
         pluginManager.registerEvents(new DeathEvent(), this);
         pluginManager.registerEvents(new TestCommand(), this);
         pluginManager.registerEvents(new ShopNPCCommand(), this);

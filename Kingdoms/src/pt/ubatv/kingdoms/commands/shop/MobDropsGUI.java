@@ -24,17 +24,17 @@ public class MobDropsGUI implements InventoryHolder, Listener {
     }
 
     public void createGUI(Player player){
-        ItemStack gunpowder = main.itemAPI.item(Material.GUNPOWDER, "§5Gunpowder", "§7Price: §5" + main.priceUtils.getPrice(Material.GUNPOWDER) + main.textUtils.coinsSymbol);
-        ItemStack string = main.itemAPI.item(Material.STRING, "§5String", "§7Price: §5" + main.priceUtils.getPrice(Material.STRING) + main.textUtils.coinsSymbol);
-        ItemStack spidereye = main.itemAPI.item(Material.SPIDER_EYE, "§5Spider Eye", "§7Price: §5" + main.priceUtils.getPrice(Material.SPIDER_EYE) + main.textUtils.coinsSymbol);
-        ItemStack rottenflesh = main.itemAPI.item(Material.ROTTEN_FLESH, "§5Rotten Flesh", "§7Price: §5" + main.priceUtils.getPrice(Material.ROTTEN_FLESH) + main.textUtils.coinsSymbol);
-        ItemStack bone = main.itemAPI.item(Material.BONE, "§5Bone", "§7Price: §5" + main.priceUtils.getPrice(Material.BONE) + main.textUtils.coinsSymbol);
-        ItemStack arrow = main.itemAPI.item(Material.ARROW, "§5Arrow", "§7Price: §5" + main.priceUtils.getPrice(Material.ARROW) + main.textUtils.coinsSymbol);
-        ItemStack slimeball = main.itemAPI.item(Material.SLIME_BALL, "§5Slime Ball", "§7Price: §5" + main.priceUtils.getPrice(Material.SLIME_BALL) + main.textUtils.coinsSymbol);
-        ItemStack magmacream = main.itemAPI.item(Material.MAGMA_CREAM, "§5Magma Cream", "§7Price: §5" + main.priceUtils.getPrice(Material.MAGMA_CREAM) + main.textUtils.coinsSymbol);
-        ItemStack enderpearl = main.itemAPI.item(Material.ENDER_PEARL, "§5Endear Pearl", "§7Price: §5" + main.priceUtils.getPrice(Material.ENDER_PEARL) + main.textUtils.coinsSymbol);
-        ItemStack blazerod = main.itemAPI.item(Material.BLAZE_ROD, "§5Blaze Rod", "§7Price: §5" + main.priceUtils.getPrice(Material.BLAZE_ROD) + main.textUtils.coinsSymbol);
-        ItemStack ghasttear = main.itemAPI.item(Material.GHAST_TEAR, "§5Ghast Tear", "§7Price: §5" + main.priceUtils.getPrice(Material.GHAST_TEAR) + main.textUtils.coinsSymbol);
+        ItemStack gunpowder = main.itemAPI.item(Material.GUNPOWDER, "§5Gunpowder", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.GUNPOWDER) + main.textUtils.coinsSymbol);
+        ItemStack string = main.itemAPI.item(Material.STRING, "§5String", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.STRING) + main.textUtils.coinsSymbol);
+        ItemStack spidereye = main.itemAPI.item(Material.SPIDER_EYE, "§5Spider Eye", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.SPIDER_EYE) + main.textUtils.coinsSymbol);
+        ItemStack rottenflesh = main.itemAPI.item(Material.ROTTEN_FLESH, "§5Rotten Flesh", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.ROTTEN_FLESH) + main.textUtils.coinsSymbol);
+        ItemStack bone = main.itemAPI.item(Material.BONE, "§5Bone", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.BONE) + main.textUtils.coinsSymbol);
+        ItemStack arrow = main.itemAPI.item(Material.ARROW, "§5Arrow", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.ARROW) + main.textUtils.coinsSymbol);
+        ItemStack slimeball = main.itemAPI.item(Material.SLIME_BALL, "§5Slime Ball", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.SLIME_BALL) + main.textUtils.coinsSymbol);
+        ItemStack magmacream = main.itemAPI.item(Material.MAGMA_CREAM, "§5Magma Cream", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.MAGMA_CREAM) + main.textUtils.coinsSymbol);
+        ItemStack enderpearl = main.itemAPI.item(Material.ENDER_PEARL, "§5Endear Pearl", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.ENDER_PEARL) + main.textUtils.coinsSymbol);
+        ItemStack blazerod = main.itemAPI.item(Material.BLAZE_ROD, "§5Blaze Rod", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.BLAZE_ROD) + main.textUtils.coinsSymbol);
+        ItemStack ghasttear = main.itemAPI.item(Material.GHAST_TEAR, "§5Ghast Tear", "§7Sell: §5" + main.priceUtils.getSellPrice(Material.GHAST_TEAR) + main.textUtils.coinsSymbol);
 
         inv.setItem(3, gunpowder);
         inv.setItem(4, string);
@@ -63,17 +63,17 @@ public class MobDropsGUI implements InventoryHolder, Listener {
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
 
-        if(slot == 3) main.shopUtils.buyItem(player, Material.GUNPOWDER);
-        if(slot == 4) main.shopUtils.buyItem(player, Material.STRING);
-        if(slot == 5) main.shopUtils.buyItem(player, Material.SPIDER_EYE);
-        if(slot == 11) main.shopUtils.buyItem(player, Material.ROTTEN_FLESH);
-        if(slot == 12) main.shopUtils.buyItem(player, Material.BONE);
-        if(slot == 13) main.shopUtils.buyItem(player, Material.ARROW);
-        if(slot == 14) main.shopUtils.buyItem(player, Material.SLIME_BALL);
-        if(slot == 15) main.shopUtils.buyItem(player, Material.MAGMA_CREAM);
-        if(slot == 21) main.shopUtils.buyItem(player, Material.ENDER_PEARL);
-        if(slot == 22) main.shopUtils.buyItem(player, Material.BLAZE_ROD);
-        if(slot == 23) main.shopUtils.buyItem(player, Material.GHAST_TEAR);
+        if(slot == 3) main.shopUtils.sellItem(player, Material.GUNPOWDER);
+        if(slot == 4) main.shopUtils.sellItem(player, Material.STRING);
+        if(slot == 5) main.shopUtils.sellItem(player, Material.SPIDER_EYE);
+        if(slot == 11) main.shopUtils.sellItem(player, Material.ROTTEN_FLESH);
+        if(slot == 12) main.shopUtils.sellItem(player, Material.BONE);
+        if(slot == 13) main.shopUtils.sellItem(player, Material.ARROW);
+        if(slot == 14) main.shopUtils.sellItem(player, Material.SLIME_BALL);
+        if(slot == 15) main.shopUtils.sellItem(player, Material.MAGMA_CREAM);
+        if(slot == 21) main.shopUtils.sellItem(player, Material.ENDER_PEARL);
+        if(slot == 22) main.shopUtils.sellItem(player, Material.BLAZE_ROD);
+        if(slot == 23) main.shopUtils.sellItem(player, Material.GHAST_TEAR);
 
     }
 
