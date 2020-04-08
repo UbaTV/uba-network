@@ -11,6 +11,18 @@ description: This plugin was developed by UbaTV.
 commands:
   test:
     description: This command was developed by UbaTV.
+  invsee:
+    description: This command was developed by UbaTV.
+    aliases:
+      - invopen
+      - inventoryopen
+      - inventorysee
+  gamemode:
+    description: This command was developed by UbaTV.
+    aliases:
+      - gm
+      - gmode
+      - gamem
   enderchest:
     description: This command was developed by UbaTV.
     aliases:
@@ -55,6 +67,8 @@ commands:
     description: This command was developed by UbaTV.
   kit:
     description: This command was developed by UbaTV.
+    aliases:
+      - kits
   pay:
     description: This command was developed by UbaTV.
     aliases:

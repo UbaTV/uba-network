@@ -2,6 +2,8 @@ package pt.ubatv.kingdoms.rankSystem;
 
 public enum Permissions {
     TESTER,
+    INVSEE,
+    GAMEMODE,
     SET_LOCATION,
     RANK_MANAGEMENT,
     CLEAR_INVENTORY_OTHERS,

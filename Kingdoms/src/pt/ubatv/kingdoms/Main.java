@@ -13,10 +13,7 @@ import pt.ubatv.kingdoms.commands.econ.PayCommand;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomUtils;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.commands.shop.*;
-import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
-import pt.ubatv.kingdoms.commands.staff.HologramCommand;
-import pt.ubatv.kingdoms.commands.staff.MuteCommand;
-import pt.ubatv.kingdoms.commands.staff.SetLocationCommand;
+import pt.ubatv.kingdoms.commands.staff.*;
 import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
@@ -101,6 +98,8 @@ public class Main extends JavaPlugin {
         getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
         getCommand("wild").setExecutor(new WildCommand());
         getCommand("kit").setExecutor(new KitCommand());
+        getCommand("invsee").setExecutor(new InvseeCommand());
+        getCommand("gamemode").setExecutor(new GamemodeCommand());
     }
 
     private void registerEvents(){

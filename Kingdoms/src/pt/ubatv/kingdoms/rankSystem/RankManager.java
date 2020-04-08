@@ -26,6 +26,8 @@ public class RankManager {
             case CLEAR_CHAT:
             case CLEAR_INVENTORY_OTHERS:
             case ENDERCHEST_OTHERS:
+            case INVSEE:
+            case GAMEMODE:
                 return rankTier > 7;
             // CEO PERMS
             case SET_LOCATION:
