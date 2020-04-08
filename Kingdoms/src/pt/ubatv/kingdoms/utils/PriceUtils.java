@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.utils;
 
 import org.bukkit.Material;
+import org.bukkit.potion.PotionType;
 
 public class PriceUtils {
 
@@ -32,6 +33,12 @@ public class PriceUtils {
     //public int chiselesQuartzBlock = 65;
     //public int quartzPillar = 65;
     //public int prismarineBlock = 100;
+
+    public int getPotionBuyPrice(PotionType potionType){
+        if(potionType.equals(PotionType.INVISIBILITY)) return 1000;
+        else if(potionType.equals(PotionType.SPEED)) return 1000;
+        return 999999999;
+    }
 
     public int getBuyPrice(Material mat){
         /* BLOCKS */
@@ -93,8 +100,22 @@ public class PriceUtils {
         else if(mat.equals(Material.CACTUS)) return 550;
         else if(mat.equals(Material.NETHER_WART)) return 500;
         else if(mat.equals(Material.SUGAR_CANE)) return 550;
+        /* RAID */
+        else if(mat.equals(Material.TNT)) return 200;
+        else if(mat.equals(Material.FLINT_AND_STEEL)) return 50;
+        else if(mat.equals(Material.CREEPER_SPAWN_EGG)) return 15000;
+        else if(mat.equals(Material.REDSTONE_TORCH)) return 100;
+        else if(mat.equals(Material.SPONGE)) return 500;
         return 999999999;
     }
+
+    public int TNT = 200;
+    public int flintAndSteel = 50;
+    public int creeperEgg = 5000;
+    public int invisPotion = 1000;
+    public int speedPotion = 1000;
+    public int redsoneTorch = 100;
+    public int sponge = 500;
 
     public int hayBale = 43;
     public int brownMush = 45;
@@ -130,20 +151,6 @@ public class PriceUtils {
         else if(mat.equals(Material.CHARCOAL)) return 1;
         return 0;
     }
-    
-    //SELL ONLY ORES FINISH//
-}   
-    //misk//
-    public int TNT = 200;
-    public int flintAndSteel = 50;
-    public int waterBucket = 150;
-    public int creeperEgg = 5000;
-    public int invisPotion = 1000;
-    public int speedPotion = 1000;
-    public int lavaBucket = 450;
-    public int redsoneTorch = 100;
-    public int sponge = 500;
-    
-    
 
-    
+
+}

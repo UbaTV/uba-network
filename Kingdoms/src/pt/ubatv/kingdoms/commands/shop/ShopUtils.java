@@ -4,12 +4,25 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionType;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.utils.UserData;
 
 public class ShopUtils {
 
     private Main main = Main.getInstance();
+
+    public void buyPotion(Player player, PotionType potionType){
+        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        int balance = userData.getCoins();
+        int price = main.priceUtils.getPotionBuyPrice(potionType);
+        if(balance >= price){
+            main.itemAPI.addPotionToInv(player, potionType);
+            userData.setCoins(balance - price);
+        }else{
+            player.sendMessage(main.textUtils.error + "You don't have enough money.");
+        }
+    }
 
     public void buyItem(Player player, Material mat){
         UserData userData = main.userDataTable.online.get(player.getUniqueId());

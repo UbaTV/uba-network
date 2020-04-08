@@ -5,7 +5,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 import org.w3c.dom.events.EventException;
 import pt.ubatv.kingdoms.Main;
 
@@ -27,6 +31,24 @@ public class ItemAPI {
         return item;
     }
 
+    public ItemStack potion(PotionType potionType){
+        ItemStack potion = new ItemStack(Material.POTION, 1);
+        PotionMeta meta = (PotionMeta) potion.getItemMeta();
+        meta.setBasePotionData(new PotionData(potionType, false, false));
+        potion.setItemMeta(meta);
+        return potion;
+    }
+
+    public ItemStack potion(PotionType potionType, String name, String...lore){
+        ItemStack potion = new ItemStack(Material.POTION, 1);
+        PotionMeta meta = (PotionMeta) potion.getItemMeta();
+        meta.setBasePotionData(new PotionData(potionType, false, false));
+        meta.setDisplayName(name);
+        ArrayList<String> metaLore = new ArrayList<String>(Arrays.asList(lore));
+        meta.setLore(metaLore);
+        potion.setItemMeta(meta);
+        return potion;
+    }
 
     public ItemStack item(Material material, String name, String...lore) {
         ItemStack item = new ItemStack(material, 1);
@@ -70,6 +92,27 @@ public class ItemAPI {
         meta.setLore(metaLore);
         skull.setItemMeta(meta);
         return skull;
+    }
+
+    public void addPotionToInv(Player player, PotionType potionType){
+        Inventory inv = player.getInventory();
+        ItemStack potion = main.itemAPI.potion(potionType);
+
+        if(inv.firstEmpty() != -1){
+            player.getInventory().addItem(potion);
+            return;
+        }
+
+        try{
+            for(ItemStack current : inv.getContents()) {
+                if(current.getType() != Material.AIR){
+                    player.getInventory().addItem(potion);
+                    return;
+                }
+            }
+        }catch (NullPointerException | EventException ignored){
+            player.sendMessage(main.textUtils.error + "Your inventory is full.");
+        }
     }
 
     public void addItemToInv(Player player, Material mat){
