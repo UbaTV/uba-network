@@ -20,7 +20,7 @@ public class FarmingGUI implements InventoryHolder, Listener {
     private final Inventory inv;
 
     public FarmingGUI() {
-        this.inv = Bukkit.createInventory(this, 9*2, "§5Farming §7Shop");
+        this.inv = Bukkit.createInventory(this, 9*3, "§5Farming §7Shop");
     }
 
     public void createGUI(Player player){
@@ -63,17 +63,17 @@ public class FarmingGUI implements InventoryHolder, Listener {
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
 
-        if(slot == 3) main.shopUtils.sellItem(player, Material.WHEAT_SEEDS);
-        if(slot == 4) main.shopUtils.sellItem(player, Material.WHEAT);
-        if(slot == 5) main.shopUtils.sellItem(player, Material.SPRUCE_SAPLING);
-        if(slot == 11) main.shopUtils.sellItem(player, Material.OAK_SAPLING);
-        if(slot == 12) main.shopUtils.sellItem(player, Material.BIRCH_SAPLING);
-        if(slot == 13) main.shopUtils.sellItem(player, Material.JUNGLE_SAPLING);
-        if(slot == 14) main.shopUtils.sellItem(player, Material.ACACIA_SAPLING);
-        if(slot == 15) main.shopUtils.sellItem(player, Material.DARK_OAK_SAPLING);
-        if(slot == 21) main.shopUtils.sellItem(player, Material.CACTUS);
-        if(slot == 22) main.shopUtils.sellItem(player, Material.NETHER_WART);
-        if(slot == 23) main.shopUtils.sellItem(player, Material.SUGAR_CANE);
+        if(slot == 3) main.shopUtils.buyItem(player, Material.WHEAT_SEEDS);
+        if(slot == 4) main.shopUtils.buyItem(player, Material.WHEAT);
+        if(slot == 5) main.shopUtils.buyItem(player, Material.SPRUCE_SAPLING);
+        if(slot == 11) main.shopUtils.buyItem(player, Material.OAK_SAPLING);
+        if(slot == 12) main.shopUtils.buyItem(player, Material.BIRCH_SAPLING);
+        if(slot == 13) main.shopUtils.buyItem(player, Material.JUNGLE_SAPLING);
+        if(slot == 14) main.shopUtils.buyItem(player, Material.ACACIA_SAPLING);
+        if(slot == 15) main.shopUtils.buyItem(player, Material.DARK_OAK_SAPLING);
+        if(slot == 21) main.shopUtils.buyItem(player, Material.CACTUS);
+        if(slot == 22) main.shopUtils.buyItem(player, Material.NETHER_WART);
+        if(slot == 23) main.shopUtils.buyItem(player, Material.SUGAR_CANE);
     }
 
     public void openInventory(Player player){

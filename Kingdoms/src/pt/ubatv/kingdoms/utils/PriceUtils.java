@@ -4,31 +4,19 @@ import org.bukkit.Material;
 
 public class PriceUtils {
 
-    public int cobble = 3;
-    public int stone = 5;
-    //public int granite = 3; 
-    public int grass = 5;
+    //public int granite = 3;
     //public int diorite = 3;
     //public int andesite = 3;
-    public int dirt = 5;
     //public int podzol = 5;
     //public int mycelium = 5;
     //public int stoneBricks = 3;
     //public int mossyStoneBrick = 3;
     //public int crackedStoneBricks = 3;
-    //public int chiseledStoneBricks = 3;
+    //public int chiseledStoneBricks =3;
     //public int mossyCbble = 3;
-    public int sand = 5;
     //public int redSand = 5;
     //public int sandstorm = 10;
     //public int chiseldSandstorm = 10;
-    public int oakLog = 32;
-    public int spruceLog = 32;
-    public int birchLog = 32;
-    public int jungleLog = 32;
-    public int acaciaLog = 32;
-    public int darkOakLog = 32;
-    public int gravel = 6;
     //public int clay = 10;
     //public int bricks = 25;
     //public int oakPlank = 7;
@@ -37,26 +25,39 @@ public class PriceUtils {
     //public int junglePlanks = 7; 
     //public int acaciaPlanks = 7;
     //public int darkOakPlanks = 7;
-    public int ice = 10;
     //public int packedIce= 12;
-    public int endStone = 8;
     //public int netherrack = 5;
     //public int netherBrick = 18;
-    public int soulSand = 32;
-    public int obsidian = 500;
-    public int magmaBlock = 250;
-    public int glowstone = 50;
     //public int blockQuartz = 65;
     //public int chiselesQuartzBlock = 65;
     //public int quartzPillar = 65;
-    public int prismarine = 100;
     //public int prismarineBlock = 100;
-    public int darkPrismarine = 100;
-    public int seaLantern = 100;
 
     public int getBuyPrice(Material mat){
+        /* BLOCKS */
+        if(mat.equals(Material.COBBLESTONE)) return 3;
+        else if(mat.equals(Material.STONE)) return 5;
+        else if(mat.equals(Material.GRASS_BLOCK)) return 5;
+        else if(mat.equals(Material.DIRT)) return 5;
+        else if(mat.equals(Material.SAND)) return 5;
+        else if(mat.equals(Material.OAK_LOG)) return 32;
+        else if(mat.equals(Material.SPRUCE_LOG)) return 32;
+        else if(mat.equals(Material.BIRCH_LOG)) return 32;
+        else if(mat.equals(Material.JUNGLE_LOG)) return 32;
+        else if(mat.equals(Material.ACACIA_LOG)) return 32;
+        else if(mat.equals(Material.DARK_OAK_LOG)) return 32;
+        else if(mat.equals(Material.GRAVEL)) return 6;
+        else if(mat.equals(Material.ICE)) return 10;
+        else if(mat.equals(Material.END_STONE)) return 8;
+        else if(mat.equals(Material.SOUL_SAND)) return 32;
+        else if(mat.equals(Material.OBSIDIAN)) return 500;
+        else if(mat.equals(Material.MAGMA_BLOCK)) return 250;
+        else if(mat.equals(Material.GLOWSTONE)) return 50;
+        else if(mat.equals(Material.PRISMARINE)) return 100;
+        else if(mat.equals(Material.DARK_PRISMARINE)) return 100;
+        else if(mat.equals(Material.SEA_LANTERN)) return 100;
         /* MISC */
-        if(mat.equals(Material.EXPERIENCE_BOTTLE)) return 25;
+        else if(mat.equals(Material.EXPERIENCE_BOTTLE)) return 25;
         else if(mat.equals(Material.WATER_BUCKET)) return 50;
         else if(mat.equals(Material.LAVA_BUCKET)) return 500;
         else if(mat.equals(Material.IRON_HORSE_ARMOR)) return 2000;
