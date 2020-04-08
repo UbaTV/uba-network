@@ -31,14 +31,16 @@ public class TestCommand implements CommandExecutor, Listener {
                 /*UserData userData = main.userDataTable.online.get(player.getUniqueId());
                 userData.setCoins(userData.getCoins() + 100);*/
 
-                TextComponent mainComponent = new TextComponent( "Here's a question: " );
+
+
+                /*TextComponent mainComponent = new TextComponent( "Here's a question: " );
                 TextComponent subComponent = new TextComponent( "Maybe u r noob?" );
                 subComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder( "Click me!" ).create() ) );
                 subComponent.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/the-chat-component-api/" ) );
                 mainComponent.addExtra( subComponent );
                 mainComponent.addExtra( " Does that answer your question?" );
                 player.spigot().sendMessage(mainComponent);
-
+*/
                 /*if(args.length == 1){
                     if(args[0].equalsIgnoreCase("save")){
                         if(!chunkList.containsKey(player)){

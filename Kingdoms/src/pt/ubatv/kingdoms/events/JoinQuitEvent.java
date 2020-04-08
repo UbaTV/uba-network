@@ -37,11 +37,11 @@ public class JoinQuitEvent implements Listener {
 
         UserData userData = main.userDataTable.online.get(player.getUniqueId());
         String userKingdom = userData.getKingdom();
-        if(!userKingdom.equalsIgnoreCase("none")){
+        /*if(!userKingdom.equalsIgnoreCase("none")){
             if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
                 main.kingdomClaimYML.loadKingdomClaims(userKingdom);
             }
-        }
+        }*/
 
         // 1.8 PVP - Anticooldown
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(100);
@@ -58,11 +58,11 @@ public class JoinQuitEvent implements Listener {
 
         UserData userData = main.userDataTable.online.get(player.getUniqueId());
         String userKingdom = userData.getKingdom();
-        if(!userKingdom.equalsIgnoreCase("none")){
+        /*if(!userKingdom.equalsIgnoreCase("none")){
             if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
                 main.kingdomClaimYML.saveKingdomClaims(userKingdom);
             }
-        }
+        }*/
 
         main.userDataTable.saveUserData(player);
         main.userDataTable.online.remove(uuid);

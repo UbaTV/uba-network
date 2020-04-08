@@ -36,6 +36,24 @@ public class QuitSubcommand extends SubCommand {
 
             String[] kingdomMembers = main.kingdomUtils.getMembers(userKingdom);
             if(kingdomMembers.length == 1){
+                KingdomUtils.kingdomsChunks.remove(userKingdom);
+                String[] allies = main.kingdomUtils.getAllies(userKingdom);
+                for(String ally : allies){
+                    StringBuilder newTargetAllies = new StringBuilder();
+                    if(!ally.equalsIgnoreCase("none")){
+                        String[] targetAllies = main.kingdomUtils.getAllies(ally.toLowerCase());
+                        for(String targetAlly : targetAllies){
+                            if(!targetAlly.equalsIgnoreCase(userKingdom)){
+                                newTargetAllies.append(targetAlly).append("#");
+                            }
+                        }
+                        if(newTargetAllies.length() == 0){
+                            main.kingdomsTable.updateAllies(ally.toLowerCase(), "none");
+                        }else{
+                            main.kingdomsTable.updateAllies(ally.toLowerCase(), newTargetAllies.toString());
+                        }
+                    }
+                }
                 main.kingdomsTable.deleteKingdom(userKingdom);
                 userData.setKingdom("none");
                 player.sendMessage(main.textUtils.right + "You just left your kingdom and it was deleted.");

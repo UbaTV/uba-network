@@ -29,6 +29,7 @@ public class HelpSubcommand extends SubCommand {
             try{
                 int page = Integer.parseInt(args[1]);
                 kingdomsHelp(player, page);
+                return;
             }catch (NumberFormatException e){
                 player.sendMessage(main.textUtils.error + "Invalid page number");
                 return;
@@ -51,7 +52,7 @@ public class HelpSubcommand extends SubCommand {
             player.sendMessage("§7/kingdoms vault");
             player.sendMessage(" ");
             player.sendMessage("§7Page §52§7/§53");
-            player.sendMessage("do /kingdoms help <page> to see next page");
+            player.sendMessage("§7do §5/kingdoms help <page> §7to see next page");
             return;
         }
 
@@ -61,7 +62,7 @@ public class HelpSubcommand extends SubCommand {
             player.sendMessage("§7/kingdoms map");
             player.sendMessage(" ");
             player.sendMessage("§7Page §53§7/§53");
-            player.sendMessage("do /kingdoms help <page> to see next page");
+            player.sendMessage("§7do /kingdoms help <page> §7to see next page");
             return;
         }
 
@@ -72,6 +73,6 @@ public class HelpSubcommand extends SubCommand {
         player.sendMessage("§7/kingdoms quit");
         player.sendMessage(" ");
         player.sendMessage("§7Page §51§7/§53");
-        player.sendMessage("do /kingdoms help <page> to see next page");
+        player.sendMessage("§7do §5/kingdoms help <page> §7to see next page");
     }
 }
