@@ -51,6 +51,10 @@ commands:
     description: This command was developed by UbaTV.
     aliases:
       - econ
+  wild:
+    description: This command was developed by UbaTV.
+  kit:
+    description: This command was developed by UbaTV.
   pay:
     description: This command was developed by UbaTV.
     aliases:

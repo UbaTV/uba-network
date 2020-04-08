@@ -118,6 +118,10 @@ public class KingdomUtils {
         names.add("gai");
         names.add("accept");
         names.add("deny");
+        names.add("spawn");
+        names.add("lobby");
+        names.add("hub");
+        names.add("hud");
         return names;
     }
 }

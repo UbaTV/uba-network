@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.utils;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -71,6 +72,19 @@ public class ItemAPI {
         return item;
     }
 
+    public ItemStack itemEnchanted(Material material, int quantity, String name, Enchantment...enchants) {
+        ItemStack item = new ItemStack(material, quantity);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName(name);
+        meta.setLore(null);
+        for (Enchantment enchant : enchants){
+            meta.addEnchant(enchant, 1, false);
+        }
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public ItemStack item(Material material, int quantity, String name, String...lore) {
         ItemStack item = new ItemStack(material, quantity);
         ItemMeta meta = item.getItemMeta();
@@ -115,6 +129,29 @@ public class ItemAPI {
         }
     }
 
+    public void addItemToInv(Player player, ItemStack item){
+        Inventory inv = player.getInventory();
+
+        if(inv.firstEmpty() != -1){
+            player.getInventory().addItem(item);
+            return;
+        }
+
+        try{
+            for(ItemStack current : inv.getContents()) {
+                if(current.getType() != Material.AIR){
+                    if((current.getType().equals(item.getType()) && current.getAmount() < current.getMaxStackSize())) {
+                        player.getInventory().addItem(item);
+                        return;
+                    }
+                }
+            }
+        }catch (NullPointerException | EventException ignored){
+            player.getWorld().dropItem(player.getLocation(), item);
+            player.sendMessage(main.textUtils.error + "Your inventory is full.");
+        }
+    }
+
     public void addItemToInv(Player player, Material mat){
         Inventory inv = player.getInventory();
         ItemStack item = new ItemStack(mat, 1);
@@ -134,6 +171,7 @@ public class ItemAPI {
                 }
             }
         }catch (NullPointerException | EventException ignored){
+            player.getWorld().dropItem(player.getLocation(), item);
             player.sendMessage(main.textUtils.error + "Your inventory is full.");
         }
     }

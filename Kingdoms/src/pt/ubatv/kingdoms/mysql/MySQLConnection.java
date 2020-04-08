@@ -29,7 +29,7 @@ public class MySQLConnection {
             Class.forName("com.mysql.jdbc.Driver");
             connection= DriverManager.getConnection("jdbc:mysql://"
                     + this.host + ":" + this.port + "/"
-                    + this.database + "?autoReconnect=true&useUnicode=yes"
+                    + this.database + "?autoReconnect=true&useUnicode=yes&useSSL=false"
                     , this.username, this.password);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -48,6 +48,13 @@ public class MySQLConnection {
     }
 
     public Connection getConnection() {
+        try {
+            if(connection.isClosed()){
+                runMySQLAsync();
+            }
+        } catch (SQLException e) {
+            runMySQLAsync();
+        }
         return connection;
     }
 

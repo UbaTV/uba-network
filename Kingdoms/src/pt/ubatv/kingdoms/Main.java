@@ -99,6 +99,8 @@ public class Main extends JavaPlugin {
         getCommand("hologram").setExecutor(new HologramCommand());
         getCommand("shopnpc").setExecutor(new ShopNPCCommand());
         getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
+        getCommand("wild").setExecutor(new WildCommand());
+        getCommand("kit").setExecutor(new KitCommand());
     }
 
     private void registerEvents(){

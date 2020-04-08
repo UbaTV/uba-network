@@ -51,9 +51,11 @@ public class ClaimSubcommand extends SubCommand {
                 return;
             }
 
-            if(main.kingdomUtils.getNumberClaims(userKingdom) >= main.kingdomUtils.getKingdomMaxClaims(userKingdom)){
-                player.sendMessage(main.textUtils.error + "You can't claim any more land.");
-                return;
+            if(!userKingdom.equalsIgnoreCase("UbaTV")){
+                if(main.kingdomUtils.getNumberClaims(userKingdom) >= main.kingdomUtils.getKingdomMaxClaims(userKingdom)){
+                    player.sendMessage(main.textUtils.error + "You can't claim any more land.");
+                    return;
+                }
             }
 
             main.kingdomUtils.addClaim(userKingdom, chunk);
