@@ -9,10 +9,10 @@ public class TextUtils {
 
     public String serverName = "§5Kingdoms";
     public String website = "ubatv.xyz";
-    public String serverIP = "play.ubatv.net";
+    public String serverIP = "playubatv.xyz";
 
-    public String right = "§a⯌ §7";
-    public String warning = "§e⯈ §7";
+    public String right = "§a✓ §7";
+    public String warning = "§e◬ §7";
     public String error = "§c◉ §7";
 
     public char coinsSymbol = '⛃';

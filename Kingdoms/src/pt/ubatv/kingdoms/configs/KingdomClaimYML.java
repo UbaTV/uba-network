@@ -1,6 +1,5 @@
 package pt.ubatv.kingdoms.configs;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -9,7 +8,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomUtils;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

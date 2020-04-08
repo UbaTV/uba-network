@@ -16,6 +16,7 @@ import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.ClearChatCommand;
 import pt.ubatv.kingdoms.commands.staff.HologramCommand;
 import pt.ubatv.kingdoms.commands.staff.MuteCommand;
+import pt.ubatv.kingdoms.commands.staff.SetLocationCommand;
 import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;

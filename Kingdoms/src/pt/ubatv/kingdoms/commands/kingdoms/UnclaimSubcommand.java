@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
@@ -45,6 +46,14 @@ public class UnclaimSubcommand extends SubCommand {
             if(!claimedBy.equalsIgnoreCase(userKingdom)){
                 player.sendMessage(main.textUtils.warning + "You can only unclaim your kingdoms land.");
                 return;
+            }
+
+            if(main.locationYML.getConfig().contains(userKingdom.toLowerCase())){
+                Location homeLocation = main.locationYML.getLocation(userKingdom.toLowerCase());
+                if(homeLocation.getChunk().equals(chunk)){
+                    player.sendMessage(main.textUtils.warning + "Change your kingdom's home location before unclaiming land.");
+                    return;
+                }
             }
 
             main.kingdomUtils.removeClaim(userKingdom, chunk);

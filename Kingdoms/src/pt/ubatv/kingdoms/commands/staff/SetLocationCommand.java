@@ -1,4 +1,4 @@
-package pt.ubatv.kingdoms.commands;
+package pt.ubatv.kingdoms.commands.staff;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,17 +20,7 @@ public class SetLocationCommand implements CommandExecutor{
             if(main.rankManager.hasPermission(player, Permissions.SET_LOCATION)){
                 Location location = player.getLocation();
                 String locationName = args[0].toLowerCase();
-                String worldName = location.getWorld().getName();
-                int x = location.getBlockX(), y = location.getBlockY(), z = location.getBlockZ();
-                float yaw = location.getYaw(), pitch = location.getPitch();
-
-                main.locationYML.getConfig().set(locationName + ".world", worldName);
-                main.locationYML.getConfig().set(locationName + ".x", x);
-                main.locationYML.getConfig().set(locationName + ".y", y);
-                main.locationYML.getConfig().set(locationName + ".z", z);
-                main.locationYML.getConfig().set(locationName + ".yaw", yaw);
-                main.locationYML.getConfig().set(locationName + ".pitch", pitch);
-                main.locationYML.saveConfig();
+                main.locationYML.setLocation(locationName, location);
 
                 if(locationName.equalsIgnoreCase("spawn")){
                     main.locationYML.spawn = location;

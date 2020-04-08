@@ -60,6 +60,16 @@ public class HelpSubcommand extends SubCommand {
             player.sendMessage("§7/kingdoms claim");
             player.sendMessage("§7/kingdoms unclaim");
             player.sendMessage("§7/kingdoms map");
+            player.sendMessage("§7/kingdoms sethome");
+            player.sendMessage("§7/kingdoms home");
+            player.sendMessage(" ");
+            player.sendMessage("§7Page §53§7/§53");
+            player.sendMessage("§7do /kingdoms help <page> §7to see next page");
+            return;
+        }
+
+        if(page == 4){
+            player.sendMessage("§7/kingdoms delhome");
             player.sendMessage(" ");
             player.sendMessage("§7Page §53§7/§53");
             player.sendMessage("§7do /kingdoms help <page> §7to see next page");

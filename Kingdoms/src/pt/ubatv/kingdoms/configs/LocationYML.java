@@ -28,6 +28,20 @@ public class LocationYML {
         }
     }
 
+    public void setLocation(String locationName, Location location){
+        String worldName = location.getWorld().getName();
+        int x = location.getBlockX(), y = location.getBlockY(), z = location.getBlockZ();
+        float yaw = location.getYaw(), pitch = location.getPitch();
+
+        main.locationYML.getConfig().set(locationName + ".world", worldName);
+        main.locationYML.getConfig().set(locationName + ".x", x);
+        main.locationYML.getConfig().set(locationName + ".y", y);
+        main.locationYML.getConfig().set(locationName + ".z", z);
+        main.locationYML.getConfig().set(locationName + ".yaw", yaw);
+        main.locationYML.getConfig().set(locationName + ".pitch", pitch);
+        main.locationYML.saveConfig();
+    }
+
     public Location getLocation(String locationName){
         World world = Bukkit.getWorld(getConfig().getString(locationName + ".world"));
         double x = getConfig().getDouble(locationName + ".x"),
