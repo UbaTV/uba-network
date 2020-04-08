@@ -36,7 +36,7 @@ public class FoodGUI implements InventoryHolder, Listener {
         ItemStack crabbit = main.itemAPI.item(Material.COOKED_RABBIT, "§5Cooked Rabbit", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.COOKED_RABBIT) + main.textUtils.coinsSymbol);
         ItemStack bread = main.itemAPI.item(Material.BREAD, "§5Bread", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.BREAD) + main.textUtils.coinsSymbol);
         ItemStack beetroot = main.itemAPI.item(Material.BEETROOT, "§5Beetroot", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.BEETROOT) + main.textUtils.coinsSymbol);
-        ItemStack melon = main.itemAPI.item(Material.MELON, "§5Melon", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.MELON) + main.textUtils.coinsSymbol);
+        ItemStack melon = main.itemAPI.item(Material.MELON_SLICE, "§5Melon", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.MELON_SLICE) + main.textUtils.coinsSymbol);
         ItemStack carrot = main.itemAPI.item(Material.CARROT, "§5Carrot", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.CARROT) + main.textUtils.coinsSymbol);
         ItemStack apple = main.itemAPI.item(Material.APPLE, "§5Apple", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.APPLE) + main.textUtils.coinsSymbol);
         ItemStack potato = main.itemAPI.item(Material.POTATO, "§5Potato", "§7Buy: §5" + main.priceUtils.getBuyPrice(Material.POTATO) + main.textUtils.coinsSymbol);
@@ -86,7 +86,7 @@ public class FoodGUI implements InventoryHolder, Listener {
         if(slot == 13) main.shopUtils.buyItem(player, Material.COOKED_RABBIT);
         if(slot == 6) main.shopUtils.buyItem(player, Material.BREAD);
         if(slot == 7) main.shopUtils.buyItem(player, Material.BEETROOT);
-        if(slot == 8) main.shopUtils.buyItem(player, Material.MELON);
+        if(slot == 8) main.shopUtils.buyItem(player, Material.MELON_SLICE);
         if(slot == 15) main.shopUtils.buyItem(player, Material.CARROT);
         if(slot == 16) main.shopUtils.buyItem(player, Material.APPLE);
         if(slot == 17) main.shopUtils.buyItem(player, Material.POTATO);

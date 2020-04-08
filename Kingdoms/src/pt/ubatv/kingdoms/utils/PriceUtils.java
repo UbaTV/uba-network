@@ -76,35 +76,33 @@ public class PriceUtils {
         else if(mat.equals(Material.COOKED_RABBIT)) return 32;
         else if(mat.equals(Material.BREAD)) return 15;
         else if(mat.equals(Material.BEETROOT)) return 7;
-        else if(mat.equals(Material.MELON)) return 5;
-        else if(mat.equals(Material.CARROT)) return 5;
+        else if(mat.equals(Material.MELON_SLICE)) return 200;
+        else if(mat.equals(Material.CARROT)) return 200;
         else if(mat.equals(Material.APPLE)) return 5;
         else if(mat.equals(Material.POTATO)) return 5;
         /* FARMING */
+        else if(mat.equals(Material.WHEAT_SEEDS)) return 250;
+        else if(mat.equals(Material.WHEAT)) return 5;
+        else if(mat.equals(Material.SPRUCE_SAPLING)) return 500;
+        else if(mat.equals(Material.OAK_SAPLING)) return 125;
+        else if(mat.equals(Material.BIRCH_SAPLING)) return 125;
+        else if(mat.equals(Material.JUNGLE_SAPLING)) return 350;
+        else if(mat.equals(Material.ACACIA_SAPLING)) return 150;
+        else if(mat.equals(Material.DARK_OAK_SAPLING)) return 500;
+        else if(mat.equals(Material.CACTUS)) return 550;
+        else if(mat.equals(Material.NETHER_WART)) return 500;
+        else if(mat.equals(Material.SUGAR_CANE)) return 550;
         return 999999999;
     }
 
-    public int wheatSeeds = 250;
-    public int wheat = 5;
     public int hayBale = 43;
-    public int oakSap = 125;
-    public int spruceSap = 500;
-    public int birchSap = 125;
-    public int jungleSap = 350;
-    public int acaciaSap = 150;
-    public int darkOakSap = 500;
     public int brownMush = 45;
     public int redMush = 45;
-    public int beetrootSeed = 500;
-    public int beetroot = 500;
     public int punpkinSeed = 500;
     public int carvedPump = 500;
     public int pumpkinPie = 40;
-    public int cactus = 550;
-    public int sugarCane = 550;
     public int sugar = 25;
     public int chorusFlower = 750;
-    public int netherWart = 600;
 
     public int getSellPrice(Material mat){
         /* MOB DROPS */
@@ -129,7 +127,7 @@ public class PriceUtils {
         else if(mat.equals(Material.REDSTONE)) return 10;
         else if(mat.equals(Material.COAL)) return 3;
         else if(mat.equals(Material.CHARCOAL)) return 1;
-        return 999999999;
+        return 0;
     }
     
     //SELL ONLY ORES FINISH//

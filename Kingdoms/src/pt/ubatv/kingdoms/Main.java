@@ -112,6 +112,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new MiscGUI(), this);
         pluginManager.registerEvents(new OresGUI(), this);
         pluginManager.registerEvents(new MobDropsGUI(), this);
+        pluginManager.registerEvents(new FarmingGUI(), this);
         pluginManager.registerEvents(new FoodGUI(), this);
         pluginManager.registerEvents(new DeathEvent(), this);
         pluginManager.registerEvents(new TestCommand(), this);

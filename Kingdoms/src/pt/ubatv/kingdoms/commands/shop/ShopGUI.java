@@ -24,6 +24,7 @@ public class ShopGUI implements InventoryHolder, Listener {
     private MobDropsGUI mobDropsGUI = new MobDropsGUI();
     private OresGUI oresGUI = new OresGUI();
     private FoodGUI foodGUI = new FoodGUI();
+    private FarmingGUI farmingGUI = new FarmingGUI();
 
     public ShopGUI() {
         this.inv = Bukkit.createInventory(this, 9*3, "§5Kingdoms §7Shop");
@@ -66,6 +67,7 @@ public class ShopGUI implements InventoryHolder, Listener {
         if(slot == 16) miscGUI.openInventory(player);
         if(slot == 14) oresGUI.openInventory(player);
         if(slot == 11) foodGUI.openInventory(player);
+        if(slot == 12) farmingGUI.openInventory(player);
     }
 
     public void openInventory(Player player){
