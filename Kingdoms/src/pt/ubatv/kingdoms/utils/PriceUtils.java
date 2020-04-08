@@ -139,5 +139,10 @@ public class PriceUtils {
     public int creeperEgg = 5000;
     public int invisPotion = 1000;
     public int speedPotion = 1000;
+    public int lavaBucket = 450;
+    public int redsoneTorch = 100;
+    public int sponge = 500;
+    
+    
 
     
