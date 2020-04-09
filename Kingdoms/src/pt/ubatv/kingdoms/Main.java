@@ -15,6 +15,7 @@ import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.*;
 import pt.ubatv.kingdoms.configs.KingdomClaimYML;
+import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
 import pt.ubatv.kingdoms.mysql.BankTable;
@@ -40,6 +41,7 @@ public class Main extends JavaPlugin {
     public BankTable bankTable;
     public LocationYML locationYML;
     public KingdomClaimYML kingdomClaimYML;
+    public KingdomsYML kingdomsYML;
     public RankManager rankManager;
     public ShopUtils shopUtils;
     public KingdomsTable kingdomsTable;
@@ -53,6 +55,7 @@ public class Main extends JavaPlugin {
         loadConfig();
         locationYML.createConfig();
         kingdomClaimYML.createConfig();
+        kingdomsYML.createConfig();
         mySQLConnection.runMySQLAsync();
 
         for(String kingdomName : kingdomClaimYML.getConfig().getConfigurationSection("").getKeys(false)) {
@@ -107,7 +110,7 @@ public class Main extends JavaPlugin {
 
         //pluginManager.registerEvents(new DeveloperMode(), this);
         pluginManager.registerEvents(new JoinQuitEvent(), this);
-        pluginManager.registerEvents(new KillRewards(), this);
+        //pluginManager.registerEvents(new KillRewards(), this);
         pluginManager.registerEvents(new ChatManager(), this);
         pluginManager.registerEvents(new ShopGUI(), this);
         pluginManager.registerEvents(new BlockGUI(), this);
@@ -137,6 +140,7 @@ public class Main extends JavaPlugin {
         kingdomsTable = new KingdomsTable();
         kingdomUtils = new KingdomUtils();
         kingdomClaimYML = new KingdomClaimYML();
+        kingdomsYML = new KingdomsYML();
     }
 
     private void loadConfig(){

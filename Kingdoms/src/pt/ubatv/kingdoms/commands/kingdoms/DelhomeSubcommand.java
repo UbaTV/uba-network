@@ -39,17 +39,17 @@ public class DelhomeSubcommand extends SubCommand {
         }
 
         if(args.length == 1){
-            if(!main.locationYML.getConfig().contains(userKingdom.toLowerCase())){
+            if(!main.kingdomsYML.getConfig().contains(userKingdom.toLowerCase() + ".home")){
                 player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
                 return;
             }
 
-            if(main.locationYML.getConfig().get(userKingdom.toLowerCase()) == null){
+            if(main.kingdomsYML.getConfig().get(userKingdom.toLowerCase() + ".home") == null){
                 player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
                 return;
             }
 
-            main.locationYML.getConfig().set(userKingdom.toLowerCase(), null);
+            main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".home", null);
             main.kingdomUtils.broadcastKingdom(userKingdom, "Kingdom home location has been removed.");
             return;
         }

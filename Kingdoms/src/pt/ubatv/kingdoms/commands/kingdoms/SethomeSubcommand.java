@@ -47,7 +47,7 @@ public class SethomeSubcommand extends SubCommand {
                 return;
             }
 
-            main.locationYML.setLocation(userKingdom.toLowerCase(), loc);
+            main.kingdomsYML.setKingdomHome(userKingdom.toLowerCase(), loc);
             main.kingdomUtils.broadcastKingdom(userKingdom, "Kingdom home location has been defined.");
             return;
         }

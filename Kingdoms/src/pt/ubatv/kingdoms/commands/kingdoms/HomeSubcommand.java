@@ -36,17 +36,17 @@ public class HomeSubcommand extends SubCommand {
                 return;
             }
 
-            if(!main.locationYML.getConfig().contains(userKingdom.toLowerCase())){
+            if(!main.kingdomsYML.getConfig().contains(userKingdom.toLowerCase() + ".home")){
                 player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
                 return;
             }
 
-            if(main.locationYML.getConfig().get(userKingdom.toLowerCase()) == null){
+            if(main.kingdomsYML.getConfig().get(userKingdom.toLowerCase() + ".home") == null){
                 player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
                 return;
             }
 
-            Location kingdomHome = main.locationYML.getLocation(userKingdom.toLowerCase());
+            Location kingdomHome = main.kingdomsYML.getKingdomHome(userKingdom.toLowerCase());
             player.teleport(kingdomHome);
             player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
             return;
