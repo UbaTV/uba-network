@@ -9,6 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pt.ubatv.kingdoms.Main;
+import pt.ubatv.kingdoms.configs.CooldownYML;
 
 public class KitCommand implements CommandExecutor {
 
@@ -20,8 +21,9 @@ public class KitCommand implements CommandExecutor {
             Player player = (Player) sender;
             if(args.length == 1){
                 if(args[0].equalsIgnoreCase("starter")){
-                    if(main.locationYML.getConfig().contains(player.getName() + ".starter")){
-                        player.sendMessage(main.textUtils.error + "You already did this kit.");
+                    String uuidString = player.getUniqueId().toString();
+                    if(CooldownYML.starterCooldowns.containsKey(uuidString)){
+                        player.sendMessage(main.textUtils.error + "§7You need to wait " + main.textUtils.secondsToText(CooldownYML.starterCooldowns.get(uuidString)) + " §7before you can use this kit.");
                     }else{
                         ItemStack helmet = main.itemAPI.itemEnchanted(Material.CHAINMAIL_HELMET, 1, "§5STARTER §7KIT", Enchantment.DURABILITY, Enchantment.PROTECTION_ENVIRONMENTAL);
                         ItemStack chestplate = main.itemAPI.itemEnchanted(Material.CHAINMAIL_CHESTPLATE, 1, "§5STARTER §7KIT", Enchantment.DURABILITY, Enchantment.PROTECTION_ENVIRONMENTAL);
@@ -47,7 +49,7 @@ public class KitCommand implements CommandExecutor {
                         main.itemAPI.addItemToInv(player, arrow);
                         main.itemAPI.addItemToInv(player, apple);
 
-                        main.locationYML.getConfig().set(player.getName() + ".starter", false);
+                        CooldownYML.starterCooldowns.put(uuidString, 43200); // 12 horas
                         player.sendMessage(main.textUtils.right + "You just received the §5starter §7kit.");
                     }
                 }

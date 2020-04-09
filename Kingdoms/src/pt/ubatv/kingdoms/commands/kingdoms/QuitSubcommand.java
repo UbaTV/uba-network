@@ -55,6 +55,7 @@ public class QuitSubcommand extends SubCommand {
                     }
                 }
                 main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".home", null);
+                main.kingdomsYML.saveConfig();
                 main.kingdomsTable.deleteKingdom(userKingdom);
                 userData.setKingdom("none");
                 player.sendMessage(main.textUtils.right + "You just left your kingdom and it was deleted.");

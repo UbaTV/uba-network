@@ -50,6 +50,7 @@ public class DelhomeSubcommand extends SubCommand {
             }
 
             main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".home", null);
+            main.kingdomsYML.saveConfig();
             main.kingdomUtils.broadcastKingdom(userKingdom, "Kingdom home location has been removed.");
             return;
         }

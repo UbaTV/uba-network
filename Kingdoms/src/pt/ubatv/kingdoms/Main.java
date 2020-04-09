@@ -14,6 +14,7 @@ import pt.ubatv.kingdoms.commands.kingdoms.KingdomUtils;
 import pt.ubatv.kingdoms.commands.kingdoms.KingdomsManager;
 import pt.ubatv.kingdoms.commands.shop.*;
 import pt.ubatv.kingdoms.commands.staff.*;
+import pt.ubatv.kingdoms.configs.CooldownYML;
 import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin {
     public LocationYML locationYML;
     public KingdomClaimYML kingdomClaimYML;
     public KingdomsYML kingdomsYML;
+    public CooldownYML cooldownYML;
     public RankManager rankManager;
     public ShopUtils shopUtils;
     public KingdomsTable kingdomsTable;
@@ -56,18 +58,21 @@ public class Main extends JavaPlugin {
         locationYML.createConfig();
         kingdomClaimYML.createConfig();
         kingdomsYML.createConfig();
+        cooldownYML.createConfig();
+
         mySQLConnection.runMySQLAsync();
 
         for(String kingdomName : kingdomClaimYML.getConfig().getConfigurationSection("").getKeys(false)) {
             kingdomClaimYML.loadKingdomClaims(kingdomName);
         }
+        cooldownYML.loadConfig();
 
         registerEvents();
         registerCommands();
 
         locationYML.setupSpawn();
-
         updateScoreboards();
+        cooldownYML.cooldownManager();
     }
 
     @Override
@@ -76,6 +81,8 @@ public class Main extends JavaPlugin {
             userDataTable.saveUserData(target);
             target.kickPlayer("Server is restarting. Please reconnect.");
         });
+
+        cooldownYML.saveShutdown();
 
         for(Map.Entry<String, ArrayList<Chunk>> entry : KingdomUtils.kingdomsChunks.entrySet()){
             String kingdomName = entry.getKey();
@@ -141,6 +148,7 @@ public class Main extends JavaPlugin {
         kingdomUtils = new KingdomUtils();
         kingdomClaimYML = new KingdomClaimYML();
         kingdomsYML = new KingdomsYML();
+        cooldownYML = new CooldownYML();
     }
 
     private void loadConfig(){

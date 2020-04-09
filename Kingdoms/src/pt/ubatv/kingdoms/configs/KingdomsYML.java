@@ -23,17 +23,17 @@ public class KingdomsYML {
         int x = location.getBlockX(), y = location.getBlockY(), z = location.getBlockZ();
         float yaw = location.getYaw(), pitch = location.getPitch();
 
-        main.locationYML.getConfig().set(kingdomName + ".world", worldName);
-        main.locationYML.getConfig().set(kingdomName + ".x", x);
-        main.locationYML.getConfig().set(kingdomName + ".y", y);
-        main.locationYML.getConfig().set(kingdomName + ".z", z);
-        main.locationYML.getConfig().set(kingdomName + ".yaw", yaw);
-        main.locationYML.getConfig().set(kingdomName + ".pitch", pitch);
-        main.locationYML.saveConfig();
+        getConfig().set(kingdomName + ".world", worldName);
+        getConfig().set(kingdomName + ".x", x);
+        getConfig().set(kingdomName + ".y", y);
+        getConfig().set(kingdomName + ".z", z);
+        getConfig().set(kingdomName + ".yaw", yaw);
+        getConfig().set(kingdomName + ".pitch", pitch);
+        saveConfig();
     }
 
     public Location getKingdomHome(String kingdomName){
-        World world = Bukkit.getWorld(getConfig().getString(kingdomName + "home..world"));
+        World world = Bukkit.getWorld(getConfig().getString(kingdomName + ".home.world"));
         double x = getConfig().getDouble(kingdomName + ".home.x"),
                 y = getConfig().getDouble(kingdomName + ".home.y"),
                 z = getConfig().getDouble(kingdomName + ".home.z");

@@ -28,6 +28,14 @@ public class TextUtils {
         return str.toString();
     }
 
+    public String secondsToText(int seconds){
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int s = seconds % 60;
+
+        return "§5" + hours + "§7:§5" + minutes + "§7:§5" + s;
+    }
+
     public String[] stringToList(String str){
         return str.split("#");
     }
