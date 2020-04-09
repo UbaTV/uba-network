@@ -132,6 +132,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new ShopNPCCommand(), this);
         pluginManager.registerEvents(new EntityDamage(), this);
         pluginManager.registerEvents(new ClaimManager(), this);
+        pluginManager.registerEvents(new VoteEvent(), this);
     }
 
     private void instanceClasses(){
