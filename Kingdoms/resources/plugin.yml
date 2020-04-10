@@ -104,6 +104,8 @@ commands:
       - deletehome
       - removehome
       - rmhome
+  rankup:
+    description: This command was developed by UbaTV.
   clearinventory:
     description: This command was developed by UbaTV.
     aliases:

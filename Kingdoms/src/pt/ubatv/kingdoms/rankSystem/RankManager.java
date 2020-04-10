@@ -87,6 +87,15 @@ public class RankManager {
         }
     }
 
+    public Rank getNextRank(Player player){
+        Rank rank = getRank(player);
+        if(rank.equals(Rank.WOOD)) return Rank.STONE;
+        else if(rank.equals(Rank.STONE)) return Rank.IRON;
+        else if(rank.equals(Rank.IRON)) return Rank.GOLD;
+        else if(rank.equals(Rank.GOLD)) return Rank.DIAMOND;
+        return null;
+    }
+
     public boolean isStaff(Player player){
         Rank rank = getRank(player);
         switch (rank){
