@@ -43,6 +43,10 @@ commands:
       - store
   clearchat:
     description: This command was developed by UbaTV.
+    aliases:
+      - cc
+      - clearc
+      - cchat
   setlocation:
     description: This command was developed by UbaTV.
     aliases:
@@ -82,6 +86,24 @@ commands:
       - k
   shopnpc:
     description: This command was developed by UbaTV.
+  home:
+    description: This command was developed by UbaTV.
+    aliases:
+      - homes
+  sethome:
+    description: This command was developed by UbaTV.
+    aliases:
+      - homeset
+      - homedefine
+      - homedef
+      - defhome
+      - definehome
+  delhome:
+    description: This command was developed by UbaTV.
+    aliases:
+      - deletehome
+      - removehome
+      - rmhome
   clearinventory:
     description: This command was developed by UbaTV.
     aliases:

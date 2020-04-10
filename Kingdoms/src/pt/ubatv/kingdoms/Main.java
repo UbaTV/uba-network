@@ -110,6 +110,9 @@ public class Main extends JavaPlugin {
         getCommand("kit").setExecutor(new KitCommand());
         getCommand("invsee").setExecutor(new InvseeCommand());
         getCommand("gamemode").setExecutor(new GamemodeCommand());
+        getCommand("sethome").setExecutor(new SethomeCommand());
+        getCommand("home").setExecutor(new HomeCommand());
+        getCommand("delhome").setExecutor(new DelhomeCommand());
     }
 
     private void registerEvents(){

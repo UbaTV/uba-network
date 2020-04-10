@@ -42,6 +42,15 @@ public class RankManager {
         }
     }
 
+    public int getMaxHomes(Player player){
+        Rank rank = getRank(player);
+        int rankTier = getRankTier(rank);
+        if(rankTier > 7) return 20;
+        if(rankTier > 3) return 3;
+        if(rankTier > 1) return 2;
+        return 1;
+    }
+
     public int getRankTier(Rank rank){
         if(rank.equals(Rank.WOOD)) return 1;
         if(rank.equals(Rank.STONE)) return 2;

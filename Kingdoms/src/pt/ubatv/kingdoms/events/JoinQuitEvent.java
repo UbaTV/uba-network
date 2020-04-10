@@ -46,6 +46,12 @@ public class JoinQuitEvent implements Listener {
         // 1.8 PVP - Anticooldown
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(100);
 
+        main.textUtils.sendCenteredMessage(player, "§7Welcome to the §5UbaTV Kingdoms§7!");
+        player.sendMessage(" ");
+        main.textUtils.sendCenteredMessage(player, "§7Website: §5ubatv.xyz");
+        main.textUtils.sendCenteredMessage(player, "§7Discord: §5discord.gg/AJxFu2C");
+        player.sendMessage(" ");
+
         if(!player.hasPlayedBefore()){
             player.teleport(main.locationYML.spawn);
         }

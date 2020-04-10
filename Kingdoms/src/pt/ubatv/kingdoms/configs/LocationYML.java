@@ -10,6 +10,8 @@ import pt.ubatv.kingdoms.Main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class LocationYML {
 
@@ -26,6 +28,19 @@ public class LocationYML {
         }else{
             Bukkit.getConsoleSender().sendMessage("Spawn location not defined.");
         }
+    }
+
+    public HashMap<String,Location> getPlayerHomes(UUID uuid){
+        HashMap<String,Location> playerHomes = new HashMap<>();
+        if(config.contains(uuid.toString())){
+            for(String homeName : config.getConfigurationSection(uuid.toString()).getKeys(false)) {
+                if(config.get(uuid.toString() + "." + homeName) != null){
+                    Location loc = getLocation(uuid.toString() + "." + homeName);
+                    playerHomes.put(homeName,loc);
+                }
+            }
+        }
+        return playerHomes;
     }
 
     public void setLocation(String locationName, Location location){
