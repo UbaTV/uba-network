@@ -39,7 +39,12 @@ public class InfoSubcommand extends SubCommand {
         }
 
         if(args.length == 2){
-            player.sendMessage(main.textUtils.error + "UNDER DEVELOPMENT.");
+            String targetKingdom = args[1].toLowerCase();
+            if(!main.kingdomsTable.kingdomExists(targetKingdom)){
+                player.sendMessage(main.textUtils.error + "Kingdom does not exist.");
+                return;
+            }
+            showKingdomInfo(player, targetKingdom);
             return;
         }
 
@@ -50,11 +55,9 @@ public class InfoSubcommand extends SubCommand {
     public void showKingdomInfo(Player player, String kingdomName){
         String[] members = main.kingdomUtils.getMembers(kingdomName);
         String[] allies = main.kingdomUtils.getAllies(kingdomName);
-        String[] enemies = main.kingdomUtils.getEnemies(kingdomName);
 
         StringBuilder membersString = new StringBuilder();
         StringBuilder alliesString = new StringBuilder();
-        StringBuilder enemiesString = new StringBuilder();
 
         for(String member : members){
             if(Bukkit.getPlayer(member) != null){
@@ -70,12 +73,6 @@ public class InfoSubcommand extends SubCommand {
             }
         }
 
-        for(String enemy : enemies){
-            if(!enemy.equalsIgnoreCase("none")){
-                membersString.append("§5").append(enemy).append(" ");
-            }
-        }
-
         player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§7§m========[§5" + main.kingdomsTable.getDisplayName(kingdomName) + "§7's Info§7§m]========");
         player.sendMessage(" ");
@@ -84,6 +81,5 @@ public class InfoSubcommand extends SubCommand {
         player.sendMessage("§7Vault: §5" + main.kingdomsTable.getCoins(kingdomName));
         player.sendMessage("§7Members: " + membersString.toString());
         player.sendMessage("§7Allies: " + alliesString.toString());
-        player.sendMessage("§7Enemies: " + enemiesString.toString());
     }
 }

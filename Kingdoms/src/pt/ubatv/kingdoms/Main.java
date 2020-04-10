@@ -114,6 +114,7 @@ public class Main extends JavaPlugin {
         getCommand("home").setExecutor(new HomeCommand());
         getCommand("delhome").setExecutor(new DelhomeCommand());
         getCommand("rankup").setExecutor(new RankCommand());
+        getCommand("stats").setExecutor(new StatsCommand());
     }
 
     private void registerEvents(){
