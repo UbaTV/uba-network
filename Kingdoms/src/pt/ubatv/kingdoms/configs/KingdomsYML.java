@@ -23,12 +23,12 @@ public class KingdomsYML {
         int x = location.getBlockX(), y = location.getBlockY(), z = location.getBlockZ();
         float yaw = location.getYaw(), pitch = location.getPitch();
 
-        getConfig().set(kingdomName + ".world", worldName);
-        getConfig().set(kingdomName + ".x", x);
-        getConfig().set(kingdomName + ".y", y);
-        getConfig().set(kingdomName + ".z", z);
-        getConfig().set(kingdomName + ".yaw", yaw);
-        getConfig().set(kingdomName + ".pitch", pitch);
+        getConfig().set(kingdomName + "home.world", worldName);
+        getConfig().set(kingdomName + "home.x", x);
+        getConfig().set(kingdomName + "home.y", y);
+        getConfig().set(kingdomName + "home.z", z);
+        getConfig().set(kingdomName + "home.yaw", yaw);
+        getConfig().set(kingdomName + "home.pitch", pitch);
         saveConfig();
     }
 

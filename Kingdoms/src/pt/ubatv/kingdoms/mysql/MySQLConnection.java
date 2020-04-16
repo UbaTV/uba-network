@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.mysql;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import pt.ubatv.kingdoms.Main;
 
@@ -32,7 +33,8 @@ public class MySQLConnection {
                     + this.database + "?autoReconnect=true&useUnicode=yes&useSSL=false"
                     , this.username, this.password);
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Bukkit.getServer().getConsoleSender().sendMessage("MYSQL CONNECTION FAILED. RECONECTING...");
+            connectMySQL();
         }
     }
 

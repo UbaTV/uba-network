@@ -66,10 +66,8 @@ public class OresGUI implements InventoryHolder, Listener {
         if(slot == 13) main.shopUtils.sellItem(player, Material.EMERALD);
         if(slot == 14) main.shopUtils.sellItem(player, Material.DIAMOND);
         if(slot == 15) main.shopUtils.sellItem(player, Material.QUARTZ);
-        if(slot == 16) main.shopUtils.sellItem(player, Material.SLIME_BALL);
-        if(slot == 17) main.shopUtils.sellItem(player, Material.MAGMA_CREAM);
-        if(slot == 18) main.shopUtils.sellItem(player, Material.ENDER_PEARL);
-
+        if(slot == 16) main.shopUtils.sellItem(player, Material.LAPIS_LAZULI);
+        if(slot == 17) main.shopUtils.sellItem(player, Material.REDSTONE);
     }
 
     public void openInventory(Player player){

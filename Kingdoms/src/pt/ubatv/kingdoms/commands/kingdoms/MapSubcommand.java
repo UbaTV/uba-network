@@ -1,6 +1,5 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
-import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,9 +8,9 @@ import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 
-import javax.xml.soap.Text;
-
 public class MapSubcommand extends SubCommand {
+
+    // TODO REDO COMMAND
 
     private Main main = Main.getInstance();
 

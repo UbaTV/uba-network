@@ -15,12 +15,14 @@ public class RankManager {
         int rankTier = getRankTier(rank);
         switch (permission){
             // STONE PERMS
-            case CLEAR_INVENTORY:
-            case PRIVATE_CHEST:
+            case ENDERCHEST:
                 return rankTier > 1;
             // IRON PERMS
-            case ENDERCHEST:
+            case CLEAR_INVENTORY:
                 return rankTier > 2;
+            // GOLD PERMS
+            case PRIVATE_CHEST:
+                return rankTier > 3;
             // ADMIN PERMS
             case MUTE:
             case CLEAR_CHAT:
@@ -62,6 +64,15 @@ public class RankManager {
         if(rank.equals(Rank.ADMIN)) return 8;
         if(rank.equals(Rank.CEO)) return 9;
         return 1;
+    }
+
+    public int rankupPrice(Rank rank){
+        if(rank.equals(Rank.WOOD)) return 0;
+        else if(rank.equals(Rank.STONE)) return 50000;
+        else if(rank.equals(Rank.IRON)) return 500000;
+        else if(rank.equals(Rank.GOLD)) return 1500000;
+        else if(rank.equals(Rank.DIAMOND)) return 5000000;
+        return 999999999;
     }
 
     public String getRankName(Rank rank, boolean color){

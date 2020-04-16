@@ -111,6 +111,14 @@ commands:
     aliases:
       - status
       - playerinfo
+  pm:
+    description: This command was developed by UbaTV.
+    aliases:
+      - pm
+      - tell
+      - privatem
+      - pmessage
+      - msg
   clearinventory:
     description: This command was developed by UbaTV.
     aliases:

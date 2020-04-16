@@ -26,7 +26,7 @@ public class RankupCommand implements CommandExecutor {
                 }
 
                 int balance = userData.getCoins();
-                int rankupPrice = rankupPrice(nextRank);
+                int rankupPrice = main.rankManager.rankupPrice(nextRank);
                 if(balance < rankupPrice){
                     player.sendMessage(main.textUtils.error + "§7You need §5" + rankupPrice + main.textUtils.coinsSymbol + " §7to rankup.");
                     return false;
@@ -44,13 +44,5 @@ public class RankupCommand implements CommandExecutor {
             Bukkit.getServer().getConsoleSender().sendMessage(main.textUtils.playerOnly);
         }
         return false;
-    }
-
-    public int rankupPrice(Rank rank){
-        if(rank.equals(Rank.STONE)) return 50000;
-        else if(rank.equals(Rank.IRON)) return 500000;
-        else if(rank.equals(Rank.GOLD)) return 1500000;
-        else if(rank.equals(Rank.DIAMOND)) return 5000000;
-        return 999999999;
     }
 }
