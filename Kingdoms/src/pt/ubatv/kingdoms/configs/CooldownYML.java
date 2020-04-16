@@ -18,6 +18,8 @@ public class CooldownYML {
     private Main main = Main.getInstance();
 
     public static HashMap<String,Integer> starterCooldowns = new HashMap<>();
+    public static HashMap<String,Integer> vipCooldowns = new HashMap<>();
+    public static HashMap<String,Integer> mvpCooldowns = new HashMap<>();
     public static HashMap<Player,Integer> wildCooldowns = new HashMap<>();
 
     private File file;
@@ -27,14 +29,50 @@ public class CooldownYML {
         new BukkitRunnable(){
             @Override
             public void run() {
-                for(Map.Entry<Player,Integer> entry : wildCooldowns.entrySet()){
-                    Player user = entry.getKey();
+                for(Map.Entry<String,Integer> entry : starterCooldowns.entrySet()){
+                    String user = entry.getKey();
                     int cooldown = entry.getValue();
 
                     if(cooldown == 0){
-                        wildCooldowns.remove(user);
+                        starterCooldowns.remove(user);
                     }else{
-                        wildCooldowns.put(user, cooldown - 1);
+                        starterCooldowns.put(user, cooldown - 1);
+                    }
+                }
+            }
+        }.runTaskTimerAsynchronously(main, 0, 20);
+    }
+
+    public void cooldownVipKit(){
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                for(Map.Entry<String,Integer> entry : vipCooldowns.entrySet()){
+                    String user = entry.getKey();
+                    int cooldown = entry.getValue();
+
+                    if(cooldown == 0){
+                        vipCooldowns.remove(user);
+                    }else{
+                        vipCooldowns.put(user, cooldown - 1);
+                    }
+                }
+            }
+        }.runTaskTimerAsynchronously(main, 0, 20);
+    }
+
+    public void cooldownMvpKit(){
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                for(Map.Entry<String,Integer> entry : mvpCooldowns.entrySet()){
+                    String user = entry.getKey();
+                    int cooldown = entry.getValue();
+
+                    if(cooldown == 0){
+                        mvpCooldowns.remove(user);
+                    }else{
+                        mvpCooldowns.put(user, cooldown - 1);
                     }
                 }
             }

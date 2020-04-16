@@ -66,14 +66,17 @@ public class Main extends JavaPlugin {
         for(String kingdomName : kingdomClaimYML.getConfig().getConfigurationSection("").getKeys(false)) {
             kingdomClaimYML.loadKingdomClaims(kingdomName);
         }
-        cooldownYML.loadConfig();
 
         registerEvents();
         registerCommands();
 
         locationYML.setupSpawn();
         updateScoreboards();
+
+        cooldownYML.loadConfig();
         cooldownYML.cooldownStarterKit();
+        cooldownYML.cooldownVipKit();
+        cooldownYML.cooldownMvpKit();
         cooldownYML.cooldownWild();
     }
 

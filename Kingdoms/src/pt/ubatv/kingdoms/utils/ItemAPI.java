@@ -85,6 +85,19 @@ public class ItemAPI {
         return item;
     }
 
+    public ItemStack itemEnchantedLv4(Material material, int quantity, String name, Enchantment...enchants) {
+        ItemStack item = new ItemStack(material, quantity);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName(name);
+        meta.setLore(null);
+        for (Enchantment enchant : enchants){
+            meta.addEnchant(enchant, 4, false);
+        }
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public ItemStack item(Material material, int quantity, String name, String...lore) {
         ItemStack item = new ItemStack(material, quantity);
         ItemMeta meta = item.getItemMeta();

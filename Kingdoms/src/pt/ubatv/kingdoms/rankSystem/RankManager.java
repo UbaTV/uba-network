@@ -23,6 +23,12 @@ public class RankManager {
             // GOLD PERMS
             case PRIVATE_CHEST:
                 return rankTier > 3;
+            // MVP PERMS
+            case KIT_VIP:
+                return rankTier > 5;
+            // MVP PERMS
+            case KIT_MVP:
+                return rankTier > 6;
             // ADMIN PERMS
             case MUTE:
             case CLEAR_CHAT:
