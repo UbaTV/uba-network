@@ -92,6 +92,9 @@ public class Main extends JavaPlugin {
 
     private void registerCommands(){
         getCommand("test").setExecutor(new TestCommand());
+        getCommand("vote").setExecutor(new VoteCommand());
+        getCommand("privatechest").setExecutor(new PrivateChestCommand());
+        getCommand("ranks").setExecutor(new RanksCommand());
         getCommand("setlocation").setExecutor(new SetLocationCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("balance").setExecutor(new BalanceCommand());

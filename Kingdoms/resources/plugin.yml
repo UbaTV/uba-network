@@ -11,6 +11,21 @@ description: This plugin was developed by UbaTV.
 commands:
   test:
     description: This command was developed by UbaTV.
+  privatechest:
+    description: This command was developed by UbaTV.
+    aliases:
+      - pv
+      - privatec
+      - pchest
+      - privatevault
+      - pvault
+      - privatev
+      - vault
+      - chest
+  vote:
+    description: This command was developed by UbaTV.
+  ranks:
+    description: This command was developed by UbaTV.
   invsee:
     description: This command was developed by UbaTV.
     aliases:
