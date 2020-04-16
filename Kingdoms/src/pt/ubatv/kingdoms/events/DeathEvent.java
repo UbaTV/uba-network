@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import pt.ubatv.kingdoms.Main;
+import pt.ubatv.kingdoms.configs.CooldownYML;
 import pt.ubatv.kingdoms.utils.UserData;
 
 public class DeathEvent implements Listener {
@@ -22,6 +23,10 @@ public class DeathEvent implements Listener {
             Player killer = death.getKiller();
             UserData killerData = main.userDataTable.online.get(killer.getUniqueId());
             killerData.setKills(killerData.getKills() + 1);
+        }
+
+        if(CooldownYML.wildCooldowns.containsKey(death)){
+            CooldownYML.wildCooldowns.remove(death);
         }
 
         event.setDeathMessage("§4☠ §7" + death.getName());

@@ -46,7 +46,7 @@ public class ClearChatCommand implements CommandExecutor {
     }
 
     private void clearChat(Player player){
-        for(int i = 0; i < 75; i++){
+        for(int i = 0; i < 150; i++){
             player.sendMessage(" ");
         }
         player.sendMessage(main.textUtils.right + "Your chat has been cleared.");

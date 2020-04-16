@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import pt.ubatv.kingdoms.Main;
 
@@ -17,6 +18,7 @@ public class CooldownYML {
     private Main main = Main.getInstance();
 
     public static HashMap<String,Integer> starterCooldowns = new HashMap<>();
+    public static HashMap<Player,Integer> wildCooldowns = new HashMap<>();
 
     private File file;
     public FileConfiguration config;
@@ -33,6 +35,17 @@ public class CooldownYML {
                         starterCooldowns.remove(user);
                     }else{
                         starterCooldowns.put(user, cooldown - 1);
+                    }
+                }
+
+                for(Map.Entry<Player,Integer> entry : wildCooldowns.entrySet()){
+                    Player user = entry.getKey();
+                    int cooldown = entry.getValue();
+
+                    if(cooldown == 0){
+                        wildCooldowns.remove(user);
+                    }else{
+                        wildCooldowns.put(user, cooldown - 1);
                     }
                 }
             }
