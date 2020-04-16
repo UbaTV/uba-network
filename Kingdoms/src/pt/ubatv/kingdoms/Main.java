@@ -19,6 +19,7 @@ import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
+import pt.ubatv.kingdoms.guis.VoteGUI;
 import pt.ubatv.kingdoms.mysql.BankTable;
 import pt.ubatv.kingdoms.mysql.KingdomsTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
@@ -143,6 +144,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new EntityDamage(), this);
         pluginManager.registerEvents(new ClaimManager(), this);
         pluginManager.registerEvents(new VoteEvent(), this);
+        pluginManager.registerEvents(new VoteGUI(), this);
     }
 
     private void instanceClasses(){

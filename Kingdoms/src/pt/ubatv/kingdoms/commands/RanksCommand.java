@@ -29,7 +29,7 @@ public class RanksCommand implements CommandExecutor {
             }
 
             if(args.length == 1){
-                Rank rank = Rank.valueOf(args[0]);
+                Rank rank = Rank.valueOf(args[0].toUpperCase());
                 try{
                     sendRankPerks(player, rank);
                 }catch (IllegalArgumentException e){

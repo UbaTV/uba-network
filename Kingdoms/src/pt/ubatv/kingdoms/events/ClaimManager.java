@@ -65,6 +65,8 @@ public class ClaimManager implements Listener {
         || mat.equals(Material.FURNACE)
         || mat.equals(Material.HOPPER)
         || mat.equals(Material.TRAPPED_CHEST)
+        || mat.equals(Material.BLAST_FURNACE)
+        || mat.equals(Material.CRAFTING_TABLE)
         || String.valueOf(mat).contains("MINECART")
         || String.valueOf(mat).contains("SHULKER_BOX")) return;
         event.setCancelled(true);

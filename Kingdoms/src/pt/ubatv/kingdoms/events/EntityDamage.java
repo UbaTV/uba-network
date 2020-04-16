@@ -32,9 +32,16 @@ public class EntityDamage implements Listener {
                 return;
             }
 
+            if(damagerKingdom.equalsIgnoreCase(playerKingdom)){
+                player.sendMessage(main.textUtils.error + "This player is a member of your kingdom.");
+                event.setCancelled(true);
+                return;
+            }
+
             String[] playerAllies = main.kingdomUtils.getAllies(playerKingdom);
             for(String ally : playerAllies){
                 if(ally.equalsIgnoreCase(damagerKingdom)){
+                    player.sendMessage(main.textUtils.warning + "You are allied with this players kingdom.");
                     event.setCancelled(true);
                     return;
                 }

@@ -31,7 +31,7 @@ public class VoteGUI implements InventoryHolder, Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
-        if(!event.getView().getTitle().equalsIgnoreCase("§5Ores §7Shop")) {
+        if(!event.getView().getTitle().equalsIgnoreCase("§5Vote")) {
             return;
         }
         if(event.getClick().equals(ClickType.NUMBER_KEY)) event.setCancelled(true);

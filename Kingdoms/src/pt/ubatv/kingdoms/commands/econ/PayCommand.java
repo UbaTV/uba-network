@@ -31,7 +31,7 @@ public class PayCommand implements CommandExecutor {
                         int targetCoins = main.userDataTable.online.get(target.getUniqueId()).getCoins();
                         main.userDataTable.online.get(target.getUniqueId()).setCoins(targetCoins + coins);
                         main.userDataTable.online.get(player.getUniqueId()).setCoins(balance - coins);
-                        player.sendMessage("§7You just sent §5" + coins + main.textUtils.coinsSymbol + " to §5" + target.getName());
+                        player.sendMessage("§7You just sent §5" + coins + main.textUtils.coinsSymbol + " §7to §5" + target.getName());
                         target.sendMessage("§7You just received §5" + coins + main.textUtils.coinsSymbol+ " §7from §5" + player.getName());
                     }
                 }catch (NumberFormatException e){
