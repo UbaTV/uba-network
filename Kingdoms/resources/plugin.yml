@@ -22,6 +22,8 @@ commands:
       - privatev
       - vault
       - chest
+  staff:
+    description: This command was developed by UbaTV.
   vote:
     description: This command was developed by UbaTV.
   ranks:
