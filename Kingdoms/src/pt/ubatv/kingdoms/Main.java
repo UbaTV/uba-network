@@ -73,7 +73,8 @@ public class Main extends JavaPlugin {
 
         locationYML.setupSpawn();
         updateScoreboards();
-        cooldownYML.cooldownManager();
+        cooldownYML.cooldownStarterKit();
+        cooldownYML.cooldownWild();
     }
 
     @Override

@@ -28,8 +28,10 @@ public class WildCommand implements CommandExecutor {
                     player.sendMessage(main.textUtils.error + "§7You need to wait " + main.textUtils.secondsToText(CooldownYML.wildCooldowns.get(player)) + " §7before you can teleport to wild.");
                 }else{
                     Location wild = generateSafeLocation(player);
-                    CooldownYML.wildCooldowns.put(player, 30*60);
+                    CooldownYML.wildCooldowns.put(player, 15*60);
+                    player.sendMessage(main.textUtils.right + "Teleporting to random location...");
                     player.teleport(wild);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
                 }
                 return false;
             }
@@ -44,9 +46,6 @@ public class WildCommand implements CommandExecutor {
 
     private Location generateSafeLocation(Player player){
         Location randomLocation = generateLocation(player);
-        while(!isLocationSafe(randomLocation)){
-            randomLocation = generateLocation(player);
-        }
         return randomLocation;
     }
 
@@ -58,8 +57,7 @@ public class WildCommand implements CommandExecutor {
         int z = random.nextInt(2500);
         
         Location randomLocation = new Location(player.getWorld(), x, y, z);
-        y = randomLocation.getWorld().getHighestBlockYAt(randomLocation);
-        randomLocation.setY(y);
+        randomLocation.setY(randomLocation.getWorld().getHighestBlockYAt(randomLocation));
         return randomLocation;
     }
 

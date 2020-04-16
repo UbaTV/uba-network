@@ -23,21 +23,28 @@ public class CooldownYML {
     private File file;
     public FileConfiguration config;
 
-    public void cooldownManager(){
+    public void cooldownStarterKit(){
         new BukkitRunnable(){
             @Override
             public void run() {
-                for(Map.Entry<String,Integer> entry : starterCooldowns.entrySet()){
-                    String user = entry.getKey();
+                for(Map.Entry<Player,Integer> entry : wildCooldowns.entrySet()){
+                    Player user = entry.getKey();
                     int cooldown = entry.getValue();
 
                     if(cooldown == 0){
-                        starterCooldowns.remove(user);
+                        wildCooldowns.remove(user);
                     }else{
-                        starterCooldowns.put(user, cooldown - 1);
+                        wildCooldowns.put(user, cooldown - 1);
                     }
                 }
+            }
+        }.runTaskTimerAsynchronously(main, 0, 20);
+    }
 
+    public void cooldownWild(){
+        new BukkitRunnable(){
+            @Override
+            public void run() {
                 for(Map.Entry<Player,Integer> entry : wildCooldowns.entrySet()){
                     Player user = entry.getKey();
                     int cooldown = entry.getValue();
