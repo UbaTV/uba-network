@@ -121,6 +121,7 @@ public class Main extends JavaPlugin {
         getCommand("rankup").setExecutor(new RankupCommand());
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("pm").setExecutor(new PrivateMessageCommand());
+        getCommand("links").setExecutor(new LinksCommand());
     }
 
     private void registerEvents(){

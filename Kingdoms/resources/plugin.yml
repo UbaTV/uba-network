@@ -152,3 +152,12 @@ commands:
       - stafflist
       - staffl
       - staffon
+  links:
+    description: This command was developed by UbaTV.
+    aliases:
+      - link
+      - website
+      - instagram
+      - patreon
+      - twitter
+      - github
