@@ -72,12 +72,13 @@ public class CreateSubcommand extends SubCommand {
                     insert.setString(9, "none");
                     insert.executeUpdate();
                     main.userDataTable.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
-                    player.sendMessage(main.textUtils.right + "Your kingdom has been created successfully.");
                     Bukkit.getServer().getOnlinePlayers().forEach(
                             (online) -> online
                                     .sendMessage(main.textUtils.right + "§5" + player.getName()
                                             + " §7just created §5" + kingdomName + "§7's Kingdom.")
                     );
+                    player.sendMessage(main.textUtils.right + "Your kingdom has been created successfully.");
+                    player.sendMessage(main.textUtils.right + "Do §5/kingdom tag §7to add a prefix for kingdom members.");
                 }else{
                     player.sendMessage(main.textUtils.error + "A kingdom with this name already exists");
                 }
