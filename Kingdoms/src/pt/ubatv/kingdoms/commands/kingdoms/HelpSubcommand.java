@@ -39,7 +39,6 @@ public class HelpSubcommand extends SubCommand {
         kingdomsHelp(player, 1);
     }
 
-    // TODO Format pages
     public void kingdomsHelp(Player player, int page){
         player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§7§m========[§5Kingdoms§7§m]========");

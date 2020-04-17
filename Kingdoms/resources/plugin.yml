@@ -33,6 +33,11 @@ commands:
       - ec
   rank:
     description: This command was developed by UbaTV.
+  tpa:
+    description: This command was developed by UbaTV.
+    aliases:
+      - tpr
+      - tprequest
   hologram:
     description: This command was developed by UbaTV.
     aliases:

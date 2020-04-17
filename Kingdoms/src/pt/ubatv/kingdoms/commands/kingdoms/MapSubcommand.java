@@ -11,6 +11,8 @@ import pt.ubatv.kingdoms.commands.SubCommand;
 public class MapSubcommand extends SubCommand {
 
     // TODO REDO COMMAND
+    // Lagging on multiple claimed chunks taking to much time to load to get display_name
+    // From database (buy mysql database / store needed data on array)
 
     private Main main = Main.getInstance();
 
