@@ -152,6 +152,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new VoteEvent(), this);
         pluginManager.registerEvents(new VoteGUI(), this);
         pluginManager.registerEvents(new ObsidianDestroy(), this);
+        pluginManager.registerEvents(new TreeCapitator(), this);
     }
 
     private void instanceClasses(){
