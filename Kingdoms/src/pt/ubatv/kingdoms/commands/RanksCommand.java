@@ -29,8 +29,8 @@ public class RanksCommand implements CommandExecutor {
             }
 
             if(args.length == 1){
-                Rank rank = Rank.valueOf(args[0].toUpperCase());
                 try{
+                    Rank rank = Rank.valueOf(args[0].toUpperCase());
                     sendRankPerks(player, rank);
                 }catch (IllegalArgumentException e){
                     player.sendMessage(main.textUtils.error + "Invalid rank.");
@@ -65,12 +65,12 @@ public class RanksCommand implements CommandExecutor {
         }else if(rank.equals(Rank.GOLD)){
             main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
-            main.textUtils.sendCenteredMessage(player, "");
+            main.textUtils.sendCenteredMessage(player, "§4Currently none");
             player.sendMessage(" ");
         }else if(rank.equals(Rank.DIAMOND)){
             main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
-            main.textUtils.sendCenteredMessage(player, "");
+            main.textUtils.sendCenteredMessage(player, "§4Currently none");
             player.sendMessage(" ");
         }else{
             player.sendMessage(main.textUtils.error + "Invalid rank.");

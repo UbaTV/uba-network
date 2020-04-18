@@ -33,7 +33,7 @@ public class EntityDamage implements Listener {
             }
 
             if(damagerKingdom.equalsIgnoreCase(playerKingdom)){
-                player.sendMessage(main.textUtils.error + "This player is a member of your kingdom.");
+                damager.sendMessage(main.textUtils.error + "This player is a member of your kingdom.");
                 event.setCancelled(true);
                 return;
             }

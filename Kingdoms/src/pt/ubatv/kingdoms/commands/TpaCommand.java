@@ -57,7 +57,7 @@ public class TpaCommand implements CommandExecutor {
                             player.sendMessage(main.textUtils.right + "Teleport accepted.");
                             target.sendMessage(main.textUtils.warning + "§5" + player.getName() + " §7accepted your teleport.");
                             tpaRequest.remove(target);
-                            player.teleport(target.getLocation());
+                            target.teleport(player.getLocation());
                             player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
                             return false;
                         }
