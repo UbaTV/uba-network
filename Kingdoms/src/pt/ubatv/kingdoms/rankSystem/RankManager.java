@@ -30,6 +30,7 @@ public class RankManager {
             case KIT_MVP:
                 return rankTier > 6;
             // ADMIN PERMS
+            case TELEPORT:
             case MUTE:
             case CLEAR_CHAT:
             case CLEAR_INVENTORY_OTHERS:
@@ -38,6 +39,7 @@ public class RankManager {
             case GAMEMODE:
                 return rankTier > 7;
             // CEO PERMS
+            case PLACE_LUNCHBOX:
             case SET_LOCATION:
             case TESTER:
             case RANK_MANAGEMENT:

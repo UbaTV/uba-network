@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -22,7 +23,7 @@ public class ObsidianDestroy implements Listener {
     private int explosionRadius = 1;
     private int maxHealth = 10;
     private int explosionDamage = 1;
-    private HashMap<Location,Integer> obsidianHealth = new HashMap<>();
+    public static HashMap<Location,Integer> obsidianHealth = new HashMap<>();
 
     @EventHandler
     public void onExplode(EntityExplodeEvent event){
@@ -30,7 +31,6 @@ public class ObsidianDestroy implements Listener {
         if(event.getEntityType() == EntityType.ENDER_DRAGON) return;
 
         Location loc = event.getLocation();
-
         for(int x = explosionRadius * -1; x <= explosionRadius; x++){
             for(int y = explosionRadius * -1; y <= explosionRadius; y++){
                 for(int z = explosionRadius * -1; z <= explosionRadius; z++){
@@ -56,9 +56,10 @@ public class ObsidianDestroy implements Listener {
     @EventHandler
     public void checkDamage(PlayerInteractEvent event){
         if(event.getHand() != EquipmentSlot.HAND) return;
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getPlayer().getItemOnCursor().getType().equals(Material.STICK)){
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getPlayer().getEquipment().getItemInMainHand().getType().equals(Material.STICK)){
             Player player = event.getPlayer();
             Block block = event.getClickedBlock();
+            if(!block.getType().equals(Material.OBSIDIAN)) return;
             if(obsidianHealth.containsKey(block.getLocation())){
                 int damage = obsidianHealth.get(block.getLocation());
                 player.sendMessage(main.textUtils.right + "§7Obsidian Health§8: §5" + damage + "§8/§510");

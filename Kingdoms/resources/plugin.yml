@@ -21,12 +21,18 @@ commands:
       - invopen
       - inventoryopen
       - inventorysee
+  placelunchbox:
+    description: This command was developed by UbaTV.
+  lunchbox:
+    description: This command was developed by UbaTV.
   gamemode:
     description: This command was developed by UbaTV.
     aliases:
       - gm
       - gmode
       - gamem
+  teleport:
+    description: This command was developed by UbaTV.
   enderchest:
     description: This command was developed by UbaTV.
     aliases:

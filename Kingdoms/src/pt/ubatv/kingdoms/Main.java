@@ -20,6 +20,8 @@ import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
 import pt.ubatv.kingdoms.guis.VoteGUI;
+import pt.ubatv.kingdoms.lunchbox.LunchboxCommand;
+import pt.ubatv.kingdoms.lunchbox.PlaceLunchboxCommand;
 import pt.ubatv.kingdoms.mysql.BankTable;
 import pt.ubatv.kingdoms.mysql.KingdomsTable;
 import pt.ubatv.kingdoms.mysql.MySQLConnection;
@@ -127,6 +129,9 @@ public class Main extends JavaPlugin {
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("pm").setExecutor(new PrivateMessageCommand());
         getCommand("links").setExecutor(new LinksCommand());
+        getCommand("placelunchbox").setExecutor(new PlaceLunchboxCommand());
+        getCommand("lunchbox").setExecutor(new LunchboxCommand());
+        getCommand("teleport").setExecutor(new TeleportCommand());
     }
 
     private void registerEvents(){

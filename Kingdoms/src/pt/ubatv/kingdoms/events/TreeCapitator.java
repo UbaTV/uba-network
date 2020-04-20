@@ -1,5 +1,6 @@
 package pt.ubatv.kingdoms.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,14 +20,14 @@ public class TreeCapitator implements Listener {
     public void blockBreak(BlockBreakEvent event){
         if(event.isCancelled()) return;
 
-        if(event.getBlock().getType() != Material.ACACIA_LOG
-        || event.getBlock().getType() != Material.BIRCH_LOG
-        || event.getBlock().getType() != Material.DARK_OAK_LOG
-        || event.getBlock().getType() != Material.JUNGLE_LOG
-        || event.getBlock().getType() != Material.OAK_LOG
-        || event.getBlock().getType() != Material.SPRUCE_LOG) return;
+        if(!(event.getBlock().getType() == Material.ACACIA_LOG
+        || event.getBlock().getType() == Material.BIRCH_LOG
+        || event.getBlock().getType() == Material.DARK_OAK_LOG
+        || event.getBlock().getType() == Material.JUNGLE_LOG
+        || event.getBlock().getType() == Material.OAK_LOG
+        || event.getBlock().getType() == Material.SPRUCE_LOG)) return;
 
-        ItemStack hand = event.getPlayer().getItemOnCursor();
+        ItemStack hand = event.getPlayer().getEquipment().getItemInMainHand();
         if(!(hand.getType().equals(Material.WOODEN_AXE)
         || hand.getType().equals(Material.STONE_AXE)
         || hand.getType().equals(Material.IRON_AXE)

@@ -54,11 +54,15 @@ public class TpaCommand implements CommandExecutor {
                 || args[0].equalsIgnoreCase("acpt")){
                     if(tpaRequest.containsKey(target)){
                         if(tpaRequest.get(target).equals(player)){
-                            player.sendMessage(main.textUtils.right + "Teleport accepted.");
-                            target.sendMessage(main.textUtils.warning + "§5" + player.getName() + " §7accepted your teleport.");
-                            tpaRequest.remove(target);
-                            target.teleport(player.getLocation());
-                            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
+                            if(target.isOnline()){
+                                player.sendMessage(main.textUtils.right + "Teleport accepted.");
+                                target.sendMessage(main.textUtils.warning + "§5" + player.getName() + " §7accepted your teleport.");
+                                tpaRequest.remove(target);
+                                target.teleport(player.getLocation());
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
+                            }else{
+                                player.sendMessage(main.textUtils.warning + "§5" + target.getName() + " §7went offline.");
+                            }
                             return false;
                         }
                     }

@@ -10,10 +10,16 @@ import pt.ubatv.kingdoms.utils.UserData;
 
 public class EntityDamage implements Listener {
 
+    // TODO Kingdom members can kill each other with arrows
+
     private Main main = Main.getInstance();
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event){
+        if(event.getEntity() == null) return;
+        if(event.getEntityType() == null) return;
+        if(event.getDamager() == null) return;
+        if(event.getDamager().getType() == null) return;
         if(event.getEntityType().equals(EntityType.PLAYER)
                 && event.getDamager().getType().equals(EntityType.PLAYER)){
             Player player = (Player) event.getEntity();

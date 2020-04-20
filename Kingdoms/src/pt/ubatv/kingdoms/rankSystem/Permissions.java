@@ -6,6 +6,8 @@ public enum Permissions {
     KIT_VIP,
     KIT_MVP,
     GAMEMODE,
+    TELEPORT,
+    PLACE_LUNCHBOX,
     SET_LOCATION,
     RANK_MANAGEMENT,
     CLEAR_INVENTORY_OTHERS,
