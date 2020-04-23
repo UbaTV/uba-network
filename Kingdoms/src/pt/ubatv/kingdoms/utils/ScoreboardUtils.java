@@ -3,10 +3,7 @@ package pt.ubatv.kingdoms.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.*;
 import pt.ubatv.kingdoms.Main;
 
 import java.util.HashMap;
@@ -20,10 +17,15 @@ public class ScoreboardUtils {
 
     private Scoreboard scoreboard;
     private Objective sidebar;
+    private Objective belowName;
 
     public ScoreboardUtils(Player player) {
         scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+
         sidebar = scoreboard.registerNewObjective("sidebar", "dummy");
+        belowName = scoreboard.registerNewObjective("below_name", "dummy");
+
+        belowName.setDisplaySlot(DisplaySlot.BELOW_NAME);
         sidebar.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         // CREATE TEAMS
@@ -32,8 +34,16 @@ public class ScoreboardUtils {
             team.addEntry(genEntry(i));
         }
 
+        belowName.setDisplayName("§7Health");
+        updateBelowName(player);
+
         player.setScoreboard(scoreboard);
         scoreboards.put(player.getUniqueId(), this);
+    }
+
+    public void updateBelowName(Player player){
+        Score score = belowName.getScore(player);
+        score.setScore((int) player.getHealth());
     }
 
     public void setTitle(String title){

@@ -82,6 +82,8 @@ public class Main extends JavaPlugin {
         cooldownYML.cooldownVipKit();
         cooldownYML.cooldownMvpKit();
         cooldownYML.cooldownWild();
+
+        saveUserData();
     }
 
     @Override
@@ -187,13 +189,24 @@ public class Main extends JavaPlugin {
         saveConfig();
     }
 
+    private void saveUserData(){
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for(Player player : Bukkit.getOnlinePlayers()){
+                    userDataTable.saveUserData(player);
+                }
+            }
+        }.runTaskTimer(this, 20L * 60 * 5,20L * 60 * 20);
+    }
+
     private void updateScoreboards(){
         new BukkitRunnable(){
             @Override
             public void run(){
                 for(Player player : Bukkit.getOnlinePlayers()){
-                    //userDataTable.saveUserData(player);
                     if(ScoreboardUtils.hasScoreboard(player)){
+                        // Tab Header and Footer
                         int online = Bukkit.getServer().getOnlinePlayers().size();
                         int max = Bukkit.getServer().getMaxPlayers();
                         player.setPlayerListHeaderFooter(
@@ -203,6 +216,11 @@ public class Main extends JavaPlugin {
 
                         UserData userData = userDataTable.online.get(player.getUniqueId());
                         ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
+
+                        // Below Name
+                        scoreboardUtils.updateBelowName(player);
+
+                        // Sidebar Scoreboard
                         scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + textUtils.coinsSymbol);
                         scoreboardUtils.setSlot(5, "§a| §7Rank: " + rankManager.getRankName(userData.getRank(), true));
                         scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
@@ -210,7 +228,7 @@ public class Main extends JavaPlugin {
                     }
                 }
             }
-        }.runTaskTimer(this, 20L * 5, 20L);
+        }.runTaskTimer(this, 0, 20L*15);
     }
 
     public static Main getInstance() {
