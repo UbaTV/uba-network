@@ -1,6 +1,5 @@
 package pt.ubatv.kingdoms.lunchbox;
 
-import com.sun.istack.internal.NotNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

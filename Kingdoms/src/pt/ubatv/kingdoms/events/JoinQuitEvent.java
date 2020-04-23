@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,6 +44,9 @@ public class JoinQuitEvent implements Listener {
             }
         }*/
 
+        player.setGameMode(GameMode.SURVIVAL);
+        player.setAllowFlight(false);
+
         // 1.8 PVP - Anticooldown
         Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(100);
 
@@ -74,6 +78,8 @@ public class JoinQuitEvent implements Listener {
         main.userDataTable.online.remove(uuid);
 
         event.setQuitMessage("§7[§c-§7] " + player.getName());
+        player.setGameMode(GameMode.SURVIVAL);
+        player.setAllowFlight(false);
 
         if(ScoreboardUtils.hasScoreboard(player)){
             ScoreboardUtils.removeScoreboard(player);

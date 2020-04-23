@@ -54,7 +54,7 @@ public class QuitSubcommand extends SubCommand {
                         }
                     }
                 }
-                main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".home", null);
+                main.kingdomsYML.getConfig().set(userKingdom.toLowerCase(), null);
                 main.kingdomsYML.saveConfig();
                 main.kingdomsTable.deleteKingdom(userKingdom);
                 userData.setKingdom("none");

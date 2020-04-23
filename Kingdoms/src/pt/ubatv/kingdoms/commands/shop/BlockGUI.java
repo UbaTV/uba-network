@@ -65,9 +65,9 @@ public class BlockGUI implements InventoryHolder, Listener {
         inv.setItem(15, obsidian);
         inv.setItem(16, magma);
         inv.setItem(17, glowstone);
-        inv.setItem(18, prismarine);
-        inv.setItem(19, darkPrismarine);
-        inv.setItem(20, seaLantern);
+        inv.setItem(21, prismarine);
+        inv.setItem(22, darkPrismarine);
+        inv.setItem(23, seaLantern);
     }
 
     @EventHandler

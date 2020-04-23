@@ -77,6 +77,12 @@ public class CreateSubcommand extends SubCommand {
                                     .sendMessage(main.textUtils.right + "§5" + player.getName()
                                             + " §7just created §5" + kingdomName + "§7's Kingdom.")
                     );
+
+                    main.kingdomsYML.getConfig().set(kingdomName + ".fly", false);
+                    main.kingdomsYML.getConfig().set(kingdomName + ".mining_speed", false);
+                    main.kingdomsYML.getConfig().set(kingdomName + ".obby_speed", false);
+                    main.kingdomsYML.getConfig().set(kingdomName + ".home", null);
+
                     player.sendMessage(main.textUtils.right + "Your kingdom has been created successfully.");
                     player.sendMessage(main.textUtils.right + "Do §5/kingdom tag §7to add a prefix for kingdom members.");
                 }else{

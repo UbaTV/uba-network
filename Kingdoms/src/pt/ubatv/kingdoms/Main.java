@@ -19,6 +19,7 @@ import pt.ubatv.kingdoms.configs.KingdomClaimYML;
 import pt.ubatv.kingdoms.configs.KingdomsYML;
 import pt.ubatv.kingdoms.configs.LocationYML;
 import pt.ubatv.kingdoms.events.*;
+import pt.ubatv.kingdoms.guis.KingdomsShopGUI;
 import pt.ubatv.kingdoms.guis.VoteGUI;
 import pt.ubatv.kingdoms.lunchbox.LunchboxCommand;
 import pt.ubatv.kingdoms.lunchbox.LunchboxGUI;
@@ -160,6 +161,8 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new LunchboxGUI(), this);
         pluginManager.registerEvents(new ObsidianDestroy(), this);
         pluginManager.registerEvents(new TreeCapitator(), this);
+        pluginManager.registerEvents(new KingdomsShopGUI(), this);
+        pluginManager.registerEvents(new MoveEvent(), this);
     }
 
     private void instanceClasses(){
