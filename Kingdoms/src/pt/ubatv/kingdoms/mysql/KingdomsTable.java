@@ -225,4 +225,29 @@ public class KingdomsTable {
             return null;
         }
     }
+
+    public void updateLevel(String kingdomName, int level){
+        if(level < 1) level = 1;
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE kingdoms SET level=? WHERE name=?");
+            statement.setInt(1, level);
+            statement.setString(2, kingdomName.toLowerCase());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getLevel(String kingdomName){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            statement.setString(1, kingdomName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("level");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

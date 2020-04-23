@@ -44,7 +44,7 @@ public class KingdomUtils {
     }
 
     public int getKingdomMaxClaims(String kingdomName){
-        return getSize(kingdomName) * 5;
+        return main.kingdomsTable.getLevel(kingdomName) * 5;
     }
 
     public int getOnlineMembers(String kingdomName){
@@ -84,15 +84,20 @@ public class KingdomUtils {
         for(String playerName : getMembers(kingdomName)){
             Player target = Bukkit.getServer().getPlayer(playerName);
             if(target != null){
-                target.sendMessage(main.textUtils.right + "" + msg);
+                target.sendMessage(main.textUtils.right + msg);
             }
         }
+    }
+
+    public int getLevelupPrice(String kingdomName){
+        int level = main.kingdomsTable.getLevel(kingdomName);
+        return (level^2)*50000;
     }
 
     public int getSize(String kingdomName){
         String[] members = getMembers(kingdomName);
         int i = 0;
-        for(String member : members){
+        for(String ignored : members){
             i++;
         }
         return i;

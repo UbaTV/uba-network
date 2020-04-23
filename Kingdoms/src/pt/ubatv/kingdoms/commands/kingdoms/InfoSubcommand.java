@@ -78,7 +78,9 @@ public class InfoSubcommand extends SubCommand {
         player.sendMessage(" ");
         player.sendMessage("§7Tag: §5" + main.kingdomsTable.getDisplayTag(kingdomName));
         player.sendMessage("§7King: §5" + main.kingdomsTable.getOwner(kingdomName));
+        player.sendMessage("§7Claims: §5" + main.kingdomUtils.getNumberClaims(kingdomName) + "§7/§5" + main.kingdomUtils.getKingdomMaxClaims(kingdomName));
         player.sendMessage("§7Vault: §5" + main.kingdomsTable.getCoins(kingdomName));
+        player.sendMessage("§7Level: §5" + main.kingdomsTable.getLevel(kingdomName));
         player.sendMessage("§7Members: " + membersString.toString());
         player.sendMessage("§7Allies: " + alliesString.toString());
     }
