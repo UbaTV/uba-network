@@ -1,6 +1,5 @@
 package pt.ubatv.kingdoms.events;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,9 +37,18 @@ public class TreeCapitator implements Listener {
 
         Block below = event.getBlock().getLocation().subtract(0, 1, 0).getBlock();
         if(!(below.getType().equals(Material.DIRT)
-        || below.getType().equals(Material.GRASS_BLOCK))) return;
+        || below.getType().equals(Material.GRASS_BLOCK)
+        || below.getType().equals(Material.COARSE_DIRT))) return;
+
+        Material mat = event.getBlock().getType();
 
         breakTree(event.getBlock(), event.getPlayer());
+        if(mat.equals(Material.ACACIA_LOG)) event.getBlock().setType(Material.ACACIA_SAPLING);
+        else if(mat.equals(Material.BIRCH_LOG)) event.getBlock().setType(Material.BIRCH_SAPLING);
+        else if(mat.equals(Material.DARK_OAK_LOG)) event.getBlock().setType(Material.DARK_OAK_SAPLING);
+        else if(mat.equals(Material.JUNGLE_LOG)) event.getBlock().setType(Material.JUNGLE_SAPLING);
+        else if(mat.equals(Material.OAK_LOG)) event.getBlock().setType(Material.OAK_SAPLING);
+        else if(mat.equals(Material.SPRUCE_LOG)) event.getBlock().setType(Material.SPRUCE_SAPLING);
     }
 
     public void breakTree(Block block, Player player){
