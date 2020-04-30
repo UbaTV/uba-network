@@ -1,6 +1,7 @@
 package pt.ubatv.kingdoms.events;
 
 import org.bukkit.Chunk;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,8 +21,17 @@ public class MoveEvent implements Listener {
             String chunkClaimNew = main.kingdomUtils.getChunkClaim(newChunk);
             Player player = event.getPlayer();
             if(!chunkClaimNew.equalsIgnoreCase(chunkClaimOld)){
-                player.sendMessage("§7Leaving§8: §5" + main.kingdomsTable.getDisplayName(chunkClaimOld) + " §8| §7Entering§8: §5" + main.kingdomsTable.getDisplayName(chunkClaimNew));
+                String nameOld = chunkClaimOld == null || chunkClaimOld.equalsIgnoreCase("none") ? "Wild" : main.kingdomsTable.getDisplayName(chunkClaimOld);
+                String nameNew = chunkClaimNew == null || chunkClaimNew.equalsIgnoreCase("none") ? "Wild" : main.kingdomsTable.getDisplayName(chunkClaimNew);
+                player.sendMessage("§7Leaving§8: §5" + nameOld + " §8| §7Entering§8: §5" + nameNew);
             }
+
+            if(player.getGameMode().equals(GameMode.CREATIVE)
+            || player.getGameMode().equals(GameMode.SPECTATOR)){
+                player.setAllowFlight(true);
+                return;
+            }
+
             String userKingdom = main.userDataTable.online.get(player.getUniqueId()).getKingdom();
             if(!userKingdom.equalsIgnoreCase("none")){
                 if(chunkClaimNew.equalsIgnoreCase(userKingdom)){

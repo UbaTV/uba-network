@@ -41,14 +41,15 @@ public class TreeCapitator implements Listener {
         || below.getType().equals(Material.COARSE_DIRT))) return;
 
         Material mat = event.getBlock().getType();
+        Location loc = event.getBlock().getLocation();
 
         breakTree(event.getBlock(), event.getPlayer());
-        if(mat.equals(Material.ACACIA_LOG)) event.getBlock().setType(Material.ACACIA_SAPLING);
-        else if(mat.equals(Material.BIRCH_LOG)) event.getBlock().setType(Material.BIRCH_SAPLING);
-        else if(mat.equals(Material.DARK_OAK_LOG)) event.getBlock().setType(Material.DARK_OAK_SAPLING);
-        else if(mat.equals(Material.JUNGLE_LOG)) event.getBlock().setType(Material.JUNGLE_SAPLING);
-        else if(mat.equals(Material.OAK_LOG)) event.getBlock().setType(Material.OAK_SAPLING);
-        else if(mat.equals(Material.SPRUCE_LOG)) event.getBlock().setType(Material.SPRUCE_SAPLING);
+        if(mat.equals(Material.ACACIA_LOG)) loc.getBlock().setType(Material.ACACIA_SAPLING);
+        else if(mat.equals(Material.BIRCH_LOG)) loc.getBlock().setType(Material.BIRCH_SAPLING);
+        else if(mat.equals(Material.DARK_OAK_LOG)) loc.getBlock().setType(Material.DARK_OAK_SAPLING);
+        else if(mat.equals(Material.JUNGLE_LOG)) loc.getBlock().setType(Material.JUNGLE_SAPLING);
+        else if(mat.equals(Material.OAK_LOG)) loc.getBlock().setType(Material.OAK_SAPLING);
+        else if(mat.equals(Material.SPRUCE_LOG)) loc.getBlock().setType(Material.SPRUCE_SAPLING);
     }
 
     public void breakTree(Block block, Player player){

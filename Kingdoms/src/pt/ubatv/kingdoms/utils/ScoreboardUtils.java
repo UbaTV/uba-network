@@ -42,7 +42,7 @@ public class ScoreboardUtils {
     }
 
     public void updateBelowName(Player player){
-        Score score = belowName.getScore(player);
+        Score score = scoreboard.getObjective(DisplaySlot.BELOW_NAME).getScore(player);
         score.setScore((int) player.getHealth());
     }
 

@@ -33,8 +33,8 @@ public class LevelupSubcommand extends SubCommand {
             return;
         }
 
-        if(main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
-            player.sendMessage(main.textUtils.error + "You must be kingdom owner to levelup.");
+        if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
+            player.sendMessage(main.textUtils.error + "You must be kingdom king to levelup.");
             return;
         }
 

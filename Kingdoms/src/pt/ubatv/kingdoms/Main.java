@@ -30,6 +30,7 @@ import pt.ubatv.kingdoms.mysql.MySQLConnection;
 import pt.ubatv.kingdoms.mysql.UserDataTable;
 import pt.ubatv.kingdoms.rankSystem.RankCommand;
 import pt.ubatv.kingdoms.rankSystem.RankManager;
+import pt.ubatv.kingdoms.silkspawner.BreakPlaceSpawner;
 import pt.ubatv.kingdoms.utils.*;
 
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         Bukkit.getOnlinePlayers().forEach(target -> {
             userDataTable.saveUserData(target);
-            target.kickPlayer("Server is restarting. Please reconnect.");
+            target.kickPlayer("§5Server is restarting. Please reconnect.");
         });
 
         cooldownYML.saveShutdown();
@@ -165,6 +166,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new TreeCapitator(), this);
         pluginManager.registerEvents(new KingdomsShopGUI(), this);
         pluginManager.registerEvents(new MoveEvent(), this);
+        pluginManager.registerEvents(new BreakPlaceSpawner(), this);
     }
 
     private void instanceClasses(){
