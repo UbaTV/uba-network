@@ -58,9 +58,9 @@ public class HelpSubcommand extends SubCommand {
         if(page == 3){
             player.sendMessage("§7/kingdoms claim");
             player.sendMessage("§7/kingdoms unclaim");
+            player.sendMessage("§7/kingdoms unclaimall");
             player.sendMessage("§7/kingdoms map");
             player.sendMessage("§7/kingdoms sethome");
-            player.sendMessage("§7/kingdoms home");
             player.sendMessage(" ");
             player.sendMessage("§7Page §53§7/§53");
             player.sendMessage("§7do /kingdoms help <page> §7to see next page");
@@ -68,6 +68,7 @@ public class HelpSubcommand extends SubCommand {
         }
 
         if(page == 4){
+            player.sendMessage("§7/kingdoms home");
             player.sendMessage("§7/kingdoms delhome");
             player.sendMessage("§7/kingdoms chat");
             player.sendMessage("§7/kingdoms levelup");

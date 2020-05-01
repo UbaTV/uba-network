@@ -1,9 +1,12 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
+import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 import pt.ubatv.kingdoms.utils.UserData;
+
+import java.util.ArrayList;
 
 public class QuitSubcommand extends SubCommand {
 
@@ -36,7 +39,10 @@ public class QuitSubcommand extends SubCommand {
 
             String[] kingdomMembers = main.kingdomUtils.getMembers(userKingdom);
             if(kingdomMembers.length == 1){
-                KingdomUtils.kingdomsChunks.remove(userKingdom);
+                ArrayList<Chunk> kingdomClaims = main.kingdomUtils.getKingdomClaims(userKingdom);
+                for(Chunk chunk : kingdomClaims){
+                    main.kingdomUtils.removeClaim(userKingdom, chunk);
+                }
                 String[] allies = main.kingdomUtils.getAllies(userKingdom);
                 for(String ally : allies){
                     StringBuilder newTargetAllies = new StringBuilder();
@@ -55,6 +61,7 @@ public class QuitSubcommand extends SubCommand {
                     }
                 }
                 main.kingdomsYML.getConfig().set(userKingdom.toLowerCase(), null);
+                main.kingdomsYML.removeKingdomHome(userKingdom.toLowerCase());
                 main.kingdomsYML.saveConfig();
                 main.kingdomsTable.deleteKingdom(userKingdom);
                 userData.setKingdom("none");

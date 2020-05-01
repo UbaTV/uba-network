@@ -37,6 +37,7 @@ public class KingdomsManager implements CommandExecutor {
         subCommands.add(new ChatSubcommand());
         subCommands.add(new LevelupSubcommand());
         subCommands.add(new ShopSubcommand());
+        subCommands.add(new UnclaimAllSubcommand());
     }
 
     @Override

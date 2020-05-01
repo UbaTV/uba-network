@@ -49,11 +49,15 @@ public class ShopNPCCommand implements CommandExecutor, Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent event){
-        Entity entity = event.getEntity();
-        if(entity.getType().equals(EntityType.VILLAGER)){
-            if(entity.getCustomName().equalsIgnoreCase(npcName)){
-                event.setCancelled(true);
+        try{
+            Entity entity = event.getEntity();
+            if(entity.getType().equals(EntityType.VILLAGER)){
+                if(entity.getCustomName() == null) return;
+                if(entity.getCustomName().equalsIgnoreCase(npcName)){
+                    event.setCancelled(true);
+                }
             }
+        }catch (NullPointerException ignored){
         }
     }
 

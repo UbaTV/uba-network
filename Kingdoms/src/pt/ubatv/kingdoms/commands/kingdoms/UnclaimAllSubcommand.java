@@ -1,27 +1,31 @@
 package pt.ubatv.kingdoms.commands.kingdoms;
 
+import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 import pt.ubatv.kingdoms.utils.UserData;
 
-public class DelhomeSubcommand extends SubCommand {
+import java.util.ArrayList;
+
+public class UnclaimAllSubcommand extends SubCommand {
 
     private Main main = Main.getInstance();
 
     @Override
     public String getName() {
-        return "delhome";
+        return "unclaimall";
     }
 
     @Override
     public String getDescription() {
-        return "Remove your kingdom's home location";
+        return "Unclaim all chunks for your kingdom";
     }
 
     @Override
     public String getSyntax() {
-        return "/kingdoms delhome";
+        return "/kingdoms unclaimall";
     }
 
     @Override
@@ -34,27 +38,27 @@ public class DelhomeSubcommand extends SubCommand {
         }
 
         if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
-            player.sendMessage(main.textUtils.error + "You must be king to sethome.");
+            player.sendMessage(main.textUtils.error + "You must be king to unclaim all land.");
             return;
         }
 
         if(args.length == 1){
-            if(!main.kingdomsYML.getConfig().contains(userKingdom.toLowerCase() + ".home")){
-                player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
+            ArrayList<Chunk> kingdomClaims = main.kingdomUtils.getKingdomClaims(userKingdom);
+            if(kingdomClaims.isEmpty()){
+                player.sendMessage(main.textUtils.error + "You dont have any claims.");
                 return;
             }
 
-            if(main.kingdomsYML.getConfig().get(userKingdom.toLowerCase() + ".home") == null){
-                player.sendMessage(main.textUtils.warning + "Your kingdom does not have a home set.");
-                return;
+            for(Chunk chunk : kingdomClaims){
+                main.kingdomUtils.removeClaim(userKingdom, chunk);
             }
-
             main.kingdomsYML.removeKingdomHome(userKingdom);
-            main.kingdomUtils.broadcastKingdom(userKingdom, "Kingdom home has been removed.");
+            player.sendMessage(main.textUtils.right + "Chunks unclaimed successfully");
             return;
         }
 
-        player.sendMessage(main.textUtils.error + "Wrong syntax.");
+        player.sendMessage(main.textUtils.error + "Wrong syntax!");
         player.sendMessage(main.textUtils.warning + getSyntax());
+        return;
     }
 }

@@ -32,6 +32,17 @@ public class KingdomsYML {
         saveConfig();
     }
 
+    public void removeKingdomHome(String kingdomName){
+        getConfig().set(kingdomName + ".home.world", null);
+        getConfig().set(kingdomName + ".home.x", null);
+        getConfig().set(kingdomName + ".home.y", null);
+        getConfig().set(kingdomName + ".home.z", null);
+        getConfig().set(kingdomName + ".home.yaw", null);
+        getConfig().set(kingdomName + ".home.pitch", null);
+        getConfig().set(kingdomName + ".home", null);
+        saveConfig();
+    }
+
     public Location getKingdomHome(String kingdomName){
         World world = Bukkit.getWorld(getConfig().getString(kingdomName + ".home.world"));
         double x = getConfig().getDouble(kingdomName + ".home.x"),
