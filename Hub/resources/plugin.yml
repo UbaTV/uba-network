@@ -1,0 +1,9 @@
+name: Hub
+version: 1.0-SNAPSHOT
+main: xyz.ubatv.hub.Main
+authors:
+  - andreubita
+database: true
+website: ubatv.xyz
+prefix: HUB
+description: This plugin was developed by UbaTV.
