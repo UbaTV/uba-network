@@ -129,4 +129,44 @@ public class KingdomUtils {
         names.add("hud");
         return names;
     }
+
+    public boolean validChars(String name){
+        return !name.contains("<")
+                && !name.contains(">")
+                && !name.contains("!")
+                && !name.contains(":")
+                && !name.contains("$")
+                && !name.contains("(")
+                && !name.contains(")")
+                && !name.contains("=")
+                && !name.contains("/")
+                && !name.contains(".")
+                && !name.contains("#")
+                && !name.contains("\"")
+                && !name.contains("?")
+                && !name.contains("-")
+                && !name.contains("_")
+                && !name.contains(";")
+                && !name.contains("*")
+                && !name.contains(",")
+                && !name.contains("´")
+                && !name.contains("»")
+                && !name.contains("«")
+                && !name.contains("^")
+                && !name.contains("~")
+                && !name.contains("º")
+                && !name.contains("ª")
+                && !name.contains("+")
+                && !name.contains("\\")
+                && !name.contains("%")
+                && !name.contains("|")
+                && !name.contains("ç")
+                && !name.contains("£")
+                && !name.contains("§")
+                && !name.contains("&")
+                && !name.contains("{")
+                && !name.contains("[")
+                && !name.contains("]")
+                && !name.contains("}");
+    }
 }

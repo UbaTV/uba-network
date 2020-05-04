@@ -120,6 +120,19 @@ public class KingdomsTable {
         }
     }
 
+    public String getDisplayNameByTag(String tag){
+        try {
+            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM kingdoms WHERE tag=?");
+            statement.setString(1, tag);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getString("display_name");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void deleteKingdom(String kingdomName){
         try {
             PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("DELETE FROM kingdoms WHERE name=?");

@@ -15,7 +15,7 @@ public class KingdomsShopGUI implements Listener {
 
     private Main main = Main.getInstance();
 
-    private int flyPrice = 500000;
+    private int flyPrice = 1000000;
     private int flyLevelUnlock = 3;
 
     public void openGUI(Player player){
@@ -76,8 +76,8 @@ public class KingdomsShopGUI implements Listener {
                 }
 
                 main.kingdomsTable.updateVault(userKingdom, vault - flyPrice);
-                main.kingdomsYML.getConfig().set(userKingdom + ".fly", true);
-                main.kingdomUtils.broadcastKingdom(userKingdom, "Your kingdom just unlocked §5flight§7.");
+                main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".fly", true);
+                main.kingdomUtils.broadcastKingdom(userKingdom.toLowerCase(), "Your kingdom just unlocked §5flight§7.");
             }
         }
     }

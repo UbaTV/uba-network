@@ -6,6 +6,10 @@ import pt.ubatv.kingdoms.Main;
 import pt.ubatv.kingdoms.commands.SubCommand;
 import pt.ubatv.kingdoms.utils.UserData;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class InfoSubcommand extends SubCommand {
 
     private Main main = Main.getInstance();
@@ -40,11 +44,28 @@ public class InfoSubcommand extends SubCommand {
 
         if(args.length == 2){
             String targetKingdom = args[1].toLowerCase();
-            if(!main.kingdomsTable.kingdomExists(targetKingdom)){
-                player.sendMessage(main.textUtils.error + "Kingdom does not exist.");
+            if(main.kingdomsTable.kingdomExists(targetKingdom)){
+                showKingdomInfo(player, targetKingdom);
                 return;
+            }else{
+                try{
+                    PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
+                            "SELECT * FROM kingdoms WHERE tag=?");
+                    statement.setString(1, targetKingdom.toLowerCase());
+                    ResultSet rs = statement.executeQuery();
+
+                    if(!rs.next()){
+                        showKingdomInfo(player, main.kingdomsTable.getDisplayNameByTag(targetKingdom).toLowerCase());
+                        return;
+                    }else{
+                        player.sendMessage(main.textUtils.error + "Kingdom does not exist.");
+                        player.sendMessage(main.textUtils.error + "A kingdom with this tag already exists");
+                    }
+                }catch (SQLException | NullPointerException e){
+                    player.sendMessage(main.textUtils.error + "An error occurred please contact a staff member.");
+                    e.printStackTrace();
+                }
             }
-            showKingdomInfo(player, targetKingdom);
             return;
         }
 
@@ -73,14 +94,20 @@ public class InfoSubcommand extends SubCommand {
             }
         }
 
+        String tag = main.kingdomsTable.getDisplayTag(kingdomName);
+        String king = main.kingdomsTable.getOwner(kingdomName);
+        int claims = main.kingdomUtils.getNumberClaims(kingdomName), maxClaims = main.kingdomUtils.getKingdomMaxClaims(kingdomName);
+        int vault = main.kingdomsTable.getCoins(kingdomName);
+        int level = main.kingdomsTable.getLevel(kingdomName);
+
         player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§7§m========[§5" + main.kingdomsTable.getDisplayName(kingdomName) + "§7's Info§7§m]========");
         player.sendMessage(" ");
-        player.sendMessage("§7Tag: §5" + main.kingdomsTable.getDisplayTag(kingdomName));
-        player.sendMessage("§7King: §5" + main.kingdomsTable.getOwner(kingdomName));
-        player.sendMessage("§7Claims: §5" + main.kingdomUtils.getNumberClaims(kingdomName) + "§7/§5" + main.kingdomUtils.getKingdomMaxClaims(kingdomName));
-        player.sendMessage("§7Vault: §5" + main.kingdomsTable.getCoins(kingdomName));
-        player.sendMessage("§7Level: §5" + main.kingdomsTable.getLevel(kingdomName));
+        player.sendMessage("§7Tag: §5" + tag);
+        player.sendMessage("§7King: §5" + king);
+        player.sendMessage("§7Claims: §5" + claims + "§7/§5" + maxClaims);
+        player.sendMessage("§7Vault: §5" + vault);
+        player.sendMessage("§7Level: §5" + level);
         player.sendMessage("§7Members: " + membersString.toString());
         player.sendMessage("§7Allies: " + alliesString.toString());
     }
