@@ -69,6 +69,7 @@ public class Main extends JavaPlugin {
         mySQLConnection.runMySQLAsync();
 
         for(String kingdomName : kingdomClaimYML.getConfig().getConfigurationSection("").getKeys(false)) {
+            //System.out.println(kingdomName);
             kingdomClaimYML.loadKingdomClaims(kingdomName);
         }
 

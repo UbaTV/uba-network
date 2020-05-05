@@ -59,9 +59,9 @@ public class KingdomUtils {
             String kingdomName = entry.getKey();
             ArrayList<Chunk> claimedChunks = entry.getValue();
             for(Chunk chunk1 : claimedChunks){
-                if(chunk.equals(chunk1)){
-                    return kingdomName;
-                }
+                System.out.println("x:" + chunk1.getX() + " z:" + chunk1.getZ());
+                if(chunk.getX() == chunk1.getX() && chunk.getZ() == chunk1.getZ()) return kingdomName;
+                //if(chunk.equals(chunk1)) return kingdomName;
             }
         }
         return "none";

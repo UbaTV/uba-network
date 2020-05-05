@@ -1,5 +1,6 @@
 package xyz.ubatv.kingdoms.configs;
 
+import com.mysql.fabric.xmlrpc.base.Array;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.configuration.InvalidConfigurationException;
