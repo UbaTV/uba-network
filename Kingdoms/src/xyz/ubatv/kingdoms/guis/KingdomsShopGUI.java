@@ -77,6 +77,7 @@ public class KingdomsShopGUI implements Listener {
 
                 main.kingdomsTable.updateVault(userKingdom, vault - flyPrice);
                 main.kingdomsYML.getConfig().set(userKingdom.toLowerCase() + ".fly", true);
+                main.kingdomsYML.saveConfig();
                 main.kingdomUtils.broadcastKingdom(userKingdom.toLowerCase(), "Your kingdom just unlocked §5flight§7.");
             }
         }
