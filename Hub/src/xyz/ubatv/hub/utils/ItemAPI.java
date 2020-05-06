@@ -1,4 +1,4 @@
-package xyz.ubatv.kingdoms.utils;
+package xyz.ubatv.hub.utils;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.w3c.dom.events.EventException;
-import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.hub.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;

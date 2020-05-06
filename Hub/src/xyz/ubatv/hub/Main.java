@@ -6,9 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.ubatv.hub.commands.SpawnCommand;
 import xyz.ubatv.hub.commands.staff.SetLocationCommand;
 import xyz.ubatv.hub.configs.LocationYML;
+import xyz.ubatv.hub.events.InventoryManager;
 import xyz.ubatv.hub.events.JoinQuitEvent;
 import xyz.ubatv.hub.events.MoveEvent;
 import xyz.ubatv.hub.mysql.MySQLConnections;
+import xyz.ubatv.hub.utils.ItemAPI;
 import xyz.ubatv.hub.utils.TextUtils;
 
 public class Main extends JavaPlugin {
@@ -17,6 +19,7 @@ public class Main extends JavaPlugin {
     public TextUtils textUtils;
     public MySQLConnections mySQLConnections;
     public LocationYML locationYML;
+    public ItemAPI itemAPI;
 
     @Override
     public void onEnable() {
@@ -50,12 +53,14 @@ public class Main extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         pluginManager.registerEvents(new JoinQuitEvent(), this);
         pluginManager.registerEvents(new MoveEvent(), this);
+        pluginManager.registerEvents(new InventoryManager(), this);
     }
 
     private void setInstances(){
         textUtils = new TextUtils();
         mySQLConnections = new MySQLConnections();
         locationYML = new LocationYML();
+        itemAPI = new ItemAPI();
     }
 
     private void loadConfig(){
