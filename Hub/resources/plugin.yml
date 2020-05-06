@@ -7,3 +7,14 @@ database: true
 website: ubatv.xyz
 prefix: HUB
 description: This plugin was developed by UbaTV.
+commands:
+  spawn:
+    description: This command was developed by UbaTV.
+    aliases:
+      - lobby
+      - hub
+      - entrance
+  setlocation:
+    description: This command was developed by UbaTV.
+    aliases:
+      - setloc

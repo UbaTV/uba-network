@@ -70,7 +70,6 @@ commands:
     description: This command was developed by UbaTV.
     aliases:
       - entrance
-      - lobby
   balance:
     description: This command was developed by UbaTV.
     aliases:

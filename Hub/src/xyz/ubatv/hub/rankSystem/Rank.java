@@ -1,6 +1,6 @@
-package xyz.ubatv.bungee.rankSystem;
+package xyz.ubatv.hub.rankSystem;
 
-public enum Ranks {
+public enum Rank {
     MEMBER,
     VIP,
     MVP,

@@ -2,7 +2,7 @@ package xyz.ubatv.bungee.mysql;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import xyz.ubatv.bungee.Main;
-import xyz.ubatv.bungee.rankSystem.Ranks;
+import xyz.ubatv.bungee.rankSystem.Rank;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +36,7 @@ public class UserDataTable {
                 PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,name,rank) VALUES (?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, player.getName());
-                insert.setString(3, Ranks.MEMBER.toString());
+                insert.setString(3, Rank.MEMBER.toString());
                 insert.executeUpdate();
             }
         }catch (SQLException e){
