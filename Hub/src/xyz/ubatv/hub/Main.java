@@ -64,6 +64,9 @@ public class Main extends JavaPlugin {
     }
 
     private void registerChannels(){
+        // BungeeCord Main Channel
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         // USER DATA CHANNEL
         getServer().getMessenger().registerIncomingPluginChannel(this, "ubanetwork:userdata", new UserDataManager());
     }
