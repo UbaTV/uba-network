@@ -1,13 +1,28 @@
 package xyz.ubatv.bungee.rankSystem;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import xyz.ubatv.bungee.Main;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public class RankManager {
 
     private Main main = Main.getInstance();
+
+    public void sendRankChange(ProxiedPlayer player, ProxiedPlayer target, Rank rank){
+        Collection<ProxiedPlayer> networkPlayers = main.getProxy().getPlayers();
+        if(networkPlayers == null || networkPlayers.isEmpty()) return;
+
+        ByteArrayDataOutput output = ByteStreams.newDataOutput();
+        output.writeUTF("RANK_CHANGE");
+        output.writeUTF(target.getName());
+        output.writeUTF(rank.toString().toUpperCase());
+
+        player.getServer().getInfo().sendData("ubanetwork:userdata", output.toByteArray());
+    }
 
     public boolean hasPermission(ProxiedPlayer player, Permissions permission){
         Rank rank = getRank(player);

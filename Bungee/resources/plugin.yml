@@ -1,9 +1,4 @@
 name: Bungee
 version: 1.0-SNAPSHOT
 main: xyz.ubatv.bungee.Main
-authors:
-  - andreubita
-database: true
-website: ubatv.xyz
-prefix: BUNGEE
-description: This plugin was developed by UbaTV.
+author: andreubita

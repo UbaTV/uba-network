@@ -11,6 +11,7 @@ import xyz.ubatv.hub.events.JoinQuitEvent;
 import xyz.ubatv.hub.events.MoveEvent;
 import xyz.ubatv.hub.mysql.Main_UserData;
 import xyz.ubatv.hub.mysql.MySQLConnections;
+import xyz.ubatv.hub.rankSystem.RankManager;
 import xyz.ubatv.hub.userData.UserDataManager;
 import xyz.ubatv.hub.utils.ItemAPI;
 import xyz.ubatv.hub.utils.TextUtils;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin {
     public ItemAPI itemAPI;
     public Main_UserData mainUserData;
     public UserDataManager userDataManager;
+    public RankManager rankManager;
 
     @Override
     public void onEnable() {
@@ -34,14 +36,15 @@ public class Main extends JavaPlugin {
         loadConfig();
         locationYML.createConfig();
 
+        registerChannels();
+        registerCommands();
+        registerEvents();
+
         // Connect to databases
         mySQLConnections.setCredentials();
         mySQLConnections.connectMainDatabase();
 
         locationYML.setupSpawn();
-
-        registerCommands();
-        registerEvents();
     }
 
     @Override
@@ -60,6 +63,11 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new InventoryManager(), this);
     }
 
+    private void registerChannels(){
+        // USER DATA CHANNEL
+        getServer().getMessenger().registerIncomingPluginChannel(this, "ubanetwork:userdata", new UserDataManager());
+    }
+
     private void setInstances(){
         textUtils = new TextUtils();
         mySQLConnections = new MySQLConnections();
@@ -67,6 +75,7 @@ public class Main extends JavaPlugin {
         itemAPI = new ItemAPI();
         mainUserData = new Main_UserData();
         userDataManager = new UserDataManager();
+        rankManager = new RankManager();
     }
 
     private void loadConfig(){

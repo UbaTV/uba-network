@@ -5,6 +5,8 @@ import xyz.ubatv.bungee.configs.ConfigYML;
 import xyz.ubatv.bungee.events.JoinQuitEvent;
 import xyz.ubatv.bungee.mysql.Main_UserData;
 import xyz.ubatv.bungee.mysql.MySQLConnections;
+import xyz.ubatv.bungee.rankSystem.RankCommand;
+import xyz.ubatv.bungee.rankSystem.RankManager;
 import xyz.ubatv.bungee.utils.TextUtils;
 
 public class Main extends Plugin {
@@ -14,6 +16,7 @@ public class Main extends Plugin {
     public MySQLConnections mySQLConnections;
     public Main_UserData mainUserData;
     public TextUtils textUtils;
+    public RankManager rankManager;
 
     @Override
     public void onEnable() {
@@ -21,11 +24,13 @@ public class Main extends Plugin {
         setInstances();
 
         configYML.loadConfig();
-        mySQLConnections.setCredentials();
-        mySQLConnections.connectMainDatabase();
 
+        registerChannels();
         registerCommands();
         registerEvents();
+
+        mySQLConnections.setCredentials();
+        mySQLConnections.connectMainDatabase();
     }
 
     @Override
@@ -33,10 +38,15 @@ public class Main extends Plugin {
     }
 
     private void registerCommands(){
+        getProxy().getPluginManager().registerCommand(this, new RankCommand());
     }
 
     private void registerEvents(){
         getProxy().getPluginManager().registerListener(this, new JoinQuitEvent());
+    }
+
+    private void registerChannels(){
+        getProxy().registerChannel("ubanetwork:userdata");
     }
 
     private void setInstances(){
@@ -44,6 +54,7 @@ public class Main extends Plugin {
         mySQLConnections = new MySQLConnections();
         mainUserData = new Main_UserData();
         textUtils = new TextUtils();
+        rankManager = new RankManager();
     }
 
     public static Main getInstance() {
