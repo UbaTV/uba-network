@@ -7,7 +7,7 @@ public class TextUtils {
 
     private final static int CENTER_PX = 154;
 
-    public String serverName = "§5Kingdoms";
+    public String serverName = "§5UbaNetwork";
     public String website = "ubatv.xyz";
     public String serverIP = "play.ubatv.xyz";
 

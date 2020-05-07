@@ -9,7 +9,9 @@ import xyz.ubatv.hub.configs.LocationYML;
 import xyz.ubatv.hub.events.InventoryManager;
 import xyz.ubatv.hub.events.JoinQuitEvent;
 import xyz.ubatv.hub.events.MoveEvent;
+import xyz.ubatv.hub.mysql.Main_UserData;
 import xyz.ubatv.hub.mysql.MySQLConnections;
+import xyz.ubatv.hub.userData.UserDataManager;
 import xyz.ubatv.hub.utils.ItemAPI;
 import xyz.ubatv.hub.utils.TextUtils;
 
@@ -20,6 +22,8 @@ public class Main extends JavaPlugin {
     public MySQLConnections mySQLConnections;
     public LocationYML locationYML;
     public ItemAPI itemAPI;
+    public Main_UserData mainUserData;
+    public UserDataManager userDataManager;
 
     @Override
     public void onEnable() {
@@ -61,6 +65,8 @@ public class Main extends JavaPlugin {
         mySQLConnections = new MySQLConnections();
         locationYML = new LocationYML();
         itemAPI = new ItemAPI();
+        mainUserData = new Main_UserData();
+        userDataManager = new UserDataManager();
     }
 
     private void loadConfig(){

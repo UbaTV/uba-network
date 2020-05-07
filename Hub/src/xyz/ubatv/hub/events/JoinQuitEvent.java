@@ -18,6 +18,8 @@ public class JoinQuitEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
+        main.userDataManager.loadUserData(player);
+
         event.setJoinMessage("§7[§a+§7] §7" + player.getName());
         player.setGameMode(GameMode.ADVENTURE);
         giveHotbar(player);
@@ -34,6 +36,8 @@ public class JoinQuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
+        main.userDataManager.saveUserData(player);
+
         event.setQuitMessage("§7[§c-§7] §7" + player.getName());
     }
 
