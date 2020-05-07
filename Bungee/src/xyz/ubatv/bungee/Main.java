@@ -1,6 +1,7 @@
 package xyz.ubatv.bungee;
 
 import net.md_5.bungee.api.plugin.Plugin;
+import xyz.ubatv.bungee.commands.HubCommand;
 import xyz.ubatv.bungee.configs.ConfigYML;
 import xyz.ubatv.bungee.events.JoinQuitEvent;
 import xyz.ubatv.bungee.mysql.Main_UserData;
@@ -39,6 +40,7 @@ public class Main extends Plugin {
 
     private void registerCommands(){
         getProxy().getPluginManager().registerCommand(this, new RankCommand());
+        getProxy().getPluginManager().registerCommand(this, new HubCommand());
     }
 
     private void registerEvents(){
