@@ -50,6 +50,10 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Bukkit.getOnlinePlayers().forEach(target -> {
+            userDataManager.saveUserData(target);
+            target.kickPlayer("§5Server is restarting. Please reconnect.");
+        });
     }
 
     private void registerCommands(){

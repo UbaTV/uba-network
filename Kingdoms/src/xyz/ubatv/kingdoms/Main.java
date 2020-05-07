@@ -26,7 +26,7 @@ import xyz.ubatv.kingdoms.lunchbox.LunchboxGUI;
 import xyz.ubatv.kingdoms.lunchbox.PlaceLunchboxCommand;
 import xyz.ubatv.kingdoms.mysql.BankTable;
 import xyz.ubatv.kingdoms.mysql.KingdomsTable;
-import xyz.ubatv.kingdoms.mysql.MySQLConnection;
+import xyz.ubatv.kingdoms.mysql.MySQLConnections;
 import xyz.ubatv.kingdoms.mysql.UserDataTable;
 import xyz.ubatv.kingdoms.rankSystem.RankCommand;
 import xyz.ubatv.kingdoms.rankSystem.RankManager;
@@ -43,7 +43,7 @@ public class Main extends JavaPlugin {
     public TextUtils textUtils;
     public PriceUtils priceUtils;
     public ItemAPI itemAPI;
-    public MySQLConnection mySQLConnection;
+    public MySQLConnections mySQLConnections;
     public UserDataTable userDataTable;
     public BankTable bankTable;
     public LocationYML locationYML;
@@ -66,10 +66,11 @@ public class Main extends JavaPlugin {
         kingdomsYML.createConfig();
         cooldownYML.createConfig();
 
-        mySQLConnection.runMySQLAsync();
+        mySQLConnections.setCredentials();
+        mySQLConnections.connectMainDatabase();
+        mySQLConnections.connectKingdomsDatabase();
 
         for(String kingdomName : kingdomClaimYML.getConfig().getConfigurationSection("").getKeys(false)) {
-            //System.out.println(kingdomName);
             kingdomClaimYML.loadKingdomClaims(kingdomName);
         }
 
@@ -173,7 +174,7 @@ public class Main extends JavaPlugin {
     private void instanceClasses(){
         textUtils = new TextUtils();
         priceUtils = new PriceUtils();
-        mySQLConnection = new MySQLConnection();
+        mySQLConnections = new MySQLConnections();
         itemAPI = new ItemAPI();
         userDataTable = new UserDataTable();
         bankTable = new BankTable();

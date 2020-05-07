@@ -62,7 +62,7 @@ public class TagSubcommand extends SubCommand {
             }
 
             try{
-                PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
+                PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("" +
                         "SELECT * FROM kingdoms WHERE tag=?");
                 statement.setString(1, tag.toLowerCase());
                 ResultSet rs = statement.executeQuery();

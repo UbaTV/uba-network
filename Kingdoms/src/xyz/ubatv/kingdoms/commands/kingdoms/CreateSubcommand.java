@@ -55,13 +55,13 @@ public class CreateSubcommand extends SubCommand {
             }
 
             try{
-                PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
+                PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("" +
                         "SELECT * FROM kingdoms WHERE name=?");
                 statement.setString(1, kingdomName.toLowerCase());
                 ResultSet rs = statement.executeQuery();
 
                 if(!rs.next()){
-                    PreparedStatement insert = main.mySQLConnection.getConnection()
+                    PreparedStatement insert = main.mySQLConnections.getMainDatabase()
                             .prepareStatement
                                     ("INSERT INTO kingdoms " +
                                             "(name,display_name,owner,vault,members,tag,display_tag,ally,enemy) " +

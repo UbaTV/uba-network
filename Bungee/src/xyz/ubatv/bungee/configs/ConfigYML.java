@@ -16,7 +16,7 @@ public class ConfigYML {
     private Configuration configuration;
 
     public void loadConfig(){
-        file = new File(main.getDataFolder() + "config.yml");
+        file = new File(main.getDataFolder() + "/config.yml");
 
         try{
             if(!file.exists()) file.createNewFile();

@@ -42,7 +42,7 @@ public class UserDataTable {
 
     public boolean userExists(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
@@ -54,12 +54,12 @@ public class UserDataTable {
 
     public void createUser(UUID uuid) {
         try{
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,rank,mute,kills,deaths,kingdom) VALUES (?,?,?,?,?,?)");
+                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO user_data (uuid,rank,mute,kills,deaths,kingdom) VALUES (?,?,?,?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, "WOOD");
                 insert.setBoolean(3, false);
@@ -75,7 +75,7 @@ public class UserDataTable {
 
     public void updateRank(UUID uuid, Rank rank){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET rank=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET rank=? WHERE uuid=?");
             statement.setString(1, rank.toString().toUpperCase());
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -86,7 +86,7 @@ public class UserDataTable {
 
     public Rank getRank(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -99,7 +99,7 @@ public class UserDataTable {
 
     public void updateMute(UUID uuid, boolean muted){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET mute=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET mute=? WHERE uuid=?");
             statement.setBoolean(1, muted);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -110,7 +110,7 @@ public class UserDataTable {
 
     public boolean getMute(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -123,7 +123,7 @@ public class UserDataTable {
 
     public void updateKills(UUID uuid, int kills){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET kills=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET kills=? WHERE uuid=?");
             statement.setInt(1, kills);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -134,7 +134,7 @@ public class UserDataTable {
 
     public int getKills(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -147,7 +147,7 @@ public class UserDataTable {
 
     public void updateDeaths(UUID uuid, int deaths){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET deaths=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET deaths=? WHERE uuid=?");
             statement.setInt(1, deaths);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -158,7 +158,7 @@ public class UserDataTable {
 
     public int getDeaths(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -171,7 +171,7 @@ public class UserDataTable {
 
     public void updateKingdom(UUID uuid, String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("UPDATE user_data SET kingdom=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET kingdom=? WHERE uuid=?");
             statement.setString(1, kingdomName);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -182,7 +182,7 @@ public class UserDataTable {
 
     public String getKingdom(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();

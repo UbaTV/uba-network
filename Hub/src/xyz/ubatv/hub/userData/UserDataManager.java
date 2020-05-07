@@ -25,6 +25,7 @@ public class UserDataManager implements PluginMessageListener {
 
     public void saveUserData(Player player){
         UUID uuid = player.getUniqueId();
+        if(!userData.containsKey(uuid)) return;
         UserData userData = this.userData.get(uuid);
 
         main.mainUserData.updateRank(uuid, userData.getRank());

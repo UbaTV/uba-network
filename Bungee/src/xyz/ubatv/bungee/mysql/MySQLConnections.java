@@ -24,32 +24,24 @@ public class MySQLConnections {
     }
 
     public void connectMainDatabase(){
-        try{
-            if(mainDatabase != null && !mainDatabase.isClosed()){
-                return;
-            }
-            Class.forName("com.mysql.jdbc.Driver");
-            mainDatabase = DriverManager.getConnection("jdbc:mysql://"
-                            + host + ":" + port + "/"
-                            + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false"
-                    , username, password);
-            main.getLogger().info("jdbc:mysql://"
-                    + host + ":" + port + "/"
-                    + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false");
-        }catch (SQLException | ClassNotFoundException e){
-            main.getLogger().severe("MySQL connection failed. Reconecting...");
-            e.printStackTrace();
-            main.getLogger().info("jdbc:mysql://"
-                    + host + ":" + port + "/"
-                    + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false");
-            connectMainDatabase();
-        }
-        /*ProxyServer.getInstance().getScheduler().runAsync(main, new Runnable() {
+        main.getProxy().getScheduler().runAsync(main, new Runnable() {
             @Override
             public void run() {
-
+                try{
+                    if(mainDatabase != null && !mainDatabase.isClosed()){
+                        return;
+                    }
+                    Class.forName("com.mysql.jdbc.Driver");
+                    mainDatabase = DriverManager.getConnection("jdbc:mysql://"
+                                    + host + ":" + port + "/"
+                                    + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false"
+                            , username, password);
+                }catch (SQLException | ClassNotFoundException e){
+                    main.getLogger().severe("MySQL connection failed. Reconecting...");
+                    connectMainDatabase();
+                }
             }
-        });*/
+        });
     }
 
     public Connection getMainDatabase() {

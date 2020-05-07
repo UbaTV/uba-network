@@ -49,7 +49,7 @@ public class InfoSubcommand extends SubCommand {
                 return;
             }else{
                 try{
-                    PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("" +
+                    PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("" +
                             "SELECT * FROM kingdoms WHERE tag=?");
                     statement.setString(1, targetKingdom.toLowerCase());
                     ResultSet rs = statement.executeQuery();
