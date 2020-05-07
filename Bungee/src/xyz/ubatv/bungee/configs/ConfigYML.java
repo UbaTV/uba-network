@@ -1,6 +1,5 @@
 package xyz.ubatv.bungee.configs;
 
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -17,7 +16,7 @@ public class ConfigYML {
     private Configuration configuration;
 
     public void loadConfig(){
-        file = new File(ProxyServer.getInstance().getPluginsFolder() + "config.yml");
+        file = new File(main.getDataFolder() + "config.yml");
 
         try{
             if(!file.exists()) file.createNewFile();
@@ -25,9 +24,8 @@ public class ConfigYML {
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
             configuration.set("host", "localhost");
             configuration.set("port", 3306);
-            configuration.set("database", "ubanetwork-main");
-            configuration.set("username", "andreubita");
-            configuration.set("password", "uba");
+            configuration.set("username", "root");
+            configuration.set("password", "");
             saveConfig();
         }catch (IOException e){
             main.getLogger().severe("Failed to load config.yml");

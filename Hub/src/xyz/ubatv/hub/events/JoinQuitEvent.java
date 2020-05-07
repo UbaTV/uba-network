@@ -30,7 +30,7 @@ public class JoinQuitEvent implements Listener {
         main.textUtils.sendCenteredMessage(player, "§7Discord: §5discord.gg/AJxFu2C");
         player.sendMessage(" ");
 
-        player.teleport(main.locationYML.spawn);
+        if(main.locationYML.spawn != null) player.teleport(main.locationYML.spawn);
     }
 
     @EventHandler

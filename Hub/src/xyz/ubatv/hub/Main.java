@@ -9,6 +9,7 @@ import xyz.ubatv.hub.configs.LocationYML;
 import xyz.ubatv.hub.events.InventoryManager;
 import xyz.ubatv.hub.events.JoinQuitEvent;
 import xyz.ubatv.hub.events.MoveEvent;
+import xyz.ubatv.hub.guis.JoinServerGUI;
 import xyz.ubatv.hub.mysql.Main_UserData;
 import xyz.ubatv.hub.mysql.MySQLConnections;
 import xyz.ubatv.hub.rankSystem.RankManager;
@@ -61,6 +62,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new JoinQuitEvent(), this);
         pluginManager.registerEvents(new MoveEvent(), this);
         pluginManager.registerEvents(new InventoryManager(), this);
+        pluginManager.registerEvents(new JoinServerGUI(), this);
     }
 
     private void registerChannels(){

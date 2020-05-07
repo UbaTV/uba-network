@@ -1,6 +1,7 @@
 name: Hub
 version: 1.0-SNAPSHOT
 main: xyz.ubatv.hub.Main
+api-version: 1.15
 authors:
   - andreubita
 database: true

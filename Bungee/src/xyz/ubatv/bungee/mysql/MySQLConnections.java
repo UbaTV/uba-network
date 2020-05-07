@@ -1,6 +1,5 @@
 package xyz.ubatv.bungee.mysql;
 
-import net.md_5.bungee.api.ProxyServer;
 import xyz.ubatv.bungee.Main;
 
 import java.sql.Connection;
@@ -21,28 +20,36 @@ public class MySQLConnections {
         port = main.configYML.getConfiguration().getInt("port");
         password = main.configYML.getConfiguration().getString("password");
         username = main.configYML.getConfiguration().getString("username");
+        main.getLogger().info(host + " " + port + " " + password + " " + username);
     }
 
     public void connectMainDatabase(){
-        ProxyServer.getInstance().getScheduler().runAsync(main, new Runnable() {
+        try{
+            if(mainDatabase != null && !mainDatabase.isClosed()){
+                return;
+            }
+            Class.forName("com.mysql.jdbc.Driver");
+            mainDatabase = DriverManager.getConnection("jdbc:mysql://"
+                            + host + ":" + port + "/"
+                            + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false"
+                    , username, password);
+            main.getLogger().info("jdbc:mysql://"
+                    + host + ":" + port + "/"
+                    + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false");
+        }catch (SQLException | ClassNotFoundException e){
+            main.getLogger().severe("MySQL connection failed. Reconecting...");
+            e.printStackTrace();
+            main.getLogger().info("jdbc:mysql://"
+                    + host + ":" + port + "/"
+                    + "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false");
+            connectMainDatabase();
+        }
+        /*ProxyServer.getInstance().getScheduler().runAsync(main, new Runnable() {
             @Override
             public void run() {
-                try{
-                    if(mainDatabase != null && !mainDatabase.isClosed()){
-                        return;
-                    }
 
-                    Class.forName("com.mysql.jdbc.Driver");
-                    mainDatabase = DriverManager.getConnection("jdbc:mysql://" +
-                                    host + ":" + port + "/" +
-                                    "ubanetwork-main" + "?autoReconnect=true&useUnicode=yes&useSSL=false",
-                            username, password);
-                }catch (SQLException | ClassNotFoundException e){
-                    main.getLogger().severe("MySQL connection failed. Reconecting...");
-                    connectMainDatabase();
-                }
             }
-        });
+        });*/
     }
 
     public Connection getMainDatabase() {

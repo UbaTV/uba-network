@@ -55,7 +55,7 @@ public class JoinServerGUI implements InventoryHolder, Listener {
         ByteArrayDataOutput output = ByteStreams.newDataOutput();
         output.writeUTF("Connect");
         output.writeUTF(server);
-        player.sendPluginMessage(main, "BungeCord", output.toByteArray());
+        player.sendPluginMessage(main, "BungeeCord", output.toByteArray());
     }
 
     public void openInventory(Player player){

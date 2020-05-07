@@ -10,8 +10,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupArrowEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
+import xyz.ubatv.hub.guis.JoinServerGUI;
 
 public class InventoryManager implements Listener {
+
+    JoinServerGUI serverGUI = new JoinServerGUI();
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event){
@@ -21,7 +24,7 @@ public class InventoryManager implements Listener {
 
         if(action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)){
             if(item != null && item.getType() == Material.COMPASS){
-
+                serverGUI.openInventory(player);
             }
         }
     }
