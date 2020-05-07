@@ -2,13 +2,16 @@ package xyz.ubatv.bungee;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import xyz.ubatv.bungee.configs.ConfigYML;
-import xyz.ubatv.bungee.mysql.MySQLConnection;
+import xyz.ubatv.bungee.events.JoinQuitEvent;
+import xyz.ubatv.bungee.mysql.Main_UserData;
+import xyz.ubatv.bungee.mysql.MySQLConnections;
 
 public class Main extends Plugin {
 
     public static Main instance;
     public ConfigYML configYML;
-    public MySQLConnection mySQLConnection;
+    public MySQLConnections mySQLConnections;
+    public Main_UserData mainUserData;
 
     @Override
     public void onEnable() {
@@ -16,7 +19,8 @@ public class Main extends Plugin {
         setInstances();
 
         configYML.loadConfig();
-        mySQLConnection.runMySQLAsync();
+        mySQLConnections.setCredentials();
+        mySQLConnections.connectMainDatabase();
 
         registerCommands();
         registerEvents();
@@ -30,11 +34,13 @@ public class Main extends Plugin {
     }
 
     private void registerEvents(){
+        getProxy().getPluginManager().registerListener(this, new JoinQuitEvent());
     }
 
     private void setInstances(){
         configYML = new ConfigYML();
-        mySQLConnection = new MySQLConnection();
+        mySQLConnections = new MySQLConnections();
+        mainUserData = new Main_UserData();
     }
 
     public static Main getInstance() {

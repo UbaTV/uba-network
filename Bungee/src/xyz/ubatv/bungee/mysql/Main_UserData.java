@@ -9,13 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class UserDataTable {
+public class Main_UserData {
 
     private Main main = Main.getInstance();
 
     public boolean userExists(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
@@ -28,12 +28,12 @@ public class UserDataTable {
     public void createUser(ProxiedPlayer player) {
         UUID uuid = player.getUniqueId();
         try{
-            PreparedStatement statement = main.mySQLConnection.getConnection().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnection.getConnection().prepareStatement("INSERT INTO user_data (uuid,name,rank) VALUES (?,?,?)");
+                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO user_data (uuid,name,rank) VALUES (?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, player.getName());
                 insert.setString(3, Rank.MEMBER.toString());
