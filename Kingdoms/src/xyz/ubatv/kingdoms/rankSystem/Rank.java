@@ -1,13 +1,10 @@
 package xyz.ubatv.kingdoms.rankSystem;
 
 public enum Rank {
-    WOOD,
-    STONE,
-    IRON,
-    GOLD,
-    DIAMOND,
+    MEMBER,
     VIP,
     MVP,
+    BUILDER,
     ADMIN,
     CEO
 }

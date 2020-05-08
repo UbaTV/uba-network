@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.utils.ScoreboardUtils;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -23,18 +23,18 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        main.userDataTable.createUser(uuid);
-        main.bankTable.createUser(uuid);
+        main.mainUserData.createUser(uuid);
+        main.mainBank.createUser(uuid);
 
-        main.userDataTable.loadUserData(player);
+        main.mainUserData.loadUserData(player);
 
         createScoreboard(player);
 
         event.setJoinMessage("§7[§a+§7] " + player.getName());
 
-        player.setPlayerListName("§7[" + main.rankManager.getRankName(main.userDataTable.online.get(player.getUniqueId()).getRank(), true) + "§7] §7" + player.getName());
+        player.setPlayerListName("§7[" + main.rankManager.getServerRankName(main.mainUserData.online.get(player.getUniqueId()).getRank(), true) + "§7] §7" + player.getName());
 
-        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        UserData userData = main.mainUserData.online.get(player.getUniqueId());
         String userKingdom = userData.getKingdom();
         /*if(!userKingdom.equalsIgnoreCase("none")){
             if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
@@ -64,7 +64,7 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        UserData userData = main.mainUserData.online.get(player.getUniqueId());
         String userKingdom = userData.getKingdom();
         /*if(!userKingdom.equalsIgnoreCase("none")){
             if(main.kingdomUtils.getOnlineMembers(userKingdom) <= 1){
@@ -72,8 +72,8 @@ public class JoinQuitEvent implements Listener {
             }
         }*/
 
-        main.userDataTable.saveUserData(player);
-        main.userDataTable.online.remove(uuid);
+        main.mainUserData.saveUserData(player);
+        main.mainUserData.online.remove(uuid);
 
         event.setQuitMessage("§7[§c-§7] " + player.getName());
         player.setGameMode(GameMode.SURVIVAL);
@@ -85,12 +85,12 @@ public class JoinQuitEvent implements Listener {
     }
 
     public void createScoreboard(Player player){
-        UserData userData = main.userDataTable.online.get(player.getUniqueId());
+        UserData userData = main.mainUserData.online.get(player.getUniqueId());
         ScoreboardUtils scoreboardUtils = ScoreboardUtils.createScoreboard(player);
         scoreboardUtils.setTitle(main.textUtils.serverName + " §6§lBETA");
         scoreboardUtils.setSlot(7, "  ");
         scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + main.textUtils.coinsSymbol);
-        scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getRankName(userData.getRank(), true));
+        scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getServerRankName(userData.getRank(), true));
         scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
         scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
         scoreboardUtils.setSlot(2, " ");
@@ -99,10 +99,10 @@ public class JoinQuitEvent implements Listener {
 
     public void updateScoreboard(Player player){
         if(ScoreboardUtils.hasScoreboard(player)){
-            UserData userData = main.userDataTable.online.get(player.getUniqueId());
+            UserData userData = main.mainUserData.online.get(player.getUniqueId());
             ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
             scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + main.textUtils.coinsSymbol);
-            scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getRankName(userData.getRank(), true));
+            scoreboardUtils.setSlot(5, "§a| §7Rank: " + main.rankManager.getServerRankName(userData.getRank(), true));
             scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
             scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
         }

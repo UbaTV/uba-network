@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.commands.SubCommand;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 public class InviteSubcommand extends SubCommand {
 
@@ -28,7 +28,7 @@ public class InviteSubcommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if(args.length == 2){
-            UserData userData = main.userDataTable.online.get(player.getUniqueId());
+            UserData userData = main.mainUserData.online.get(player.getUniqueId());
             String userKingdom = userData.getKingdom();
             if(userKingdom.equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "You are not in a kingdom.");
@@ -51,7 +51,7 @@ public class InviteSubcommand extends SubCommand {
                 return;
             }
 
-            UserData targetData = main.userDataTable.online.get(target.getUniqueId());
+            UserData targetData = main.mainUserData.online.get(target.getUniqueId());
             String targetKingdom = targetData.getKingdom();
             if(!targetKingdom.equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "§5" + target.getName() + " §7is already in a kingdom.");

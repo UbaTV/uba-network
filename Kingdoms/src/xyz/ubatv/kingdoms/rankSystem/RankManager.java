@@ -10,33 +10,31 @@ public class RankManager {
     public Main main = Main.getInstance();
 
     public boolean hasPermission(Player player, Permissions permission){
+        ServerRank serverRank = getServerRank(player);
         Rank rank = getRank(player);
-        int rankTier = getRankTier(rank);
         switch (permission){
-            // STONE PERMS
             case ENDERCHEST:
-                return rankTier > 1;
-            // IRON PERMS
+                return !rank.equals(Rank.MEMBER)
+                        || !serverRank.equals(ServerRank.WOOD);
             case CLEAR_INVENTORY:
-                return rankTier > 2;
-            // GOLD PERMS
+                return !rank.equals(Rank.MEMBER)
+                        || !(serverRank.equals(ServerRank.WOOD) || serverRank.equals(ServerRank.STONE));
             case PRIVATE_CHEST:
-                return rankTier > 3;
-            // MVP PERMS
+                return !rank.equals(Rank.MEMBER)
+                        || !(serverRank.equals(ServerRank.WOOD) || serverRank.equals(ServerRank.STONE) || serverRank.equals(ServerRank.IRON));
             case KIT_VIP:
-                return rankTier > 5;
-            // MVP PERMS
+                return isStaff(player) || rank.equals(Rank.VIP);
             case KIT_MVP:
-                return rankTier > 6;
-            // ADMIN PERMS
+                return isStaff(player) || rank.equals(Rank.VIP) || rank.equals(Rank.MVP);
             case TELEPORT:
+                return isStaff(player);
             case MUTE:
             case CLEAR_CHAT:
             case CLEAR_INVENTORY_OTHERS:
             case ENDERCHEST_OTHERS:
             case INVSEE:
             case GAMEMODE:
-                return rankTier > 7;
+                return rank.equals(Rank.ADMIN) || rank.equals(Rank.CEO);
             // CEO PERMS
             case PLACE_LUNCHBOX:
             case SET_LOCATION:
@@ -45,40 +43,27 @@ public class RankManager {
             case ECON_MANAGEMENT:
             case HOLOGRAMS:
             case SHOP_NPC:
-                return rankTier > 8;
+                return rank.equals(Rank.CEO);
             default:
                 return true;
         }
     }
 
     public int getMaxHomes(Player player){
-        Rank rank = getRank(player);
-        int rankTier = getRankTier(rank);
-        if(rankTier > 7) return 20;
-        if(rankTier > 3) return 3;
-        if(rankTier > 1) return 2;
+        ServerRank serverRank = getServerRank(player);
+        if(serverRank.equals(ServerRank.DIAMOND)) return 5;
+        if(serverRank.equals(ServerRank.GOLD)) return 4;
+        if(serverRank.equals(ServerRank.IRON)) return 3;
+        if(serverRank.equals(ServerRank.STONE)) return 2;
         return 1;
     }
 
-    public int getRankTier(Rank rank){
-        if(rank.equals(Rank.WOOD)) return 1;
-        if(rank.equals(Rank.STONE)) return 2;
-        if(rank.equals(Rank.IRON)) return 3;
-        if(rank.equals(Rank.GOLD)) return 4;
-        if(rank.equals(Rank.DIAMOND)) return 5;
-        if(rank.equals(Rank.VIP)) return 6;
-        if(rank.equals(Rank.MVP)) return 7;
-        if(rank.equals(Rank.ADMIN)) return 8;
-        if(rank.equals(Rank.CEO)) return 9;
-        return 1;
-    }
-
-    public int rankupPrice(Rank rank){
-        if(rank.equals(Rank.WOOD)) return 0;
-        else if(rank.equals(Rank.STONE)) return 50000;
-        else if(rank.equals(Rank.IRON)) return 500000;
-        else if(rank.equals(Rank.GOLD)) return 1500000;
-        else if(rank.equals(Rank.DIAMOND)) return 5000000;
+    public int rankupPrice(ServerRank rank){
+        if(rank.equals(ServerRank.WOOD)) return 0;
+        else if(rank.equals(ServerRank.STONE)) return 50000;
+        else if(rank.equals(ServerRank.IRON)) return 500000;
+        else if(rank.equals(ServerRank.GOLD)) return 1500000;
+        else if(rank.equals(ServerRank.DIAMOND)) return 5000000;
         return 999999999;
     }
 
@@ -88,10 +73,20 @@ public class RankManager {
                 return color ? "§5§lCEO" : "CEO";
             case ADMIN:
                 return color ? "§4Admin" : "Admin";
+            case BUILDER:
+                return color ? "§2Builder" : "Builder";
             case MVP:
                 return color ? "§bMVP" : "MVP";
             case VIP:
                 return color ? "§aVIP" : "VIP";
+            case MEMBER:
+            default:
+                return color ? "§fMember" : "Member";
+        }
+    }
+
+    public String getServerRankName(ServerRank serverRank, boolean color){
+        switch (serverRank){
             case DIAMOND:
                 return color ? "§bDiamond" : "Diamond";
             case GOLD:
@@ -105,12 +100,12 @@ public class RankManager {
         }
     }
 
-    public Rank getNextRank(Player player){
-        Rank rank = getRank(player);
-        if(rank.equals(Rank.WOOD)) return Rank.STONE;
-        else if(rank.equals(Rank.STONE)) return Rank.IRON;
-        else if(rank.equals(Rank.IRON)) return Rank.GOLD;
-        else if(rank.equals(Rank.GOLD)) return Rank.DIAMOND;
+    public ServerRank getNextRank(Player player){
+        ServerRank rank = getServerRank(player);
+        if(rank.equals(ServerRank.WOOD)) return ServerRank.STONE;
+        else if(rank.equals(ServerRank.STONE)) return ServerRank.IRON;
+        else if(rank.equals(ServerRank.IRON)) return ServerRank.GOLD;
+        else if(rank.equals(ServerRank.GOLD)) return ServerRank.DIAMOND;
         return null;
     }
 
@@ -125,11 +120,11 @@ public class RankManager {
         }
     }
 
-    public Rank getRank(Player player){
-        return main.userDataTable.online.get(player.getUniqueId()).getRank();
+    public ServerRank getServerRank(Player player){
+        return main.mainUserData.online.get(player.getUniqueId()).getServerRank();
     }
 
-    public Rank getRank(UUID uuid){
-        return main.userDataTable.online.get(uuid).getRank();
+    public Rank getRank(Player player){
+        return main.mainUserData.online.get(player.getUniqueId()).getRank();
     }
 }

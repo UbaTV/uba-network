@@ -32,7 +32,7 @@ public class CreateSubcommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if(args.length == 2){
-            if(!main.userDataTable.online.get(player.getUniqueId()).getKingdom().equalsIgnoreCase("none")){
+            if(!main.mainUserData.online.get(player.getUniqueId()).getKingdom().equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "You are already in a kingdom.");
                 return;
             }
@@ -76,7 +76,7 @@ public class CreateSubcommand extends SubCommand {
                     insert.setString(8, "none");
                     insert.setString(9, "none");
                     insert.executeUpdate();
-                    main.userDataTable.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
+                    main.mainUserData.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
                     Bukkit.getServer().getOnlinePlayers().forEach(
                             (online) -> online
                                     .sendMessage(main.textUtils.right + "§5" + player.getName()

@@ -16,7 +16,7 @@ public class BalanceCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(args.length == 0){
-                int coins = main.userDataTable.online.get(player.getUniqueId()).getCoins();
+                int coins = main.mainUserData.online.get(player.getUniqueId()).getCoins();
                 player.sendMessage("§7Coins §8⟿ §5" + coins + " " + main.textUtils.coinsSymbol);
                 return false;
             }
@@ -28,7 +28,7 @@ public class BalanceCommand implements CommandExecutor {
                     return false;
                 }
 
-                int coins = main.userDataTable.online.get(target.getUniqueId()).getCoins();
+                int coins = main.mainUserData.online.get(target.getUniqueId()).getCoins();
                 player.sendMessage("§5" + target.getName() + "§7's coins §8⟿ §5" + coins + main.textUtils.coinsSymbol);
                 return false;
             }

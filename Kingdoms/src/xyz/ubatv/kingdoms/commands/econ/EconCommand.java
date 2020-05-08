@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.rankSystem.Permissions;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 public class EconCommand implements CommandExecutor {
 
@@ -31,7 +31,7 @@ public class EconCommand implements CommandExecutor {
                             player.sendMessage(main.textUtils.error + "Invalid player.");
                             return false;
                         }
-                        main.userDataTable.online.get(target.getUniqueId()).setCoins(0);
+                        main.mainUserData.online.get(target.getUniqueId()).setCoins(0);
 
                         if(target.getName().equalsIgnoreCase(player.getName())){
                             player.sendMessage(main.textUtils.right + "Your balance suffered a reset.");
@@ -52,7 +52,7 @@ public class EconCommand implements CommandExecutor {
                     }
 
                     try{
-                        UserData userData = main.userDataTable.online.get(target.getUniqueId());
+                        UserData userData = main.mainUserData.online.get(target.getUniqueId());
                         int coins = Integer.parseInt(args[2]);
                         int balance = userData.getCoins();
 

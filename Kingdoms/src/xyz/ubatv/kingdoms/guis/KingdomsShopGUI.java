@@ -21,7 +21,7 @@ public class KingdomsShopGUI implements Listener {
     public void openGUI(Player player){
         Inventory inv = Bukkit.createInventory(player, 9*3, "§5Kingdoms §7Shop");
 
-        String userKingdom = main.userDataTable.online.get(player.getUniqueId()).getKingdom();
+        String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
         int kingdomsLevel = main.kingdomsTable.getLevel(userKingdom);
 
         ItemStack fly;
@@ -53,7 +53,7 @@ public class KingdomsShopGUI implements Listener {
 
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
-        String userKingdom = main.userDataTable.online.get(player.getUniqueId()).getKingdom();
+        String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
 
         if(slot == 9){
             if(!main.kingdomsYML.getConfig().getBoolean(userKingdom + ".fly")){

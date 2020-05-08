@@ -24,13 +24,13 @@ import xyz.ubatv.kingdoms.guis.VoteGUI;
 import xyz.ubatv.kingdoms.lunchbox.LunchboxCommand;
 import xyz.ubatv.kingdoms.lunchbox.LunchboxGUI;
 import xyz.ubatv.kingdoms.lunchbox.PlaceLunchboxCommand;
-import xyz.ubatv.kingdoms.mysql.BankTable;
+import xyz.ubatv.kingdoms.mysql.Main_Bank;
 import xyz.ubatv.kingdoms.mysql.KingdomsTable;
 import xyz.ubatv.kingdoms.mysql.MySQLConnections;
-import xyz.ubatv.kingdoms.mysql.UserDataTable;
-import xyz.ubatv.kingdoms.rankSystem.RankCommand;
+import xyz.ubatv.kingdoms.mysql.Main_UserData;
 import xyz.ubatv.kingdoms.rankSystem.RankManager;
 import xyz.ubatv.kingdoms.silkspawner.BreakPlaceSpawner;
+import xyz.ubatv.kingdoms.userData.UserData;
 import xyz.ubatv.kingdoms.utils.*;
 
 import java.util.ArrayList;
@@ -44,8 +44,8 @@ public class Main extends JavaPlugin {
     public PriceUtils priceUtils;
     public ItemAPI itemAPI;
     public MySQLConnections mySQLConnections;
-    public UserDataTable userDataTable;
-    public BankTable bankTable;
+    public Main_UserData mainUserData;
+    public Main_Bank mainBank;
     public LocationYML locationYML;
     public KingdomClaimYML kingdomClaimYML;
     public KingdomsYML kingdomsYML;
@@ -92,7 +92,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getOnlinePlayers().forEach(target -> {
-            userDataTable.saveUserData(target);
+            mainUserData.saveUserData(target);
             target.kickPlayer("§5Server is restarting. Please reconnect.");
         });
 
@@ -119,9 +119,7 @@ public class Main extends JavaPlugin {
         getCommand("kingdoms").setExecutor(new KingdomsManager());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("shop").setExecutor(new ShopCommand());
-        getCommand("mute").setExecutor(new MuteCommand());
         getCommand("enderchest").setExecutor(new EnderchestCommand());
-        getCommand("rank").setExecutor(new RankCommand());
         getCommand("hologram").setExecutor(new HologramCommand());
         getCommand("shopnpc").setExecutor(new ShopNPCCommand());
         getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
@@ -176,8 +174,8 @@ public class Main extends JavaPlugin {
         priceUtils = new PriceUtils();
         mySQLConnections = new MySQLConnections();
         itemAPI = new ItemAPI();
-        userDataTable = new UserDataTable();
-        bankTable = new BankTable();
+        mainUserData = new Main_UserData();
+        mainBank = new Main_Bank();
         locationYML = new LocationYML();
         rankManager = new RankManager();
         shopUtils = new ShopUtils();
@@ -198,7 +196,7 @@ public class Main extends JavaPlugin {
             @Override
             public void run() {
                 for(Player player : Bukkit.getOnlinePlayers()){
-                    userDataTable.saveUserData(player);
+                    mainUserData.saveUserData(player);
                 }
             }
         }.runTaskTimer(this, 20L * 60 * 5,20L * 60 * 20);
@@ -218,7 +216,7 @@ public class Main extends JavaPlugin {
                                         "§aOnline: §5" + online + "§7/§5" + max,
                                 "§7Website: §5" + textUtils.website);
 
-                        UserData userData = userDataTable.online.get(player.getUniqueId());
+                        UserData userData = mainUserData.online.get(player.getUniqueId());
                         ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
 
                         // Below Name
@@ -226,7 +224,7 @@ public class Main extends JavaPlugin {
 
                         // Sidebar Scoreboard
                         scoreboardUtils.setSlot(6, "§6| §7Coins: §5" + userData.getCoins() + textUtils.coinsSymbol);
-                        scoreboardUtils.setSlot(5, "§a| §7Rank: " + rankManager.getRankName(userData.getRank(), true));
+                        scoreboardUtils.setSlot(5, "§a| §7Rank: " + rankManager.getServerRankName(userData.getServerRank(), true));
                         scoreboardUtils.setSlot(4, "§d| §7Kills: §5" + userData.getKills());
                         scoreboardUtils.setSlot(3, "§c| §7Deaths: §5" + userData.getDeaths());
                     }

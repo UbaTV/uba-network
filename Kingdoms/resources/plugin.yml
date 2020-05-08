@@ -37,8 +37,6 @@ commands:
     description: This command was developed by UbaTV.
     aliases:
       - ec
-  rank:
-    description: This command was developed by UbaTV.
   tpa:
     description: This command was developed by UbaTV.
     aliases:
@@ -48,10 +46,6 @@ commands:
     description: This command was developed by UbaTV.
     aliases:
       - holo
-  mute:
-    description: This command was developed by UbaTV.
-    aliases:
-      - silence
   shop:
     description: This command was developed by UbaTV.
     aliases:

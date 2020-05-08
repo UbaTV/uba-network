@@ -6,11 +6,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import xyz.ubatv.kingdoms.Main;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 public class EntityDamage implements Listener {
 
-    // TODO Kingdom members can kill each other with arrows
+    // TODO Kingdom members cant kill each other with arrows
 
     private Main main = Main.getInstance();
 
@@ -23,7 +23,7 @@ public class EntityDamage implements Listener {
         if(event.getEntityType().equals(EntityType.PLAYER)
                 && event.getDamager().getType().equals(EntityType.PLAYER)){
             Player player = (Player) event.getEntity();
-            UserData playerData = main.userDataTable.online.get(player.getUniqueId());
+            UserData playerData = main.mainUserData.online.get(player.getUniqueId());
             String playerKingdom = playerData.getKingdom();
 
             if(playerKingdom.equalsIgnoreCase("none")){
@@ -31,7 +31,7 @@ public class EntityDamage implements Listener {
             }
 
             Player damager = (Player) event.getDamager();
-            UserData damagerData = main.userDataTable.online.get(damager.getUniqueId());
+            UserData damagerData = main.mainUserData.online.get(damager.getUniqueId());
             String damagerKingdom = damagerData.getKingdom();
 
             if(damagerKingdom.equalsIgnoreCase("none")){

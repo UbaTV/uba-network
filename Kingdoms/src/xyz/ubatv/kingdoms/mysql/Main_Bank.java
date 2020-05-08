@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class BankTable {
+public class Main_Bank {
 
     private Main main = Main.getInstance();
 
@@ -30,9 +30,10 @@ public class BankTable {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO bank (uuid,kingdoms) VALUES (?,?)");
+                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO bank (uuid,kingdoms,pve) VALUES (?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setInt(2, 0);
+                insert.setInt(3, 0);
                 insert.executeUpdate();
             }
         }catch (SQLException e){

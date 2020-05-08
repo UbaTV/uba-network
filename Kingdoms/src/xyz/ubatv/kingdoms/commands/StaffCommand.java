@@ -24,21 +24,21 @@ public class StaffCommand implements CommandExecutor {
             StringBuilder admin = new StringBuilder();
 
             for(Player staff : staffOnline){
-                Rank rank = main.rankManager.getRank(staff);
+                Rank rank = main.rankManager.getServerRank(staff);
                 if(rank.equals(Rank.CEO)) ceo.append("§5" + staff.getName() + " ");
                 else if(rank.equals(Rank.ADMIN)) admin.append("§5" + staff.getName() + " ");
             }
 
             if(ceo.length() == 0){
-                player.sendMessage(main.textUtils.error + main.rankManager.getRankName(Rank.CEO, true) + "§7: No staff members online");
+                player.sendMessage(main.textUtils.error + main.rankManager.getServerRankName(Rank.CEO, true) + "§7: No staff members online");
             }else{
-                player.sendMessage(main.textUtils.right + main.rankManager.getRankName(Rank.CEO, true) + "§7: " + ceo.toString());
+                player.sendMessage(main.textUtils.right + main.rankManager.getServerRankName(Rank.CEO, true) + "§7: " + ceo.toString());
             }
 
             if(admin.length() == 0){
-                player.sendMessage(main.textUtils.error + main.rankManager.getRankName(Rank.ADMIN, true) + "§7: No staff members online");
+                player.sendMessage(main.textUtils.error + main.rankManager.getServerRankName(Rank.ADMIN, true) + "§7: No staff members online");
             }else{
-                player.sendMessage(main.textUtils.right + main.rankManager.getRankName(Rank.ADMIN, true) + "§7: " + admin.toString());
+                player.sendMessage(main.textUtils.right + main.rankManager.getServerRankName(Rank.ADMIN, true) + "§7: " + admin.toString());
             }
         }else{
             Bukkit.getServer().getConsoleSender().sendMessage(main.textUtils.playerOnly);

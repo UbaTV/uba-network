@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import xyz.ubatv.kingdoms.Main;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 import java.util.UUID;
 
@@ -18,7 +18,7 @@ public class ChatManager implements Listener {
     public void onChat(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        UserData userData = main.userDataTable.online.get(uuid);
+        UserData userData = main.mainUserData.online.get(uuid);
 
         String msg = event.getMessage();
 
@@ -40,7 +40,7 @@ public class ChatManager implements Listener {
             for(Player target : Bukkit.getOnlinePlayers()){
                 target.sendMessage(
                         kingdomTag +
-                        "§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7"
+                        "§7[" + main.rankManager.getServerRankName(userData.getRank(), true) + "§7] §7"
                         + player.getName() + "§8§l: §r§7" + msg);
             }
         }else{

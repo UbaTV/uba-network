@@ -1,20 +1,21 @@
-package xyz.ubatv.kingdoms.utils;
+package xyz.ubatv.kingdoms.userData;
 
 import xyz.ubatv.kingdoms.rankSystem.Rank;
+import xyz.ubatv.kingdoms.rankSystem.ServerRank;
 
 public class UserData {
 
     private Rank rank;
+    private ServerRank serverRank;
     private int coins;
-    private boolean mute;
     private int kills;
     private int deaths;
     private String kingdom;
 
-    public UserData(Rank rank, int coins, boolean mute, int kills, int deaths, String kingdom){
+    public UserData(Rank rank, ServerRank serverRank, int coins, int kills, int deaths, String kingdom){
         this.setRank(rank);
+        this.setServerRank(serverRank);
         this.setCoins(coins);
-        this.setMute(mute);
         this.setKills(kills);
         this.setDeaths(deaths);
         this.setKingdom(kingdom);
@@ -44,20 +45,20 @@ public class UserData {
         this.deaths = deaths;
     }
 
-    public boolean isMute() {
-        return mute;
-    }
-
-    public void setMute(boolean mute) {
-        this.mute = mute;
-    }
-
     public int getCoins() {
         return coins;
     }
 
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+
+    public ServerRank getServerRank() {
+        return serverRank;
+    }
+
+    public void setServerRank(ServerRank serverRank) {
+        this.serverRank = serverRank;
     }
 
     public Rank getRank() {

@@ -3,7 +3,7 @@ package xyz.ubatv.kingdoms.mysql;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.rankSystem.Rank;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class UserDataTable {
+public class Main_UserData {
 
     private Main main = Main.getInstance();
 
@@ -21,7 +21,7 @@ public class UserDataTable {
         UUID uuid = player.getUniqueId();
         online.put(uuid,
                 new UserData(getRank(uuid),
-                        main.bankTable.getCoins(uuid),
+                        main.mainBank.getCoins(uuid),
                         getMute(uuid),
                         getKills(uuid),
                         getDeaths(uuid),
@@ -33,7 +33,7 @@ public class UserDataTable {
         UserData userData = online.get(uuid);
 
         updateRank(uuid, userData.getRank());
-        main.bankTable.updateCoins(uuid, userData.getCoins());
+        main.mainBank.updateCoins(uuid, userData.getCoins());
         updateMute(uuid, userData.isMute());
         updateKills(uuid, userData.getKills());
         updateDeaths(uuid, userData.getDeaths());
@@ -93,7 +93,7 @@ public class UserDataTable {
             return Rank.valueOf(resultSet.getString("rank").toUpperCase());
         } catch (SQLException e) {
             e.printStackTrace();
-            return Rank.WOOD;
+            return Rank.MEMBER;
         }
     }
 

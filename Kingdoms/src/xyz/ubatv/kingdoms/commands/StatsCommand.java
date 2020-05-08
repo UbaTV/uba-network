@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 public class StatsCommand implements CommandExecutor {
 
@@ -41,14 +41,14 @@ public class StatsCommand implements CommandExecutor {
     }
 
     private void sendPlayerStats(Player player, Player target){
-        UserData targetData = main.userDataTable.online.get(target.getUniqueId());
+        UserData targetData = main.mainUserData.online.get(target.getUniqueId());
         if(player.getName().equalsIgnoreCase(target.getName())){
             main.textUtils.sendCenteredMessage(player, "§7§m========[§5Your §7Stats§7§m]========");
         }else{
             main.textUtils.sendCenteredMessage(player, "§7§m========[§5" + target.getName() + "§7's Stats§7§m]========");
         }
         player.sendMessage(" ");
-        player.sendMessage("§7Rank: §5" + main.rankManager.getRankName(targetData.getRank(), true));
+        player.sendMessage("§7Rank: §5" + main.rankManager.getServerRankName(targetData.getRank(), true));
         player.sendMessage("§7Kingdom: §5" + targetData.getKingdom());
         player.sendMessage("§7Balance: §5" + targetData.getCoins());
         player.sendMessage("§7Kills: " + targetData.getKills());

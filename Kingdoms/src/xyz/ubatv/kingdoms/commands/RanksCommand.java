@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.rankSystem.Rank;
+import xyz.ubatv.kingdoms.rankSystem.ServerRank;
 
 public class RanksCommand implements CommandExecutor {
 
@@ -19,18 +20,18 @@ public class RanksCommand implements CommandExecutor {
             if(args.length == 0){
                 main.textUtils.sendCenteredMessage(player, "§7§m========[§5Ranks§7§m]========");
                 player.sendMessage(" ");
-                main.textUtils.sendCenteredMessage(player, main.rankManager.getRankName(Rank.DIAMOND, true) + " §7- §5" + main.rankManager.rankupPrice(Rank.DIAMOND) + main.textUtils.coinsSymbol);
-                main.textUtils.sendCenteredMessage(player, main.rankManager.getRankName(Rank.GOLD, true) + " §7- §5" + main.rankManager.rankupPrice(Rank.GOLD) + main.textUtils.coinsSymbol);
-                main.textUtils.sendCenteredMessage(player, main.rankManager.getRankName(Rank.IRON, true) + " §7- §5" + main.rankManager.rankupPrice(Rank.IRON) + main.textUtils.coinsSymbol);
-                main.textUtils.sendCenteredMessage(player, main.rankManager.getRankName(Rank.STONE, true) + " §7- §5" + main.rankManager.rankupPrice(Rank.STONE) + main.textUtils.coinsSymbol);
-                main.textUtils.sendCenteredMessage(player, main.rankManager.getRankName(Rank.WOOD, true) + " §7- §5" + main.rankManager.rankupPrice(Rank.WOOD) + main.textUtils.coinsSymbol);
+                main.textUtils.sendCenteredMessage(player, main.rankManager.getServerRankName(ServerRank.DIAMOND, true) + " §7- §5" + main.rankManager.rankupPrice(ServerRank.DIAMOND) + main.textUtils.coinsSymbol);
+                main.textUtils.sendCenteredMessage(player, main.rankManager.getServerRankName(ServerRank.GOLD, true) + " §7- §5" + main.rankManager.rankupPrice(ServerRank.GOLD) + main.textUtils.coinsSymbol);
+                main.textUtils.sendCenteredMessage(player, main.rankManager.getServerRankName(ServerRank.IRON, true) + " §7- §5" + main.rankManager.rankupPrice(ServerRank.IRON) + main.textUtils.coinsSymbol);
+                main.textUtils.sendCenteredMessage(player, main.rankManager.getServerRankName(ServerRank.STONE, true) + " §7- §5" + main.rankManager.rankupPrice(ServerRank.STONE) + main.textUtils.coinsSymbol);
+                main.textUtils.sendCenteredMessage(player, main.rankManager.getServerRankName(ServerRank.WOOD, true) + " §7- §5" + main.rankManager.rankupPrice(ServerRank.WOOD) + main.textUtils.coinsSymbol);
                 player.sendMessage(" ");
                 return false;
             }
 
             if(args.length == 1){
                 try{
-                    Rank rank = Rank.valueOf(args[0].toUpperCase());
+                    ServerRank rank = ServerRank.valueOf(args[0].toUpperCase());
                     sendRankPerks(player, rank);
                 }catch (IllegalArgumentException e){
                     player.sendMessage(main.textUtils.error + "Invalid rank.");
@@ -46,29 +47,29 @@ public class RanksCommand implements CommandExecutor {
         return false;
     }
 
-    public void sendRankPerks(Player player, Rank rank){
-        if(rank.equals(Rank.WOOD)){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
+    public void sendRankPerks(Player player, ServerRank rank){
+        if(rank.equals(ServerRank.WOOD)){
+            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getServerRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
             main.textUtils.sendCenteredMessage(player, "/enderchest");
             player.sendMessage(" ");
-        }else if(rank.equals(Rank.STONE)){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
+        }else if(rank.equals(ServerRank.STONE)){
+            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getServerRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
             main.textUtils.sendCenteredMessage(player, "/clearinventory");
             player.sendMessage(" ");
-        }else if(rank.equals(Rank.IRON)){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
+        }else if(rank.equals(ServerRank.IRON)){
+            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getServerRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
             main.textUtils.sendCenteredMessage(player, "/privatechest");
             player.sendMessage(" ");
-        }else if(rank.equals(Rank.GOLD)){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
+        }else if(rank.equals(ServerRank.GOLD)){
+            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getServerRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
             main.textUtils.sendCenteredMessage(player, "§4Currently none");
             player.sendMessage(" ");
-        }else if(rank.equals(Rank.DIAMOND)){
-            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getRankName(rank, true) + "§7's Perks§7§m]========");
+        }else if(rank.equals(ServerRank.DIAMOND)){
+            main.textUtils.sendCenteredMessage(player, "§7§m========[" + main.rankManager.getServerRankName(rank, true) + "§7's Perks§7§m]========");
             player.sendMessage(" ");
             main.textUtils.sendCenteredMessage(player, "§4Currently none");
             player.sendMessage(" ");

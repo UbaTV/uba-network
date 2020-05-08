@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.rankSystem.Rank;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 public class RankupCommand implements CommandExecutor {
 
@@ -18,7 +18,7 @@ public class RankupCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(args.length == 0){
-                UserData userData = main.userDataTable.online.get(player.getUniqueId());
+                UserData userData = main.mainUserData.online.get(player.getUniqueId());
                 Rank nextRank = main.rankManager.getNextRank(player);
                 if(nextRank == null){
                     player.sendMessage(main.textUtils.warning + "You are on the highest rank.");
@@ -34,7 +34,7 @@ public class RankupCommand implements CommandExecutor {
 
                 userData.setRank(nextRank);
                 userData.setCoins(balance - rankupPrice);
-                Bukkit.getServer().broadcastMessage(main.textUtils.right + "§5" + player.getName() + " §7just ranked up to " + main.rankManager.getRankName(nextRank, true));
+                Bukkit.getServer().broadcastMessage(main.textUtils.right + "§5" + player.getName() + " §7just ranked up to " + main.rankManager.getServerRankName(nextRank, true));
                 return false;
             }
 

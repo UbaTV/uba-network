@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import xyz.ubatv.kingdoms.Main;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 import java.util.UUID;
 
@@ -30,9 +30,9 @@ public class KillRewards implements Listener {
 
     public void giveReward(Player player, int coins){
         UUID uuid = player.getUniqueId();
-        UserData userData = main.userDataTable.online.get(uuid);
+        UserData userData = main.mainUserData.online.get(uuid);
         int balance = userData.getCoins();
-        main.userDataTable.online.get(uuid).setCoins(balance + coins);
+        main.mainUserData.online.get(uuid).setCoins(balance + coins);
         player.sendMessage("§6+ " + coins + main.textUtils.coinsSymbol);
     }
 }

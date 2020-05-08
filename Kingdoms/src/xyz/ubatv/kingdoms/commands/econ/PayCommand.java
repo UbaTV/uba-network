@@ -24,13 +24,13 @@ public class PayCommand implements CommandExecutor {
 
                 try{
                     int coins = Integer.parseInt(args[1]);
-                    int balance = main.userDataTable.online.get(player.getUniqueId()).getCoins();
+                    int balance = main.mainUserData.online.get(player.getUniqueId()).getCoins();
                     if(balance < coins){
                         player.sendMessage(main.textUtils.warning + "You don't have enough money.");
                     }else{
-                        int targetCoins = main.userDataTable.online.get(target.getUniqueId()).getCoins();
-                        main.userDataTable.online.get(target.getUniqueId()).setCoins(targetCoins + coins);
-                        main.userDataTable.online.get(player.getUniqueId()).setCoins(balance - coins);
+                        int targetCoins = main.mainUserData.online.get(target.getUniqueId()).getCoins();
+                        main.mainUserData.online.get(target.getUniqueId()).setCoins(targetCoins + coins);
+                        main.mainUserData.online.get(player.getUniqueId()).setCoins(balance - coins);
                         player.sendMessage("§7You just sent §5" + coins + main.textUtils.coinsSymbol + " §7to §5" + target.getName());
                         target.sendMessage("§7You just received §5" + coins + main.textUtils.coinsSymbol+ " §7from §5" + player.getName());
                     }

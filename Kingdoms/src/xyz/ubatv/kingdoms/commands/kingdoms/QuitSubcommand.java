@@ -4,7 +4,7 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.commands.SubCommand;
-import xyz.ubatv.kingdoms.utils.UserData;
+import xyz.ubatv.kingdoms.userData.UserData;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class QuitSubcommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if(args.length == 1){
-            UserData userData = main.userDataTable.online.get(player.getUniqueId());
+            UserData userData = main.mainUserData.online.get(player.getUniqueId());
             String userKingdom = userData.getKingdom();
             if(userKingdom.equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "You are not in a kingdom.");

@@ -32,7 +32,7 @@ public class MoveEvent implements Listener {
                 return;
             }
 
-            String userKingdom = main.userDataTable.online.get(player.getUniqueId()).getKingdom();
+            String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
             if(!userKingdom.equalsIgnoreCase("none")){
                 if(chunkClaimNew.equalsIgnoreCase(userKingdom)){
                     if(main.kingdomsYML.getConfig().getBoolean(userKingdom + ".fly")){
