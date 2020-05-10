@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class PayCommand implements CommandExecutor {
 
@@ -24,13 +25,13 @@ public class PayCommand implements CommandExecutor {
 
                 try{
                     int coins = Integer.parseInt(args[1]);
-                    int balance = main.mainUserData.online.get(player.getUniqueId()).getCoins();
+                    int balance = UserDataManager.usersData.get(player.getUniqueId()).getCoins();
                     if(balance < coins){
                         player.sendMessage(main.textUtils.warning + "You don't have enough money.");
                     }else{
-                        int targetCoins = main.mainUserData.online.get(target.getUniqueId()).getCoins();
-                        main.mainUserData.online.get(target.getUniqueId()).setCoins(targetCoins + coins);
-                        main.mainUserData.online.get(player.getUniqueId()).setCoins(balance - coins);
+                        int targetCoins = UserDataManager.usersData.get(target.getUniqueId()).getCoins();
+                        UserDataManager.usersData.get(target.getUniqueId()).setCoins(targetCoins + coins);
+                        UserDataManager.usersData.get(player.getUniqueId()).setCoins(balance - coins);
                         player.sendMessage("§7You just sent §5" + coins + main.textUtils.coinsSymbol + " §7to §5" + target.getName());
                         target.sendMessage("§7You just received §5" + coins + main.textUtils.coinsSymbol+ " §7from §5" + player.getName());
                     }

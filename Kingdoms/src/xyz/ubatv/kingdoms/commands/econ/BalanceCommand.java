@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class BalanceCommand implements CommandExecutor {
 
@@ -16,7 +17,7 @@ public class BalanceCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(args.length == 0){
-                int coins = main.mainUserData.online.get(player.getUniqueId()).getCoins();
+                int coins = UserDataManager.usersData.get(player.getUniqueId()).getCoins();
                 player.sendMessage("§7Coins §8⟿ §5" + coins + " " + main.textUtils.coinsSymbol);
                 return false;
             }
@@ -28,7 +29,7 @@ public class BalanceCommand implements CommandExecutor {
                     return false;
                 }
 
-                int coins = main.mainUserData.online.get(target.getUniqueId()).getCoins();
+                int coins = UserDataManager.usersData.get(target.getUniqueId()).getCoins();
                 player.sendMessage("§5" + target.getName() + "§7's coins §8⟿ §5" + coins + main.textUtils.coinsSymbol);
                 return false;
             }

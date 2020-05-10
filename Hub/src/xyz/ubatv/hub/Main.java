@@ -1,6 +1,7 @@
 package xyz.ubatv.hub;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.ubatv.hub.commands.SpawnCommand;
@@ -44,6 +45,10 @@ public class Main extends JavaPlugin {
         // Connect to databases
         mySQLConnections.setCredentials();
         mySQLConnections.connectMainDatabase();
+
+        for(Player player : Bukkit.getServer().getOnlinePlayers()){
+            userDataManager.loadUserData(player);
+        }
 
         locationYML.setupSpawn();
     }

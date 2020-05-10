@@ -146,16 +146,6 @@ commands:
       - privatev
       - vault
       - chest
-  staff:
-    description: This command was developed by UbaTV.
-    aliases:
-      - onlinestaff
-      - onlineadmin
-      - onadmin
-      - onstaff
-      - stafflist
-      - staffl
-      - staffon
   links:
     description: This command was developed by UbaTV.
     aliases:

@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class MoveEvent implements Listener {
 
@@ -32,7 +33,7 @@ public class MoveEvent implements Listener {
                 return;
             }
 
-            String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
+            String userKingdom = UserDataManager.usersData.get(player.getUniqueId()).getKingdom();
             if(!userKingdom.equalsIgnoreCase("none")){
                 if(chunkClaimNew.equalsIgnoreCase(userKingdom)){
                     if(main.kingdomsYML.getConfig().getBoolean(userKingdom + ".fly")){

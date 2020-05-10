@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.commands.SubCommand;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +33,7 @@ public class CreateSubcommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if(args.length == 2){
-            if(!main.mainUserData.online.get(player.getUniqueId()).getKingdom().equalsIgnoreCase("none")){
+            if(!UserDataManager.usersData.get(player.getUniqueId()).getKingdom().equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "You are already in a kingdom.");
                 return;
             }
@@ -61,10 +62,10 @@ public class CreateSubcommand extends SubCommand {
                 ResultSet rs = statement.executeQuery();
 
                 if(!rs.next()){
-                    PreparedStatement insert = main.mySQLConnections.getMainDatabase()
+                    PreparedStatement insert = main.mySQLConnections.getKingdomsDatabase()
                             .prepareStatement
                                     ("INSERT INTO kingdoms " +
-                                            "(name,display_name,owner,vault,members,tag,display_tag,ally,enemy) " +
+                                            "(name,display_name,king,vault,members,tag,display_tag,ally,enemy) " +
                                             "VALUES (?,?,?,?,?,?,?,?,?)");
                     insert.setString(1, kingdomName.toLowerCase());
                     insert.setString(2, kingdomName);
@@ -76,7 +77,7 @@ public class CreateSubcommand extends SubCommand {
                     insert.setString(8, "none");
                     insert.setString(9, "none");
                     insert.executeUpdate();
-                    main.mainUserData.online.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
+                    UserDataManager.usersData.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
                     Bukkit.getServer().getOnlinePlayers().forEach(
                             (online) -> online
                                     .sendMessage(main.textUtils.right + "§5" + player.getName()

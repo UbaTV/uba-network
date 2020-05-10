@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.configs.CooldownYML;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class DeathEvent implements Listener {
 
@@ -16,12 +17,12 @@ public class DeathEvent implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
         Player death = event.getEntity();
-        UserData deathData = main.mainUserData.online.get(death.getUniqueId());
+        UserData deathData = UserDataManager.usersData.get(death.getUniqueId());
         deathData.setDeaths(deathData.getDeaths() + 1);
 
         if(death.getKiller() instanceof Player){
             Player killer = death.getKiller();
-            UserData killerData = main.mainUserData.online.get(killer.getUniqueId());
+            UserData killerData = UserDataManager.usersData.get(killer.getUniqueId());
             killerData.setKills(killerData.getKills() + 1);
         }
 

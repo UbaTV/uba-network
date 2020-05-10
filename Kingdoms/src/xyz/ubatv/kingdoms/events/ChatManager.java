@@ -6,7 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.rankSystem.Rank;
+import xyz.ubatv.kingdoms.rankSystem.ServerRank;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 import java.util.UUID;
 
@@ -18,33 +21,34 @@ public class ChatManager implements Listener {
     public void onChat(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        UserData userData = main.mainUserData.online.get(uuid);
+        UserData userData = UserDataManager.usersData.get(uuid);
 
         String msg = event.getMessage();
 
         event.setCancelled(true);
 
-        if(!userData.isMute()){
-            String userKingdom = userData.getKingdom();
-            String kingdomTag;
-            if(!userKingdom.equalsIgnoreCase("none")){
-                String tag = main.kingdomsTable.getTag(userKingdom);
-                if(!tag.equalsIgnoreCase("none")){
-                    kingdomTag = "§7[§5" + main.kingdomsTable.getDisplayTag(userKingdom) + "§7] ";
-                }else{
-                    kingdomTag = "";
-                }
-            }else{
-                kingdomTag = "";
+        String userKingdom = userData.getKingdom();
+        String kingdomTag = "";
+        if(!userKingdom.equalsIgnoreCase("none")){
+            String tag = main.kingdomsTable.getTag(userKingdom);
+            if(!tag.equalsIgnoreCase("none")){
+                kingdomTag = "§7[§5" + main.kingdomsTable.getDisplayTag(userKingdom) + "§7] ";
             }
-            for(Player target : Bukkit.getOnlinePlayers()){
+        }
+
+        Rank rank = main.rankManager.getRank(player);
+        ServerRank serverRank = main.rankManager.getServerRank(player);
+        String rankName = main.rankManager.getRankName(rank, true);
+        String serverRankName = main.rankManager.getServerRankName(serverRank, true);
+        for(Player target : Bukkit.getOnlinePlayers()){
+            if(rank.equals(Rank.MEMBER)){
                 target.sendMessage(
-                        kingdomTag +
-                        "§7[" + main.rankManager.getServerRankName(userData.getRank(), true) + "§7] §7"
-                        + player.getName() + "§8§l: §r§7" + msg);
+                        kingdomTag + "§7[" + serverRankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
+
+            }else{
+                target.sendMessage(
+                        kingdomTag + "§7[" + serverRankName + "§7] §7[" + rankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
             }
-        }else{
-            player.sendMessage(main.textUtils.error + "You are muted.");
         }
     }
 }

@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.commands.SubCommand;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class InviteSubcommand extends SubCommand {
 
@@ -28,7 +29,7 @@ public class InviteSubcommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if(args.length == 2){
-            UserData userData = main.mainUserData.online.get(player.getUniqueId());
+            UserData userData = UserDataManager.usersData.get(player.getUniqueId());
             String userKingdom = userData.getKingdom();
             if(userKingdom.equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "You are not in a kingdom.");
@@ -40,7 +41,7 @@ public class InviteSubcommand extends SubCommand {
                 return;
             }
 
-            if(!main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
+            if(!main.kingdomsTable.getKing(userKingdom).equalsIgnoreCase(player.getName())){
                 player.sendMessage(main.textUtils.error + "You must be king to invite players.");
                 return;
             }
@@ -51,7 +52,7 @@ public class InviteSubcommand extends SubCommand {
                 return;
             }
 
-            UserData targetData = main.mainUserData.online.get(target.getUniqueId());
+            UserData targetData = UserDataManager.usersData.get(target.getUniqueId());
             String targetKingdom = targetData.getKingdom();
             if(!targetKingdom.equalsIgnoreCase("none")){
                 player.sendMessage(main.textUtils.error + "§5" + target.getName() + " §7is already in a kingdom.");

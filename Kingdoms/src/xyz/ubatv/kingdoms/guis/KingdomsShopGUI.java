@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class KingdomsShopGUI implements Listener {
 
@@ -21,7 +22,7 @@ public class KingdomsShopGUI implements Listener {
     public void openGUI(Player player){
         Inventory inv = Bukkit.createInventory(player, 9*3, "§5Kingdoms §7Shop");
 
-        String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
+        String userKingdom = UserDataManager.usersData.get(player.getUniqueId()).getKingdom();
         int kingdomsLevel = main.kingdomsTable.getLevel(userKingdom);
 
         ItemStack fly;
@@ -53,11 +54,11 @@ public class KingdomsShopGUI implements Listener {
 
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
-        String userKingdom = main.mainUserData.online.get(player.getUniqueId()).getKingdom();
+        String userKingdom = UserDataManager.usersData.get(player.getUniqueId()).getKingdom();
 
         if(slot == 9){
             if(!main.kingdomsYML.getConfig().getBoolean(userKingdom + ".fly")){
-                String king = main.kingdomsTable.getOwner(userKingdom);
+                String king = main.kingdomsTable.getKing(userKingdom);
                 int kingdomLevel = main.kingdomsTable.getLevel(userKingdom);
                 if(!king.equalsIgnoreCase(player.getName())){
                     player.sendMessage(main.textUtils.error + "You must be user kingdom to use the shop.");

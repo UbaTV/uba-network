@@ -7,13 +7,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class ShopUtils {
 
     private Main main = Main.getInstance();
 
     public void buyPotion(Player player, PotionType potionType){
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         int balance = userData.getCoins();
         int price = main.priceUtils.getPotionBuyPrice(potionType);
         if(balance >= price){
@@ -25,7 +26,7 @@ public class ShopUtils {
     }
 
     public void buyItem(Player player, Material mat){
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         int balance = userData.getCoins();
         int price = main.priceUtils.getBuyPrice(mat);
         if(balance >= price){
@@ -37,7 +38,7 @@ public class ShopUtils {
     }
 
     public void sellItem(Player player, Material mat){
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         int balance = userData.getCoins();
         int price = main.priceUtils.getSellPrice(mat);
         Inventory inv = player.getInventory();

@@ -13,7 +13,7 @@ public class KingdomsTable {
 
     public boolean kingdomExists(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
@@ -26,7 +26,7 @@ public class KingdomsTable {
     public void updateVault(String kingdomName, int coins){
         if(coins < 0) coins = 0;
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET vault=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET vault=? WHERE name=?");
             statement.setInt(1, coins);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -37,7 +37,7 @@ public class KingdomsTable {
 
     public int getCoins(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -48,9 +48,9 @@ public class KingdomsTable {
         }
     }
 
-    public void updateOwner(String kingdomName, Player owner){
+    public void updateKing(String kingdomName, Player owner){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET owner=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET king=? WHERE name=?");
             statement.setString(1, owner.getName());
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -59,13 +59,13 @@ public class KingdomsTable {
         }
     }
 
-    public String getOwner(String kingdomName){
+    public String getKing(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            return resultSet.getString("owner");
+            return resultSet.getString("king");
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -74,7 +74,7 @@ public class KingdomsTable {
 
     public void updateMembers(String kingdomName, String members){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET members=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET members=? WHERE name=?");
             statement.setString(1, members);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -85,7 +85,7 @@ public class KingdomsTable {
 
     public String getMembers(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -98,7 +98,7 @@ public class KingdomsTable {
 
     public void updateDisplayName(String kingdomName, String displayName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET display_name=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET display_name=? WHERE name=?");
             statement.setString(1, displayName);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -109,7 +109,7 @@ public class KingdomsTable {
 
     public String getDisplayName(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -122,7 +122,7 @@ public class KingdomsTable {
 
     public String getDisplayNameByTag(String tag){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE tag=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE tag=?");
             statement.setString(1, tag);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -135,7 +135,7 @@ public class KingdomsTable {
 
     public void deleteKingdom(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("DELETE FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("DELETE FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName.toLowerCase());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -145,7 +145,7 @@ public class KingdomsTable {
 
     public void updateTag(String kingdomName, String tag){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET tag=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET tag=? WHERE name=?");
             statement.setString(1, tag);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -156,7 +156,7 @@ public class KingdomsTable {
 
     public String getTag(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -169,7 +169,7 @@ public class KingdomsTable {
 
     public void updateDisplayTag(String kingdomName, String displayTag){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET display_tag=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET display_tag=? WHERE name=?");
             statement.setString(1, displayTag);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -180,7 +180,7 @@ public class KingdomsTable {
 
     public String getDisplayTag(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -193,7 +193,7 @@ public class KingdomsTable {
 
     public void updateAllies(String kingdomName, String allies){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET ally=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET ally=? WHERE name=?");
             statement.setString(1, allies);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -204,7 +204,7 @@ public class KingdomsTable {
 
     public String getAllies(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -217,7 +217,7 @@ public class KingdomsTable {
 
     public void updateEnemies(String kingdomName, String enemies){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET enemy=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET enemy=? WHERE name=?");
             statement.setString(1, enemies);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -228,7 +228,7 @@ public class KingdomsTable {
 
     public String getEnemies(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -242,7 +242,7 @@ public class KingdomsTable {
     public void updateLevel(String kingdomName, int level){
         if(level < 1) level = 1;
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE kingdoms SET level=? WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE kingdoms SET level=? WHERE name=?");
             statement.setInt(1, level);
             statement.setString(2, kingdomName.toLowerCase());
             statement.executeUpdate();
@@ -253,7 +253,7 @@ public class KingdomsTable {
 
     public int getLevel(String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("SELECT * FROM kingdoms WHERE name=?");
             statement.setString(1, kingdomName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();

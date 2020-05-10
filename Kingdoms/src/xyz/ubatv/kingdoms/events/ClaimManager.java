@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class ClaimManager implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         String playerKingdom = userData.getKingdom();
         Chunk chunk = event.getBlock().getChunk();
         String chunkClaim = main.kingdomUtils.getChunkClaim(chunk);
@@ -34,7 +35,7 @@ public class ClaimManager implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlace(BlockPlaceEvent event){
         Player player = event.getPlayer();
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         String playerKingdom = userData.getKingdom();
         Chunk chunk = event.getBlock().getChunk();
         String chunkClaim = main.kingdomUtils.getChunkClaim(chunk);
@@ -46,7 +47,7 @@ public class ClaimManager implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event){
         Player player = event.getPlayer();
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
 
         String playerKingdom = userData.getKingdom();
         if(event.getAction().equals(Action.LEFT_CLICK_AIR)

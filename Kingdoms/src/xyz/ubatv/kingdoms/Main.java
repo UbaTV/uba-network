@@ -24,13 +24,11 @@ import xyz.ubatv.kingdoms.guis.VoteGUI;
 import xyz.ubatv.kingdoms.lunchbox.LunchboxCommand;
 import xyz.ubatv.kingdoms.lunchbox.LunchboxGUI;
 import xyz.ubatv.kingdoms.lunchbox.PlaceLunchboxCommand;
-import xyz.ubatv.kingdoms.mysql.Main_Bank;
-import xyz.ubatv.kingdoms.mysql.KingdomsTable;
-import xyz.ubatv.kingdoms.mysql.MySQLConnections;
-import xyz.ubatv.kingdoms.mysql.Main_UserData;
+import xyz.ubatv.kingdoms.mysql.*;
 import xyz.ubatv.kingdoms.rankSystem.RankManager;
 import xyz.ubatv.kingdoms.silkspawner.BreakPlaceSpawner;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 import xyz.ubatv.kingdoms.utils.*;
 
 import java.util.ArrayList;
@@ -45,6 +43,7 @@ public class Main extends JavaPlugin {
     public ItemAPI itemAPI;
     public MySQLConnections mySQLConnections;
     public Main_UserData mainUserData;
+    public Kingdoms_UserData kingdomsUserData;
     public Main_Bank mainBank;
     public LocationYML locationYML;
     public KingdomClaimYML kingdomClaimYML;
@@ -54,6 +53,7 @@ public class Main extends JavaPlugin {
     public ShopUtils shopUtils;
     public KingdomsTable kingdomsTable;
     public KingdomUtils kingdomUtils;
+    public UserDataManager userDataManager;
 
     @Override
     public void onEnable() {
@@ -92,7 +92,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getOnlinePlayers().forEach(target -> {
-            mainUserData.saveUserData(target);
+            userDataManager.saveUserData(target);
             target.kickPlayer("§5Server is restarting. Please reconnect.");
         });
 
@@ -108,7 +108,6 @@ public class Main extends JavaPlugin {
         getCommand("test").setExecutor(new TestCommand());
         getCommand("tpa").setExecutor(new TpaCommand());
         getCommand("vote").setExecutor(new VoteCommand());
-        getCommand("staff").setExecutor(new StaffCommand());
         getCommand("privatechest").setExecutor(new PrivateChestCommand());
         getCommand("ranks").setExecutor(new RanksCommand());
         getCommand("setlocation").setExecutor(new SetLocationCommand());
@@ -184,6 +183,8 @@ public class Main extends JavaPlugin {
         kingdomClaimYML = new KingdomClaimYML();
         kingdomsYML = new KingdomsYML();
         cooldownYML = new CooldownYML();
+        userDataManager = new UserDataManager();
+        kingdomsUserData = new Kingdoms_UserData();
     }
 
     private void loadConfig(){
@@ -196,7 +197,7 @@ public class Main extends JavaPlugin {
             @Override
             public void run() {
                 for(Player player : Bukkit.getOnlinePlayers()){
-                    mainUserData.saveUserData(player);
+                    userDataManager.saveUserData(player);
                 }
             }
         }.runTaskTimer(this, 20L * 60 * 5,20L * 60 * 20);
@@ -216,7 +217,7 @@ public class Main extends JavaPlugin {
                                         "§aOnline: §5" + online + "§7/§5" + max,
                                 "§7Website: §5" + textUtils.website);
 
-                        UserData userData = mainUserData.online.get(player.getUniqueId());
+                        UserData userData = userDataManager.usersData.get(player.getUniqueId());
                         ScoreboardUtils scoreboardUtils = ScoreboardUtils.getScoreboard(player);
 
                         // Below Name

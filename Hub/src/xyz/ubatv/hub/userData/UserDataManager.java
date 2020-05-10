@@ -15,7 +15,7 @@ public class UserDataManager implements PluginMessageListener {
 
     private Main main = Main.getInstance();
 
-    public HashMap<UUID, UserData> userData = new HashMap<>();
+    public static HashMap<UUID, UserData> userData = new HashMap<>();
 
     public void loadUserData(Player player){
         UUID uuid = player.getUniqueId();
@@ -39,7 +39,8 @@ public class UserDataManager implements PluginMessageListener {
         String subChannel = input.readUTF();
         if(subChannel.equalsIgnoreCase("RANK_CHANGE")){
             Player target = Bukkit.getServer().getPlayer(input.readUTF());
-            Rank rank = Rank.valueOf(input.readUTF().toUpperCase());
+            String rankName = input.readUTF().toUpperCase();
+            Rank rank = Rank.valueOf(rankName);
             UserData userData = this.userData.get(target.getUniqueId());
             userData.setRank(rank);
             target.setPlayerListName("§7[" + main.rankManager.getRankName(rank, true) + "§7] §7" + target.getName());

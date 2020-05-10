@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
 import xyz.ubatv.kingdoms.commands.SubCommand;
 import xyz.ubatv.kingdoms.userData.UserData;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 public class VaultSubcommand extends SubCommand {
 
@@ -26,7 +27,7 @@ public class VaultSubcommand extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        UserData userData = main.mainUserData.online.get(player.getUniqueId());
+        UserData userData = UserDataManager.usersData.get(player.getUniqueId());
         String userKingdom = userData.getKingdom();
         if(userKingdom.equalsIgnoreCase("none")){
             player.sendMessage(main.textUtils.error + "You are not in a kingdom.");
@@ -62,7 +63,7 @@ public class VaultSubcommand extends SubCommand {
 
                 if(args[1].equalsIgnoreCase("withdraw")
                         || args[1].equalsIgnoreCase("w")){
-                    if(main.kingdomsTable.getOwner(userKingdom).equalsIgnoreCase(player.getName())){
+                    if(main.kingdomsTable.getKing(userKingdom).equalsIgnoreCase(player.getName())){
                         int balance = main.kingdomsTable.getCoins(userKingdom);
                         if(balance < coins){
                             player.sendMessage(main.textUtils.error + "Not enough coins in kingdom.");
