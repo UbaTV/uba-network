@@ -7,9 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.ubatv.hub.commands.SpawnCommand;
 import xyz.ubatv.hub.commands.staff.SetLocationCommand;
 import xyz.ubatv.hub.configs.LocationYML;
-import xyz.ubatv.hub.events.InventoryManager;
-import xyz.ubatv.hub.events.JoinQuitEvent;
-import xyz.ubatv.hub.events.MoveEvent;
+import xyz.ubatv.hub.events.*;
 import xyz.ubatv.hub.guis.JoinServerGUI;
 import xyz.ubatv.hub.mysql.Main_UserData;
 import xyz.ubatv.hub.mysql.MySQLConnections;
@@ -72,6 +70,8 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new MoveEvent(), this);
         pluginManager.registerEvents(new InventoryManager(), this);
         pluginManager.registerEvents(new JoinServerGUI(), this);
+        pluginManager.registerEvents(new ChatManager(), this);
+        pluginManager.registerEvents(new DamageEvent(), this);
     }
 
     private void registerChannels(){

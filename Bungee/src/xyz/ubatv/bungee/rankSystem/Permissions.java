@@ -1,5 +1,6 @@
 package xyz.ubatv.bungee.rankSystem;
 
 public enum Permissions {
-    RANK_CHANGE
+    RANK_CHANGE,
+    GAMEMODE
 }

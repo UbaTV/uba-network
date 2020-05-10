@@ -30,6 +30,8 @@ public class RankManager {
         switch (permission){
             case RANK_CHANGE:
                 return rankTier >= getRankTier(Rank.CEO);
+            case GAMEMODE:
+                return rankTier >= getRankTier(Rank.BUILDER);
             default:
                 return false;
         }

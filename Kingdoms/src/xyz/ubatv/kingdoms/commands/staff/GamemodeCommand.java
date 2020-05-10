@@ -47,7 +47,7 @@ public class GamemodeCommand implements CommandExecutor {
                     return false;
                 }
 
-                String gamemodeName = "";
+                String gamemodeName;
                 if(gamemode.equals(GameMode.ADVENTURE)) gamemodeName = "Adventure";
                 else if(gamemode.equals(GameMode.CREATIVE)) gamemodeName = "Creative";
                 else if(gamemode.equals(GameMode.SPECTATOR)) gamemodeName = "Spectator";
