@@ -33,7 +33,7 @@ public class BankCommand extends Command {
             if(player.getName().equals(target.getName())){
                 player.sendMessage(new TextComponent("§5Your §7Account"));
             }else{
-                player.sendMessage(new TextComponent("§5andreubita§7's Account"));
+                player.sendMessage(new TextComponent("§5" + target.getName() + "§7's Account"));
             }
             player.sendMessage(new TextComponent("§7Kingdoms: §5" + kingdomsCoins + main.textUtils.coinsSymbol));
             player.sendMessage(new TextComponent("§7PvE: §5" + pveCoins + main.textUtils.coinsSymbol));
