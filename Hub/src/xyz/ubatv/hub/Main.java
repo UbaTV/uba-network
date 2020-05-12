@@ -18,6 +18,8 @@ import xyz.ubatv.hub.utils.TextUtils;
 
 public class Main extends JavaPlugin {
 
+    //teste
+
     public static Main instance;
     public TextUtils textUtils;
     public MySQLConnections mySQLConnections;
