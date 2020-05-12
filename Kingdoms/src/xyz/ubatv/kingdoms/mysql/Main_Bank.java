@@ -11,36 +11,6 @@ public class Main_Bank {
 
     private Main main = Main.getInstance();
 
-    public boolean userExists(UUID uuid){
-        try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM bank WHERE uuid=?");
-            statement.setString(1, uuid.toString());
-            ResultSet resultSet = statement.executeQuery();
-            return resultSet.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public void createUser(UUID uuid) {
-        try{
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM bank WHERE uuid=?");
-            statement.setString(1, uuid.toString());
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO bank (uuid,kingdoms,pve) VALUES (?,?,?)");
-                insert.setString(1, uuid.toString());
-                insert.setInt(2, 0);
-                insert.setInt(3, 0);
-                insert.executeUpdate();
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
     public void updateCoins(UUID uuid, int coins){
         if(coins < 0) coins = 0;
         try {

@@ -53,11 +53,11 @@ public class MySQLConnections {
             @Override
             public void run() {
                 try {
-                    if(mainDatabase != null && !mainDatabase.isClosed()){
+                    if(kingdomsDatabase != null && !kingdomsDatabase.isClosed()){
                         return;
                     }
                     Class.forName("com.mysql.jdbc.Driver");
-                    mainDatabase = DriverManager.getConnection("jdbc:mysql://"
+                    kingdomsDatabase = DriverManager.getConnection("jdbc:mysql://"
                                     + host + ":" + port + "/"
                                     + "ubanetwork-kingdoms" + "?autoReconnect=true&useUnicode=yes&useSSL=false"
                             , username, password);
