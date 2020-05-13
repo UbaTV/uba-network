@@ -13,7 +13,8 @@ public class RankManager {
         Rank rank = getRank(player);
         int rankTier = getRankTier(rank);
         switch (permission){
-            // INSERT PERMISSIONS
+            case SET_LOCATION:
+                return rank.equals(Rank.CEO);
             default:
                 return false;
         }
