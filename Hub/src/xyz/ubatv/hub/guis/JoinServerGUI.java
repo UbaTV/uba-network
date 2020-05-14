@@ -28,8 +28,10 @@ public class JoinServerGUI implements InventoryHolder, Listener {
     public void createGUI(Player player){
         // TODO Add number of player on server and if server is online
         ItemStack pve = main.itemAPI.item(Material.DIAMOND_SWORD, "§5PvE §7Server", "§7Click to connect to server.");
+        ItemStack kingdoms = main.itemAPI.item(Material.GRASS_BLOCK, "§5Kingdoms §7Server", "§7Click to connect to server.");
 
-        inv.setItem(4, pve);
+        inv.setItem(3, kingdoms);
+        inv.setItem(5, pve);
     }
 
     @EventHandler
@@ -46,9 +48,8 @@ public class JoinServerGUI implements InventoryHolder, Listener {
         Player player = (Player) event.getWhoClicked();
         int slot = event.getRawSlot();
 
-        if(slot == 4){
-            connectToServer(player, "pve");
-        }
+        if(slot == 3) connectToServer(player, "kingdoms");
+        if(slot == 5) connectToServer(player, "pve");
     }
 
     private void connectToServer(Player player, String server){

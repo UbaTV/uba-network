@@ -74,6 +74,7 @@ public class Main extends JavaPlugin {
             kingdomClaimYML.loadKingdomClaims(kingdomName);
         }
 
+        registerChannels();
         registerEvents();
         registerCommands();
 
@@ -201,6 +202,14 @@ public class Main extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 20L * 60 * 5,20L * 60 * 20);
+    }
+
+    private void registerChannels(){
+        // BungeeCord Main Channel
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+        // USER DATA CHANNEL
+        getServer().getMessenger().registerIncomingPluginChannel(this, "ubanetwork:userdata", new UserDataManager());
     }
 
     private void updateScoreboards(){

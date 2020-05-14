@@ -16,19 +16,27 @@ public class GameManager {
 
     private Main main = Main.getInstance();
 
-    public int minPlayers = 2;
-    public int maxPlayers = 6;
+    public final int roundDayTime = 60*5; // 5min
+    public final int roundNightTime = 60*5; // 5min
+    public final int maxRounds = 5;
+    public final int minPlayers = 2;
+    public final int maxPlayers = 6;
 
+    public int round;
     public GameState gameState;
     public boolean mobSpawn;
+
     public int lobbyTimer;
     public int gameTimer;
+    public int roundTime;
 
     public void initGame(){
         gameState = GameState.LOBBY;
         mobSpawn = false;
         lobbyTimer = 10;
         gameTimer = 0;
+        round = 1;
+        roundTime = 0;
         main.locationYML.game.getWorld().setTime(0);
         startLobby();
     }
@@ -36,7 +44,6 @@ public class GameManager {
     public void startLobby(){
         /*
         TODO
-        Move Player
         Change inventory
          */
         for(Player player : Bukkit.getServer().getOnlinePlayers()){
@@ -78,8 +85,11 @@ public class GameManager {
     }
 
     public void startGame(){
+        gameState = GameState.ROUND_DAY;
         gameTimer = 0;
         lobbyTimer = 10;
+        round = 1;
+        roundTime = 0;
         for(Player player : Bukkit.getServer().getOnlinePlayers()){
             player.teleport(main.locationYML.game);
             player.setGameMode(GameMode.SURVIVAL);
@@ -94,9 +104,29 @@ public class GameManager {
             @Override
             public void run() {
                 gameTimer++;
+                roundTime++;
+                if(0 <= roundTime && roundTime <= roundDayTime){
+                    // Round Day Time
+                    gameState = GameState.ROUND_DAY;
+                }else if(roundDayTime <= roundTime && roundTime <= (roundDayTime + roundNightTime)){
+                    // Round Night Time
+                    gameState = GameState.ROUND_NIGHT;
+                }else{
+                    // Round End
+                    roundTime = 0;
+                    if(round >= maxRounds){
+                        // End Game
+                        endGame();
+                        this.cancel();
+                    }else{
+                        // Change round
+                        round++;
+                    }
+                }
+
                 long worldTime = main.locationYML.game.getWorld().getTime();
                 if(13000 <= worldTime && worldTime <= 23000){
-                    if(lobbyTimer == 13000) Bukkit.getServer().getOnlinePlayers().forEach(
+                    if(gameTimer == 13000) Bukkit.getServer().getOnlinePlayers().forEach(
                             player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 0, 20, 0));
                     mobSpawn = true;
                 }else{
@@ -108,8 +138,9 @@ public class GameManager {
         r.runTaskTimerAsynchronously(main, 0, 20);
     }
 
-    public void stopGame(){
+    public void endGame(){
         lobbyTimer = 10;
         gameTimer = 0;
+        round = 1;
     }
 }

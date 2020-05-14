@@ -26,9 +26,10 @@ public class UserDataManager implements PluginMessageListener {
     public void saveUserData(Player player){
         UUID uuid = player.getUniqueId();
         if(!userData.containsKey(uuid)) return;
-        UserData userData = this.userData.get(uuid);
+        UserData userData = UserDataManager.userData.get(uuid);
 
         main.mainUserData.updateRank(uuid, userData.getRank());
+        UserDataManager.userData.remove(uuid);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class UserDataManager implements PluginMessageListener {
             Player target = Bukkit.getServer().getPlayer(input.readUTF());
             String rankName = input.readUTF().toUpperCase();
             Rank rank = Rank.valueOf(rankName);
-            UserData userData = this.userData.get(target.getUniqueId());
+            UserData userData = UserDataManager.userData.get(target.getUniqueId());
             userData.setRank(rank);
             target.setPlayerListName("§7[" + main.rankManager.getRankName(rank, true) + "§7] §7" + target.getName());
         }

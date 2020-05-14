@@ -46,7 +46,7 @@ public class Main_Bank {
 
     public void updateKingdomsCoins(UUID uuid, int coins){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET kingdoms=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE bank SET kingdoms=? WHERE uuid=?");
             statement.setInt(1, coins);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -57,7 +57,7 @@ public class Main_Bank {
 
     public int getKingdomCoins(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM bank WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
@@ -70,7 +70,7 @@ public class Main_Bank {
 
     public void updatePvECoins(UUID uuid, int coins){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE user_data SET pve=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("UPDATE bank SET pve=? WHERE uuid=?");
             statement.setInt(1, coins);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -81,7 +81,7 @@ public class Main_Bank {
 
     public int getPvECoins(UUID uuid){
         try {
-            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM user_data WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM bank WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();

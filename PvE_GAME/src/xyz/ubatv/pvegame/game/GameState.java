@@ -2,6 +2,7 @@ package xyz.ubatv.pvegame.game;
 
 public enum GameState {
     LOBBY,
-    INGAME,
+    ROUND_DAY,
+    ROUND_NIGHT,
     OVER
 }

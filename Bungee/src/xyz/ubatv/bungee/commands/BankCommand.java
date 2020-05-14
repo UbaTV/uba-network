@@ -28,7 +28,7 @@ public class BankCommand extends Command {
             }
 
             int kingdomsCoins = main.mainBank.getKingdomCoins(target.getUniqueId());
-            int pveCoins = main.mainBank.getKingdomCoins(target.getUniqueId());
+            int pveCoins = main.mainBank.getPvECoins(target.getUniqueId());
 
             if(player.getName().equals(target.getName())){
                 player.sendMessage(new TextComponent("§5Your §7Account"));
