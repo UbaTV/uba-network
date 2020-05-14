@@ -15,16 +15,23 @@ public class LocationYML {
 
     private Main main = Main.getInstance();
 
-    public Location spawn;
+    public Location lobby;
+    public Location game;
 
     private File file;
     public FileConfiguration config;
 
-    public void setupSpawn(){
-        if(getConfig().contains("spawn.x")){
-            spawn = getLocation("spawn");
+    public void setupLocations(){
+        if(getConfig().contains("lobby.x")){
+            lobby = getLocation("lobby");
         }else{
-            Bukkit.getConsoleSender().sendMessage("Spawn location not defined.");
+            Bukkit.getConsoleSender().sendMessage("Lobby location not defined.");
+        }
+
+        if(getConfig().contains("game.x")){
+            game = getLocation("game");
+        }else{
+            Bukkit.getConsoleSender().sendMessage("Game location not defined.");
         }
     }
 

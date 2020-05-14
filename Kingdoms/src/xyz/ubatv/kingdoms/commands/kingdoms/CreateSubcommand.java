@@ -56,7 +56,7 @@ public class CreateSubcommand extends SubCommand {
             }
 
             try{
-                PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("" +
+                PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("" +
                         "SELECT * FROM kingdoms WHERE name=?");
                 statement.setString(1, kingdomName.toLowerCase());
                 ResultSet rs = statement.executeQuery();
@@ -65,8 +65,8 @@ public class CreateSubcommand extends SubCommand {
                     PreparedStatement insert = main.mySQLConnections.getKingdomsDatabase()
                             .prepareStatement
                                     ("INSERT INTO kingdoms " +
-                                            "(name,display_name,king,vault,members,tag,display_tag,ally,enemy) " +
-                                            "VALUES (?,?,?,?,?,?,?,?,?)");
+                                            "(name,display_name,king,vault,members,tag,display_tag,ally,enemy,level) " +
+                                            "VALUES (?,?,?,?,?,?,?,?,?,?)");
                     insert.setString(1, kingdomName.toLowerCase());
                     insert.setString(2, kingdomName);
                     insert.setString(3, player.getName());
@@ -76,6 +76,7 @@ public class CreateSubcommand extends SubCommand {
                     insert.setString(7, "none");
                     insert.setString(8, "none");
                     insert.setString(9, "none");
+                    insert.setInt(10, 1);
                     insert.executeUpdate();
                     UserDataManager.usersData.get(player.getUniqueId()).setKingdom(kingdomName.toLowerCase());
                     Bukkit.getServer().getOnlinePlayers().forEach(

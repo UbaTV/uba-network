@@ -30,8 +30,8 @@ public class KingdomUtils {
     }
 
     public ArrayList<Chunk> getKingdomClaims(String kingdomName){
-        if(kingdomsChunks.containsKey(kingdomName)){
-            return kingdomsChunks.get(kingdomName);
+        if(KingdomUtils.kingdomsChunks.containsKey(kingdomName)){
+            return KingdomUtils.kingdomsChunks.get(kingdomName);
         }
         return new ArrayList<>();
     }

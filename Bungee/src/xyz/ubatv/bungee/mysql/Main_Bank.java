@@ -1,5 +1,6 @@
 package xyz.ubatv.bungee.mysql;
 
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import xyz.ubatv.bungee.Main;
 
 import java.sql.PreparedStatement;
@@ -23,17 +24,19 @@ public class Main_Bank {
         }
     }
 
-    public void createUser(UUID uuid) {
+    public void createUser(ProxiedPlayer player) {
+        UUID uuid = player.getUniqueId();
         try{
             PreparedStatement statement = main.mySQLConnections.getMainDatabase().prepareStatement("SELECT * FROM bank WHERE uuid=?");
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO bank (uuid,kingdoms,pve) VALUES (?,?,?)");
+                PreparedStatement insert = main.mySQLConnections.getMainDatabase().prepareStatement("INSERT INTO bank (uuid,name,kingdoms,pve) VALUES (?,?,?,?)");
                 insert.setString(1, uuid.toString());
-                insert.setInt(2, 0);
+                insert.setString(2, player.getName());
                 insert.setInt(3, 0);
+                insert.setInt(4, 0);
                 insert.executeUpdate();
             }
         }catch (SQLException e){

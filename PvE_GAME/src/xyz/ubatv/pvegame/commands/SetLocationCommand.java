@@ -22,8 +22,8 @@ public class SetLocationCommand implements CommandExecutor{
                 String locationName = args[0].toLowerCase();
                 main.locationYML.setLocation(locationName, location);
 
-                if(locationName.equalsIgnoreCase("spawn")){
-                    main.locationYML.spawn = location;
+                if(locationName.equalsIgnoreCase("lobby")){
+                    main.locationYML.lobby = location;
                 }
 
                 player.sendMessage(main.textUtils.right + "§5" + locationName + " §7location saved successfully.");

@@ -18,6 +18,10 @@ import xyz.ubatv.hub.utils.TextUtils;
 
 public class Main extends JavaPlugin {
 
+    // TODO Always sunny
+    // TODO Always day maybe
+    // TODO Add footer and header on tab
+
     public static Main instance;
     public TextUtils textUtils;
     public MySQLConnections mySQLConnections;

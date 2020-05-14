@@ -40,15 +40,13 @@ public class ChatManager implements Listener {
         ServerRank serverRank = main.rankManager.getServerRank(player);
         String rankName = main.rankManager.getRankName(rank, true);
         String serverRankName = main.rankManager.getServerRankName(serverRank, true);
-        for(Player target : Bukkit.getOnlinePlayers()){
-            if(rank.equals(Rank.MEMBER)){
-                target.sendMessage(
-                        kingdomTag + "§7[" + serverRankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
+        if(rank.equals(Rank.MEMBER)){
+            Bukkit.getServer().broadcastMessage(
+                    kingdomTag + "§7[" + serverRankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
 
-            }else{
-                target.sendMessage(
-                        kingdomTag + "§7[" + serverRankName + "§7] §7[" + rankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
-            }
+        }else{
+            Bukkit.getServer().broadcastMessage(
+                    kingdomTag + "§7[" + serverRankName + "§7] §7[" + rankName + "§7] §7" + player.getName() + "§8§l: §r§7" + msg);
         }
     }
 }

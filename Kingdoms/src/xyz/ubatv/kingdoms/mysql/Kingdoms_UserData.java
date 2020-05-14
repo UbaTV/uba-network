@@ -33,13 +33,13 @@ public class Kingdoms_UserData {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             if(!userExists(uuid)){
-                PreparedStatement insert = main.mySQLConnections.getKingdomsDatabase().prepareStatement("INSERT INTO user_data (uuid,name,kills,deaths,kingdom,serverRank) VALUES (?,?,?,?,?,?)");
+                PreparedStatement insert = main.mySQLConnections.getKingdomsDatabase().prepareStatement("INSERT INTO user_data (uuid,name,kills,deaths,kingdoms,serverRank) VALUES (?,?,?,?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, player.getName());
                 insert.setInt(3, 0);
                 insert.setInt(4, 0);
                 insert.setString(5, "none");
-                insert.setString(5, ServerRank.WOOD.toString().toUpperCase());
+                insert.setString(6, ServerRank.WOOD.toString().toUpperCase());
                 insert.executeUpdate();
             }
         }catch (SQLException e){
@@ -97,7 +97,7 @@ public class Kingdoms_UserData {
 
     public void updateKingdom(UUID uuid, String kingdomName){
         try {
-            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE user_data SET kingdom=? WHERE uuid=?");
+            PreparedStatement statement = main.mySQLConnections.getKingdomsDatabase().prepareStatement("UPDATE user_data SET kingdoms=? WHERE uuid=?");
             statement.setString(1, kingdomName);
             statement.setString(2, uuid.toString());
             statement.executeUpdate();
@@ -112,7 +112,7 @@ public class Kingdoms_UserData {
             statement.setString(1, uuid.toString());
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            return resultSet.getString("kingdom");
+            return resultSet.getString("kingdoms");
         } catch (SQLException e) {
             e.printStackTrace();
             return "none";

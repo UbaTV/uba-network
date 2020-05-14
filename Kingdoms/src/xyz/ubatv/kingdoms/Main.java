@@ -93,7 +93,7 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         Bukkit.getOnlinePlayers().forEach(target -> {
             userDataManager.saveUserData(target);
-            target.kickPlayer("§5Server is restarting. Please reconnect.");
+            target.performCommand("hub");
         });
 
         cooldownYML.saveShutdown();

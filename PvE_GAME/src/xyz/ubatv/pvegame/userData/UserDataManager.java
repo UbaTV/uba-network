@@ -24,13 +24,18 @@ public class UserDataManager implements PluginMessageListener {
                         , playerStatus));
     }
 
-    public void saveUserData(Player player){
-        UUID uuid = player.getUniqueId();
+    public void saveUserData(UUID uuid){
         if(!userData.containsKey(uuid)) return;
         UserData userData = UserDataManager.userData.get(uuid);
 
         main.mainUserData.updateRank(uuid, userData.getRank());
-        // Add coins to bank table
+        UserDataManager.userData.remove(uuid);
+        // TODO Add coins to bank table
+    }
+
+    public void saveUserData(Player player){
+        UUID uuid = player.getUniqueId();
+        saveUserData(uuid);
     }
 
     public ArrayList<UUID> getSpectatingPlayer(){

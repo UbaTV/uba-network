@@ -2,6 +2,7 @@ package xyz.ubatv.kingdoms.rankSystem;
 
 import org.bukkit.entity.Player;
 import xyz.ubatv.kingdoms.Main;
+import xyz.ubatv.kingdoms.userData.UserDataManager;
 
 import java.util.UUID;
 
@@ -121,10 +122,10 @@ public class RankManager {
     }
 
     public ServerRank getServerRank(Player player){
-        return main.mainUserData.online.get(player.getUniqueId()).getServerRank();
+        return UserDataManager.usersData.get(player.getUniqueId()).getServerRank();
     }
 
     public Rank getRank(Player player){
-        return main.mainUserData.online.get(player.getUniqueId()).getRank();
+        return UserDataManager.usersData.get(player.getUniqueId()).getRank();
     }
 }

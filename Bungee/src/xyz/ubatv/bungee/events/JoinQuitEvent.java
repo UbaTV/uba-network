@@ -15,12 +15,11 @@ public class JoinQuitEvent implements Listener {
     public void onJoin(PostLoginEvent event){
         ProxiedPlayer player = event.getPlayer();
         main.mainUserData.createUser(player);
-        main.userDataManager.loadUserData(player);
+        main.mainBank.createUser(player);
     }
 
     @EventHandler
     public void onQuit(PlayerDisconnectEvent event){
         ProxiedPlayer player = event.getPlayer();
-        main.userDataManager.saveUserData(player);
     }
 }

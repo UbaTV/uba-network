@@ -33,11 +33,11 @@ public class UserDataManager implements PluginMessageListener {
         UserData userData = usersData.get(uuid);
 
         main.mainUserData.updateRank(uuid, userData.getRank());
-        main.kingdomsUserData.updateServerRank(uuid, userData.getServerRank());
         main.mainBank.updateCoins(uuid, userData.getCoins());
         main.kingdomsUserData.updateKills(uuid, userData.getKills());
         main.kingdomsUserData.updateDeaths(uuid, userData.getDeaths());
         main.kingdomsUserData.updateKingdom(uuid, userData.getKingdom());
+        main.kingdomsUserData.updateServerRank(uuid, userData.getServerRank());
     }
 
     @Override

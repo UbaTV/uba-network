@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import xyz.ubatv.hub.Main;
+import xyz.ubatv.hub.userData.UserData;
+import xyz.ubatv.hub.userData.UserDataManager;
 
 public class JoinQuitEvent implements Listener {
 
@@ -24,11 +26,15 @@ public class JoinQuitEvent implements Listener {
         player.setGameMode(GameMode.ADVENTURE);
         giveHotbar(player);
 
+        player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§7Welcome to the §5UbaNetwork§7!");
         player.sendMessage(" ");
         main.textUtils.sendCenteredMessage(player, "§7Website: §5ubatv.xyz");
         main.textUtils.sendCenteredMessage(player, "§7Discord: §5discord.gg/AJxFu2C");
         player.sendMessage(" ");
+
+        UserData userData = UserDataManager.userData.get(player.getUniqueId());
+        player.setPlayerListName("§7[" + main.rankManager.getRankName(userData.getRank(), true) + "§7] §7" + player.getName());
 
         if(main.locationYML.spawn != null) player.teleport(main.locationYML.spawn);
     }
