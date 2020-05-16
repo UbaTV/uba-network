@@ -1,0 +1,9 @@
+name: Minigames
+version: 1.0-SNAPSHOT
+main: xyz.ubatv.minigames.Main
+authors:
+  - andreubita
+database: true
+website: ubatv.xyz
+prefix: PVE
+description: This plugin was developed by UbaTV.
