@@ -105,11 +105,17 @@ public class GameManager {
             public void run() {
                 gameTimer++;
                 roundTime++;
-                if(0 <= roundTime && roundTime <= roundDayTime){
+                main.dayNightCicle.setWorldTime(roundTime);
+                if(0 <= roundTime && roundTime < roundDayTime){
                     // Round Day Time
+                    if(roundTime == 0) Bukkit.getServer().getOnlinePlayers().forEach(
+                            player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 0, 20, 0));
+                    Bukkit.broadcastMessage("");
                     gameState = GameState.ROUND_DAY;
                 }else if(roundDayTime <= roundTime && roundTime <= (roundDayTime + roundNightTime)){
                     // Round Night Time
+                    if(roundTime == roundDayTime) Bukkit.getServer().getOnlinePlayers().forEach(
+                            player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 0, 20, 0));
                     gameState = GameState.ROUND_NIGHT;
                 }else{
                     // Round End
@@ -121,6 +127,7 @@ public class GameManager {
                     }else{
                         // Change round
                         round++;
+                        Bukkit.broadcastMessage(main.textUtils.warning + "Round: §5" + round);
                     }
                 }
 

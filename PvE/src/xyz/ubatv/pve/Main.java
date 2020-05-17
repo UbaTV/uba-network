@@ -7,7 +7,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.ubatv.pve.config.LocationYML;
 import xyz.ubatv.pve.events.ChatManager;
 import xyz.ubatv.pve.events.JoinQuitEvent;
+import xyz.ubatv.pve.game.DayNightCicle;
 import xyz.ubatv.pve.game.GameManager;
+import xyz.ubatv.pve.game.MobSpawning;
 import xyz.ubatv.pve.mysql.Main_Bank;
 import xyz.ubatv.pve.mysql.Main_UserData;
 import xyz.ubatv.pve.mysql.MySQLConnections;
@@ -29,6 +31,8 @@ public class Main extends JavaPlugin {
     public RankManager rankManager;
     public LocationYML locationYML;
     public GameManager gameManager;
+    public DayNightCicle dayNightCicle;
+    public MobSpawning mobSpawning;
 
     @Override
     public void onEnable() {
@@ -79,6 +83,8 @@ public class Main extends JavaPlugin {
         mainBank = new Main_Bank();
         locationYML = new LocationYML();
         gameManager = new GameManager();
+        dayNightCicle = new DayNightCicle();
+        mobSpawning = new MobSpawning();
     }
 
     private void registerChannels(){
