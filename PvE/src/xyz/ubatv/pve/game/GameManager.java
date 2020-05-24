@@ -1,5 +1,7 @@
 package xyz.ubatv.pve.game;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
@@ -39,6 +41,7 @@ public class GameManager {
         roundTime = 0;
         main.locationYML.game.getWorld().setTime(0);
         startLobby();
+        Bukkit.broadcastMessage("game init");
     }
 
     public void startLobby(){
@@ -46,13 +49,15 @@ public class GameManager {
         TODO
         Change inventory
          */
-        for(Player player : Bukkit.getServer().getOnlinePlayers()){
-            UserData playerData = UserDataManager.userData.get(player.getUniqueId());
-            playerData.setPlayerStatus(PlayerStatus.LOBBY);
-            player.teleport(main.locationYML.lobby);
+        gameState = GameState.LOBBY;
+        if(Bukkit.getServer().getOnlinePlayers().size() != 0){
+            for(Player player : Bukkit.getServer().getOnlinePlayers()){
+                UserData playerData = UserDataManager.userData.get(player.getUniqueId());
+                playerData.setPlayerStatus(PlayerStatus.LOBBY);
+                player.teleport(main.locationYML.lobby);
+            }
         }
 
-        gameState = GameState.LOBBY;
         BukkitRunnable r = new BukkitRunnable() {
             @Override
             public void run() {
@@ -76,6 +81,12 @@ public class GameManager {
                         startGame();
                     }
                 }else{
+                    if(Bukkit.getOnlinePlayers().size() != 0){
+                        for(Player target : Bukkit.getOnlinePlayers()){
+                            target.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                                    main.textUtils.warning + "§7Game needs §5" + minPlayers + " §7players to start."));
+                        }
+                    }
                     lobbyTimer = 10;
                 }
             }

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.ubatv.pve.commands.SetLocationCommand;
 import xyz.ubatv.pve.config.LocationYML;
 import xyz.ubatv.pve.events.ChatManager;
 import xyz.ubatv.pve.events.JoinQuitEvent;
@@ -40,6 +41,7 @@ public class Main extends JavaPlugin {
         setInstances();
 
         loadConfig();
+        locationYML.createConfig();
         locationYML.setupLocations();
 
         mySQLConnections.setCredentials();
@@ -66,6 +68,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerCommands(){
+        getCommand("setlocation").setExecutor(new SetLocationCommand());
     }
 
     private void registerEvents(){

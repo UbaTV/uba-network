@@ -16,6 +16,7 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
         event.setJoinMessage("§7[§a+§7] " + player.getName());
         main.userDataManager.loadUserData(player);
+
     }
 
     @EventHandler

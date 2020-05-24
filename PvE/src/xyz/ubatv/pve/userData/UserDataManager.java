@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import xyz.ubatv.pve.Main;
+import xyz.ubatv.pve.game.GameState;
 import xyz.ubatv.pve.rankSystem.Rank;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class UserDataManager implements PluginMessageListener {
 
     public void loadUserData(Player player){
         UUID uuid = player.getUniqueId();
-        PlayerStatus playerStatus = PlayerStatus.LOBBY; // TODO Player Status change with Game Status
+        PlayerStatus playerStatus = (main.gameManager.gameState == GameState.LOBBY) ? PlayerStatus.LOBBY : PlayerStatus.SPECTATE;
         userData.put(uuid,
                 new UserData(main.mainUserData.getRank(uuid)
                         , playerStatus));

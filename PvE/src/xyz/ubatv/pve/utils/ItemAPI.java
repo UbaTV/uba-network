@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.w3c.dom.events.EventException;
-import xyz.ubatv.hub.Main;
+import xyz.ubatv.pve.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
