@@ -21,7 +21,7 @@ public class GameManager {
     public final int roundDayTime = 60*5; // 5min
     public final int roundNightTime = 60*5; // 5min
     public final int maxRounds = 5;
-    public final int minPlayers = 2;
+    public final int minPlayers = 1;
     public final int maxPlayers = 6;
 
     public int round;
@@ -84,7 +84,7 @@ public class GameManager {
                     if(Bukkit.getOnlinePlayers().size() != 0){
                         for(Player target : Bukkit.getOnlinePlayers()){
                             target.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                                    main.textUtils.warning + "§7Game needs §5" + minPlayers + " §7players to start."));
+                                    main.textUtils.warning + "§8Game needs §5" + minPlayers + " §8players to start."));
                         }
                     }
                     lobbyTimer = 10;
@@ -92,7 +92,7 @@ public class GameManager {
             }
         };
 
-        r.runTaskTimerAsynchronously(main, 0, 20);
+        r.runTaskTimer(main, 0, 20);
     }
 
     public void startGame(){
@@ -119,15 +119,14 @@ public class GameManager {
                 main.dayNightCicle.setWorldTime(roundTime);
                 if(0 <= roundTime && roundTime < roundDayTime){
                     // Round Day Time
-                    if(roundTime == 0) Bukkit.getServer().getOnlinePlayers().forEach(
-                            player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 0, 20, 0));
-                    Bukkit.broadcastMessage("");
                     gameState = GameState.ROUND_DAY;
+                    if(roundTime <= 1) Bukkit.getServer().getOnlinePlayers().forEach(
+                            player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 0, 20, 0));
                 }else if(roundDayTime <= roundTime && roundTime <= (roundDayTime + roundNightTime)){
                     // Round Night Time
+                    gameState = GameState.ROUND_NIGHT;
                     if(roundTime == roundDayTime) Bukkit.getServer().getOnlinePlayers().forEach(
                             player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 0, 20, 0));
-                    gameState = GameState.ROUND_NIGHT;
                 }else{
                     // Round End
                     roundTime = 0;
@@ -153,7 +152,7 @@ public class GameManager {
             }
         };
 
-        r.runTaskTimerAsynchronously(main, 0, 20);
+        r.runTaskTimer(main, 0, 20);
     }
 
     public void endGame(){
