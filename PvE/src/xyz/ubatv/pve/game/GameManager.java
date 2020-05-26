@@ -18,8 +18,8 @@ public class GameManager {
 
     private Main main = Main.getInstance();
 
-    public final int roundDayTime = 60*5; // 5min
-    public final int roundNightTime = 60*5; // 5min
+    public final int roundDayTime = 60*1; // 1min
+    public final int roundNightTime = 60*1; // 1min
     public final int maxRounds = 5;
     public final int minPlayers = 1;
     public final int maxPlayers = 6;
@@ -39,6 +39,7 @@ public class GameManager {
         gameTimer = 0;
         round = 1;
         roundTime = 0;
+        main.mobSpawning.mobsKilled = 0;
         main.locationYML.game.getWorld().setTime(0);
         startLobby();
         Bukkit.broadcastMessage("game init");
@@ -120,11 +121,14 @@ public class GameManager {
                 if(0 <= roundTime && roundTime < roundDayTime){
                     // Round Day Time
                     gameState = GameState.ROUND_DAY;
+                    main.mobSpawning.mobSpawn = false;
                     if(roundTime <= 1) Bukkit.getServer().getOnlinePlayers().forEach(
                             player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 0, 20, 0));
                 }else if(roundDayTime <= roundTime && roundTime <= (roundDayTime + roundNightTime)){
                     // Round Night Time
                     gameState = GameState.ROUND_NIGHT;
+                    main.mobSpawning.mobSpawn = true;
+                    if(roundTime % main.mobSpawning.getRoundSpawnDelay(round) == 0) main.mobSpawning.spawnMobs();
                     if(roundTime == roundDayTime) Bukkit.getServer().getOnlinePlayers().forEach(
                             player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 0, 20, 0));
                 }else{

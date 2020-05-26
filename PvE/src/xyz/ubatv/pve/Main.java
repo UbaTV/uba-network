@@ -75,6 +75,7 @@ public class Main extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         pluginManager.registerEvents(new JoinQuitEvent(), this);
         pluginManager.registerEvents(new ChatManager(), this);
+        pluginManager.registerEvents(new MobSpawning(), this);
     }
 
     private void setInstances(){

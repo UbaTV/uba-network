@@ -31,6 +31,7 @@ public class UserDataManager implements PluginMessageListener {
 
         main.mainUserData.updateRank(uuid, userData.getRank());
         UserDataManager.userData.remove(uuid);
+        // TODO Add kills to database
         // TODO Add coins to bank table
     }
 

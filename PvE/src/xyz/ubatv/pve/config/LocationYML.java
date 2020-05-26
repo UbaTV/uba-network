@@ -10,6 +10,7 @@ import xyz.ubatv.pve.Main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 public class LocationYML {
 
@@ -17,11 +18,18 @@ public class LocationYML {
 
     public Location lobby;
     public Location game;
+    public Set<Location> mobSpawn;
 
     private File file;
     public FileConfiguration config;
 
     public void setupLocations(){
+        for(String name : config.getConfigurationSection("").getKeys(false)) {
+            if(name.contentEquals("mobspawn")){
+                mobSpawn.add(getLocation(name));
+            }
+        }
+
         if(getConfig().contains("lobby.x")){
             lobby = getLocation("lobby");
         }else{
