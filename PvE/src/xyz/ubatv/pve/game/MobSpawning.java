@@ -22,9 +22,7 @@ public class MobSpawning implements Listener {
     public void onMobSpawn(CreatureSpawnEvent event){
         Entity entity = event.getEntity();
         if(entity instanceof Monster){
-            if(mobSpawn){
-                event.setCancelled(false);
-            }else{
+            if(!mobSpawn){
                 event.setCancelled(true);
             }
         }
@@ -52,11 +50,11 @@ public class MobSpawning implements Listener {
     }
 
     public int getRoundSpawnDelay(int round){
-        if(round == 1) return 5;
-        else if(round == 2) return 4;
-        else if(round == 3) return 3;
-        else if(round == 4) return 2;
-        else if(round == 5) return 1;
+        if(round == 1) return 13;
+        else if(round == 2) return 10;
+        else if(round == 3) return 8;
+        else if(round == 4) return 6;
+        else if(round == 5) return 3;
         return 1;
     }
 }

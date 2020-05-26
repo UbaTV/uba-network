@@ -111,6 +111,7 @@ public class GameManager {
             assert player != null;
             player.setGameMode(GameMode.SPECTATOR);
         }
+        Bukkit.broadcastMessage(main.textUtils.warning + "Round: §51");
 
         BukkitRunnable r = new BukkitRunnable() {
             @Override
@@ -123,14 +124,14 @@ public class GameManager {
                     gameState = GameState.ROUND_DAY;
                     main.mobSpawning.mobSpawn = false;
                     if(roundTime <= 1) Bukkit.getServer().getOnlinePlayers().forEach(
-                            player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 0, 20, 0));
+                            player -> player.sendTitle("§5Day §7has started", "§cGather weapons to fight.", 20, 20*2, 20));
                 }else if(roundDayTime <= roundTime && roundTime <= (roundDayTime + roundNightTime)){
                     // Round Night Time
                     gameState = GameState.ROUND_NIGHT;
                     main.mobSpawning.mobSpawn = true;
                     if(roundTime % main.mobSpawning.getRoundSpawnDelay(round) == 0) main.mobSpawning.spawnMobs();
                     if(roundTime == roundDayTime) Bukkit.getServer().getOnlinePlayers().forEach(
-                            player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 0, 20, 0));
+                            player -> player.sendTitle("§5Night §7has started", "§cKill all mobs and survive", 20, 20*2, 20));
                 }else{
                     // Round End
                     roundTime = 0;

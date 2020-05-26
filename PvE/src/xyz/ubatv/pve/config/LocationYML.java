@@ -10,7 +10,7 @@ import xyz.ubatv.pve.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class LocationYML {
 
@@ -18,26 +18,33 @@ public class LocationYML {
 
     public Location lobby;
     public Location game;
-    public Set<Location> mobSpawn;
+    public ArrayList<Location> mobSpawn = new ArrayList<>();
 
     private File file;
     public FileConfiguration config;
 
     public void setupLocations(){
         for(String name : config.getConfigurationSection("").getKeys(false)) {
-            if(name.contentEquals("mobspawn")){
-                mobSpawn.add(getLocation(name));
+            if(name.length() >= 8){
+                Bukkit.getConsoleSender().sendMessage(name);
+                if(name.substring(0, 8).equalsIgnoreCase("mobspawn")){
+                    Location loc = getLocation(name);
+                    Bukkit.getConsoleSender().sendMessage("x: " + loc.getBlockX());
+                    mobSpawn.add(loc);
+                }
             }
         }
 
         if(getConfig().contains("lobby.x")){
             lobby = getLocation("lobby");
+
         }else{
             Bukkit.getConsoleSender().sendMessage("Lobby location not defined.");
         }
 
         if(getConfig().contains("game.x")){
             game = getLocation("game");
+
         }else{
             Bukkit.getConsoleSender().sendMessage("Game location not defined.");
         }
@@ -64,6 +71,7 @@ public class LocationYML {
                 z = getConfig().getDouble(locationName + ".z");
         float yaw = (float) getConfig().getDouble(locationName + ".yaw"),
                 pitch = (float) getConfig().getDouble(locationName + ".pitch");
+        Bukkit.getConsoleSender().sendMessage(locationName + " location loaded");
         return new Location(world, x, y, z, yaw, pitch);
     }
 
