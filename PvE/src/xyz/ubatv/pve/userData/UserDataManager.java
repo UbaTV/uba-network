@@ -53,11 +53,19 @@ public class UserDataManager implements PluginMessageListener {
     public int getNumberSpectating(){
         int spec = 0;
         for(Map.Entry<UUID, UserData> entry : UserDataManager.userData.entrySet()){
-            UUID uuid = entry.getKey();
             UserData userData = entry.getValue();
             if(userData.getPlayerStatus().equals(PlayerStatus.SPECTATE)) spec++;
         }
         return spec;
+    }
+
+    public int getNumberPlaying(){
+        int playing = 0;
+        for(Map.Entry<UUID, UserData> entry : UserDataManager.userData.entrySet()){
+            UserData userData = entry.getValue();
+            if(userData.getPlayerStatus().equals(PlayerStatus.PLAYING)) playing++;
+        }
+        return playing;
     }
 
     @Override

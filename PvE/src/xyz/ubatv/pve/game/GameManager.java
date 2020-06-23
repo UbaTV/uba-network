@@ -21,7 +21,7 @@ public class GameManager {
     public final int roundDayTime = 60*1; // 1min
     public final int roundNightTime = 60*1; // 1min
     public final int maxRounds = 5;
-    public final int minPlayers = 1;
+    public final int minPlayers = 2;
     public final int maxPlayers = 6;
 
     public int round;
@@ -42,7 +42,6 @@ public class GameManager {
         main.mobSpawning.mobsKilled = 0;
         main.locationYML.game.getWorld().setTime(0);
         startLobby();
-        Bukkit.broadcastMessage("game init");
     }
 
     public void startLobby(){
@@ -116,6 +115,12 @@ public class GameManager {
         BukkitRunnable r = new BukkitRunnable() {
             @Override
             public void run() {
+                // Check if there are any players alive
+                if(main.userDataManager.getNumberPlaying() == 0){
+                    endGame();
+                    this.cancel();
+                }
+
                 gameTimer++;
                 roundTime++;
                 main.dayNightCicle.setWorldTime(roundTime);
